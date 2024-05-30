@@ -167,7 +167,7 @@ const Landing = () => {
                     </div>
                     {/* Quick Question Section */}
                     <div className="quiz col pt-4 mb-4 mt-4 text-white">
-                        <h2>Quick Question</h2>
+                        <h3>Quick Question</h3>
                         <p>How can we regulate a technology that is developing exponentially and whose potential is almost impossible to gauge?</p>
                     </div>
                     {/* End of Quick Question Section */}                </div>
@@ -189,7 +189,7 @@ const Landing = () => {
                         {aiResearchMessages.map((message, index) => (
                             index === currentMessageIndex && (
                                 <div key={index} className="importance-ai">
-                                    <h2 className='text-center'>AI can do Research</h2>
+                                    <h2 className='text-left'>AI can do Research</h2>
                                     <h5>{message.header}</h5>
                                     <div className='code-block'>
                                         <TypingText
