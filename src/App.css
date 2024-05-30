@@ -1,38 +1,145 @@
-.App {
+.custom-navbar-bg {
+  background-color: black;
+}
+
+.footer{
+  color: #888 !important;
+  font-size: 0.9rem;
+}
+.footer h5{
+  font-size: 1.25rem;
+}
+.footer ul li{
+  font-size: 0.9rem;
+}
+.footer p{
+  font-size: 0.9rem;
+
+}
+.slanted-button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  background: black;
+  background: -webkit-linear-gradient(to right, #000000, #796c6c);
+  background: linear-gradient(to right, #000000, #565151);
+  text-decoration: none;
+  color: white !important;
+  overflow: hidden;
+  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+  transition: clip-path 0.3s ease;
+}
+
+.slanted-button:hover {
+  text-decoration: none;
+  background: #606c88;
+  background: -webkit-linear-gradient(to right, #1F1C2C, #525c74);
+  background: linear-gradient(to right, #1F1C2C, #545f78);
+  color: #fff;
+  text-decoration: none;
+
+}
+/* Override Bootstrap btn and btn-primary styles */
+.btn,
+.btn-primary:active {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  background: #606c88;
+  background: -webkit-linear-gradient(to right, #1F1C2C, #525c74);
+  background: linear-gradient(to right, #1F1C2C, #545f78);
+  color: white; /* Ensure the text color is white */
+  transition: 0.3s ease; /* Smooth background transition */
+  outline: #606c88 !important; /* Remove the default outline */
+}
+
+.btn:hover,
+.btn-primary:hover {
+  background: #525c74;
+  background: -webkit-linear-gradient(to right, #1F1C2C, #3f4858);
+  background: linear-gradient(to right, #1F1C2C, #3f4858);
+}
+
+.btn:focus,
+.btn-primary:focus {
+  outline: #606c88 !important; /* Ensure no outline on focus */
+  box-shadow: #606c88 !important; /* Remove any default box-shadow on focus */
+}
+
+body {
+  background: #1F1C2C;
+  background: -webkit-linear-gradient(to right, #1F1C2C, #928DAB);
+  background: linear-gradient(to right, #1F1C2C, #928DAB);
+}
+
+
+.landing {
+  height: auto;
+}
+
+.landing .column {
+  padding: 20px;
+}
+
+.message-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.message {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   text-align: center;
+  font-size: 2.0rem;
+  border-radius: 5px;
+  padding: 26px;
+  background: #272b33;
+  background: linear-gradient(to right, #0f1013, #676475);
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(100%) scale(0.8);
+  animation: cardAnimation 20s linear infinite;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.message p {
+  font-size: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.message:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.message:nth-child(2) {
+  animation-delay: 5s;
+}
+
+.message:nth-child(3) {
+  animation-delay: 10s;
+}
+
+.message:nth-child(4) {
+  animation-delay: 15s;
+}
+
+@keyframes cardAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(100%) scale(0.8);
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  5%,
+  25% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
-  to {
-    transform: rotate(360deg);
+
+  30%,
+  100% {
+    opacity: 0;
+    transform: translateY(-100%) scale(0.8);
   }
 }

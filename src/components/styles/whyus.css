@@ -1,0 +1,40 @@
+/* src/styles/whyus.css */
+.why-us-container {
+  color: white;
+  width: 95%;
+  margin: auto;
+  padding: 15px;
+}
+
+.why-us-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.reasons-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.reason-card {
+  padding: 26px;
+  margin-top: 20px;
+  background: #272b33;
+  background: linear-gradient(to right, #0f1013, #676475);
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1 1 100%;
+  /* max-width: 300px; */
+  min-height: 140px;
+  text-align: left; 
+}
+
+.reason-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.reason-card p {
+  font-size: 0.9rem;
+}
