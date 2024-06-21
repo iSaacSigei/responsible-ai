@@ -1,0 +1,88 @@
+/* src/styles/courseCard.css */
+
+.course-cards-container {
+    color: white;
+    width: 95%;
+    margin: auto;
+    padding: 15px;
+}
+
+.course-cards-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.course-cards-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Add gap between cards */
+}
+
+.course-card {
+    background: #5f285f;
+    background: -webkit-linear-gradient(to right, #2c122a, #fca3ed);
+    background: linear-gradient(to right, #2b1129, #f588e3);
+    color: white;
+    box-shadow: 0 4px 8px rgba(20, 19, 19, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 40px); /* Ensure three cards per row */
+    min-height: 300px; /* Set a minimum height for the card */
+    text-align: left;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card .course-details {
+    padding: 26px;
+    flex: 1; /* Allow description to expand */
+}
+
+.course-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.course-card p {
+    font-size: 0.9rem;
+}
+
+.course-image {
+    flex: 0 0 auto; /* Fix size of image */
+    height: 200px; /* Set fixed height for the image */
+    overflow: hidden; /* Hide any overflow to maintain card appearance */
+}
+
+.course-image img {
+    width: 100%; /* Ensure the image fills its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.course-link {
+    color: white;
+    text-decoration: none;
+    background-color: #d94ad8;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.course-link:hover {
+    background-color: #fca3ed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .course-card {
+        flex: 1 1 calc(50% - 20px); /* Two cards per row */
+    }
+}
+
+@media (max-width: 768px) {
+    .course-card {
+        flex: 1 1 100%; /* One card per row */
+    }
+}

@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => (
-  <nav className="navbar navbar-expand-lg navbar-dark custom-navbar-bg">
-    <div className="container">
+  <nav className="navbar navbar-expand-lg fixed-top  custom-navbar-bg">
+    <div className="container text-light">
       <Link className="navbar-brand" to="/">Responsible AI</Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
         aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">

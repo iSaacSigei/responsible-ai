@@ -1,5 +1,10 @@
 .custom-navbar-bg {
-  background-color: black;
+  background: #000000;
+  background: -webkit-linear-gradient(to right, #000000, #000000);
+  background: linear-gradient(to right, #000000, #000000);
+  color: white !important;
+  box-shadow: 0 4px 8px rgba(20, 19, 19, 0.1);
+
 }
 
 .footer{
@@ -26,9 +31,9 @@ h2{
   position: relative;
   display: inline-block;
   padding: 10px 20px;
-  background: black;
-  background: -webkit-linear-gradient(to right, #000000, #796c6c);
-  background: linear-gradient(to right, #000000, #565151);
+  background: #5f285f;
+  background: -webkit-linear-gradient(to right, #2c122a, #f588e3);
+  background: linear-gradient(to right, #2b1129, #f588e3);
   text-decoration: none;
   color: white !important;
   overflow: hidden;
@@ -38,9 +43,9 @@ h2{
 
 .slanted-button:hover {
   text-decoration: none;
-  background: #606c88;
-  background: -webkit-linear-gradient(to right, #1F1C2C, #525c74);
-  background: linear-gradient(to right, #1F1C2C, #545f78);
+  background: #160a16;
+  background: -webkit-linear-gradient(to right, #2c122a, #f588e3);
+  background: linear-gradient(to right, #2b1129, #f588e3);
   color: #fff;
   text-decoration: none;
 
@@ -74,9 +79,9 @@ h2{
 }
 
 body {
-  background: #1F1C2C;
-  background: -webkit-linear-gradient(to right, #1F1C2C, #928DAB);
-  background: linear-gradient(to right, #1F1C2C, #928DAB);
+  background: #000000;
+  background: -webkit-linear-gradient(to right, #131212c9, #1a1919);
+  background: linear-gradient(to right, #000000, #000000);
 }
 
 
@@ -103,10 +108,11 @@ body {
   font-size: 2.0rem;
   border-radius: 5px;
   padding: 26px;
-  background: #272b33;
-  background: linear-gradient(to right, #0f1013, #676475);
-  color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #5f285f;
+  background: -webkit-linear-gradient(to right, #2c122a, #fca3ed);
+  background: linear-gradient(to right, #2b1129, #f588e3);
+  color: white;
+  box-shadow: 0 4px 8px rgba(20, 19, 19, 0.1);
   transform: translateY(100%) scale(0.8);
   animation: cardAnimation 20s linear infinite;
 }

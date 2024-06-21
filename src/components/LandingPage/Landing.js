@@ -1,8 +1,11 @@
+// src/components/Landing.js
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import '../styles/landing.css';
+import CourseCard from '../courseCard/courseCard'; // Import the updated CourseCard component
 
 const twoSumCodeString = `
 function twoSum(nums, target) {
@@ -115,6 +118,27 @@ const Landing = () => {
         }
     ];
 
+    const courses = [
+        {
+            title: 'Introduction to AI',
+            description: 'Learn the basics of artificial intelligence and its applications.',
+            link: '/courses/introduction-to-ai',
+            image: 'introduction-to-ai' // Adjusted image filename without extension
+        },
+        {
+            title: 'AI Ethics',
+            description: 'Understand the ethical considerations in the development and deployment of AI systems.',
+            link: '/courses/ai-ethics',
+            image: 'ai-ethics' // Adjusted image filename without extension
+        },
+        {
+            title: 'Why Limit AI',
+            description: 'Explore the reasons and methods for limiting AI capabilities to ensure safety and ethical use.',
+            link: '/courses/why-limit-ai',
+            image: 'why-limit-ai' // Adjusted image filename without extension
+        }
+    ];
+
     const handleAlgorithmTypingComplete = () => {
         if (currentAlgorithmIndex < algorithms.length - 1) {
             setCurrentAlgorithmIndex(currentAlgorithmIndex + 1);
@@ -170,7 +194,8 @@ const Landing = () => {
                         <h3>Quick Question</h3>
                         <p>How can we regulate a technology that is developing exponentially and whose potential is almost impossible to gauge?</p>
                     </div>
-                    {/* End of Quick Question Section */}                </div>
+                    {/* End of Quick Question Section */}
+                </div>
                 <div className="col-12 col-md-6">
                     <h2 className="text-center text-white">What Can AI Do?</h2>
                     <div className="ai-example">
@@ -199,6 +224,17 @@ const Landing = () => {
                                     </div>
                                 </div>
                             )
+                        ))}
+                    </div>
+                </div>
+            </div>
+            {/* Popular Courses Section */}
+            <div className="popular-courses mt-5">
+                <h2 className="text-center">Popular Courses</h2>
+                <div className="course-cards-container">
+                    <div className="course-cards-row">
+                        {courses.map((course, index) => (
+                            <CourseCard key={index} course={course} />
                         ))}
                     </div>
                 </div>

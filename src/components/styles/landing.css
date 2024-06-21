@@ -1,5 +1,6 @@
 /* /styles/landing.css */
 .landing {
+    margin-top: 50px;
     padding: 10px;
 }
 
@@ -15,15 +16,19 @@
     border-radius: 5px;
     padding: 20px;
     margin-top: 8px;
-    background: #363b47;
-    background: linear-gradient(to right, #191b20, #928DAB);
-    color: #fff;
+    background: #5f285f;
+    background: -webkit-linear-gradient(to right, #2c122a, #fca3ed);
+    background: linear-gradient(to right, #2b1129, #f588e3);
+    color: white;
+    box-shadow: 0 4px 8px rgba(20, 19, 19, 0.1);
 }
 .quiz{
     padding: 26px;
-    background: #272b33;
-    background: linear-gradient(to right, #0f1013, #676475);
-    color: #fff;
+    background: #5f285f;
+    background: -webkit-linear-gradient(to right, #2c122a, #fca3ed);
+    background: linear-gradient(to right, #2b1129, #f588e3);
+    color: white;
+    box-shadow: 0 4px 8px rgba(20, 19, 19, 0.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .code-block {
@@ -106,9 +111,11 @@
 .importance-ai {
     margin-top: 20px;
     padding:20px;
-    background: #363b47;
-    background: linear-gradient(to right, #191b20, #928DAB);
-    color: #fff;
+    background: #a161a1;
+    background: -webkit-linear-gradient(to right, #2c122a, #fca3ed);
+    background: linear-gradient(to right, #2b1129, #f588e3);
+    color: white;
+    box-shadow: 0 4px 8px rgba(20, 19, 19, 0.1);
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
@@ -117,4 +124,14 @@
   .code-block {
     margin-top: 10px;
   }
-  
+  /* Add this to landing.css */
+
+.popular-courses {
+    padding: 20px 0;
+}
+
+.course-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
