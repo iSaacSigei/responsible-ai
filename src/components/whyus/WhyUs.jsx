@@ -25,20 +25,20 @@ const WhyUs = () => {
 
     const reasons = [
         {
-            header: 'Ethical Considerations',
-            text: 'AI systems should be designed with ethical considerations in mind to prevent potential harm or discrimination.'
+            header: 'Seamless Importation',
+            text: 'We streamline the importation process, ensuring that your goods are brought in efficiently and hassle-free.'
         },
         {
-            header: 'Transparency and Accountability',
-            text: 'There should be transparency and accountability in AI systems to understand how decisions are made and to address errors or biases.'
+            header: 'Trusted Exportation',
+            text: 'Our network guarantees secure and reliable exportation, connecting you with trustworthy partners globally.'
         },
         {
-            header: 'Human Oversight',
-            text: 'Human oversight is necessary to ensure that AI systems are used responsibly and to intervene when necessary.'
+            header: 'Reliable Transactions',
+            text: 'Our platform facilitates transparent and secure transactions, providing peace of mind for all parties involved.'
         },
         {
-            header: 'Regulation and Governance',
-            text: 'There should be regulations and governance frameworks in place to guide the development and deployment of AI technologies.'
+            header: 'Connecting Buyers and Partners',
+            text: 'We bridge the gap between buyers and trusted partners, fostering strong business relationships and growth opportunities.'
         }
     ];
 
@@ -53,8 +53,8 @@ const WhyUs = () => {
     return (
         <div className="why-us-container">
             <hr />
-            <h1 className='my-4 text-center text-light'>Why Limit AI?</h1>
-            <h4 className='text-center mb-3 text-capitalize'>Understanding the importance of limiting AI and using it responsibly</h4>
+            <h1 className='my-4 text-center text-light'>Why Choose Us?</h1>
+            <h4 className='text-center mb-3 text-capitalize'>Discover how we simplify importation, exportation, and more</h4>
             <div className="row reasons-row">
                 {reasons.map((reason, index) => (
                     <div key={index} className="col-12 col-md-6 col-lg-4">
