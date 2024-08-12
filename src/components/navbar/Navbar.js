@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => (
-  <nav className="navbar navbar-expand-lg fixed-top custom-navbar-bg">
+  <nav className="navbar navbar-expand-lg custom-navbar-bg">
     <div className="container text-light">
-      <Link className="navbar-brand" to="/">WoMall</Link>
+      <Link className="navbar-brand" style={{color:"#18453"}} to="/">WoMall</Link>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
         aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon">

@@ -6,7 +6,7 @@
 }
 
 .navbar .nav-link:hover {
-  color: #f588e3 !important; /* Change color on hover to make it stand out */
+  color: #18453B !important; /* Change color on hover to make it stand out */
   text-decoration: none; /* Remove underline on hover */
 }
 
@@ -69,13 +69,18 @@ p{
 h2{
   font-size: 1.2rem;
 }
+.bg{
+  background: #18453B;
+  background: -webkit-linear-gradient(to right, #18453B, #00AB66);
+  background: linear-gradient(to right,  #18453B, #00AB66);
+}
 .slanted-button {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
-  background: #5f285f;
-  background: -webkit-linear-gradient(to right, #2c122a, #f588e3);
-  background: linear-gradient(to right, #2b1129, #f588e3);
+  background: #18453B;
+  background: -webkit-linear-gradient(to right, #18453B, #00AB66);
+  background: linear-gradient(to right,  #18453B, #00AB66);
   text-decoration: none;
   color: white !important;
   overflow: hidden;
@@ -85,63 +90,14 @@ h2{
 
 .slanted-button:hover {
   text-decoration: none;
-  background: #160a16;
-  background: -webkit-linear-gradient(to right, #2c122a, #f588e3);
-  background: linear-gradient(to right, #2b1129, #f588e3);
+  background: #091815;
+  background: -webkit-linear-gradient(to right, #18453B, #101d18);
+  background: linear-gradient(to right,  #18453B, #101d18);
   color: #fff;
   text-decoration: none;
 
 }
-.slanted-button-left {
-  position: relative;
-  display: inline-block;
-  padding: 10px 20px;
-  background: #5f285f;
-  background: -webkit-linear-gradient(to right, #2c122a, #f588e3);
-  background: linear-gradient(to right, #2b1129, #f588e3);
-  text-decoration: none;
-  color: white !important;
-  overflow: hidden;
-  clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
-  transition: clip-path 0.3s ease;
-}
 
-.slanted-button-left:hover {
-  text-decoration: none;
-  background: #160a16;
-  background: -webkit-linear-gradient(to right, #2c122a, #f588e3);
-  background: linear-gradient(to right, #2b1129, #f588e3);
-  color: #fff;
-  text-decoration: none;
-}
-
-/* Override Bootstrap btn and btn-primary styles */
-.btn,
-.btn-primary:active {
-  position: relative;
-  display: inline-block;
-  padding: 10px 20px;
-  text-decoration: none;
-  background: #606c88;
-  background: -webkit-linear-gradient(to right, #1F1C2C, #525c74);
-  background: linear-gradient(to right, #1F1C2C, #545f78);
-  color: white; /* Ensure the text color is white */
-  transition: 0.3s ease; /* Smooth background transition */
-  outline: #606c88 !important; /* Remove the default outline */
-}
-
-.btn:hover,
-.btn-primary:hover {
-  background: #525c74;
-  background: -webkit-linear-gradient(to right, #1F1C2C, #3f4858);
-  background: linear-gradient(to right, #1F1C2C, #3f4858);
-}
-
-.btn:focus,
-.btn-primary:focus {
-  outline: #606c88 !important; /* Ensure no outline on focus */
-  box-shadow: #606c88 !important; /* Remove any default box-shadow on focus */
-}
 
 body {
   background: #000000;
@@ -149,10 +105,6 @@ body {
   background: linear-gradient(to right, #000000, #000000);
 }
 
-
-.landing {
-  height: auto;
-}
 
 .landing .column {
   padding: 20px;
@@ -167,17 +119,13 @@ body {
 
 .message {
   position: absolute;
+  margin-top: 20px;
   width: 100%;
   height: 100%;
   text-align: center;
   font-size: 2.0rem;
-  border-radius: 5px;
   padding: 26px;
-  background: #5f285f;
-  background: -webkit-linear-gradient(to right, #2c122a, #fca3ed);
-  background: linear-gradient(to right, #2b1129, #f588e3);
   color: white;
-  box-shadow: 0 4px 8px rgba(20, 19, 19, 0.1);
   transform: translateY(100%) scale(0.8);
   animation: cardAnimation 20s linear infinite;
 }

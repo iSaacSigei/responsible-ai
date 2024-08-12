@@ -6,13 +6,14 @@ import './App.css';
 import ImportPage from './components/ImportPage/ImportPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Error404 from './components/ErrorPage/Error404';
+import ExportPage from './components/ExportPage/ExportPage';
 const App = () => (
     <Routes>
       <Route path="/" element={<Home />} />
       {/* Add other routes as needed */}
       <Route path="/about" element={<div>About Page</div>} />
       <Route path="/imports" element={<ImportPage/>} />
-      <Route path="/resources" element={<div>Resources Page</div>} />
+      <Route path="/exports" element={<ExportPage/>} />
       <Route path="/contact" element={<div>Contact Page</div>} />
         {/* Catch all undefined routes and render Error404 component */}
         <Route path='*' element={<Error404 />} />

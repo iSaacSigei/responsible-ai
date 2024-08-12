@@ -6,6 +6,7 @@ const Landing = () => {
     return (
         <div className="container landing d-flex align-items-center justify-content-center min-vh-100">
             <div className="col-12 col-md-6">
+                <div className='bg'>
                 <div className="message-container">
                     <div className="message">
                         <h2>Welcome to WoMall</h2>
@@ -24,11 +25,12 @@ const Landing = () => {
                         <p>Join our community and stay informed about the latest in global trade.</p>
                     </div>
                 </div>
+                </div>
                 <div className="col pt-4 mt-4 text-white">
                     <p>Partner with WoMall and take your business across borders with ease.</p>
                     <div className="d-flex justify-content-between mt-4 align-items-center w-100">
                         <Link to="/exports" className="slanted-button">Export Now</Link>
-                        <Link to="/imports" className="slanted-button-left">Import Now</Link>
+                        <Link to="/imports" className="slanted-button">Import Now</Link>
                     </div>
 
                     <p className="text-center mt-5">
