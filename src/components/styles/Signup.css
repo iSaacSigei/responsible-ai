@@ -1,0 +1,42 @@
+.signup-page-container {
+    background-color: black;
+    color: whitesmoke;
+    padding: 20px;
+}
+
+.signup-form {
+    max-width: 800px;
+    margin: auto;
+}
+
+.form-row {
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 5px;
+    color: whitesmoke;
+}
+
+.form-row input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    background-color: #222;
+    color: whitesmoke;
+}
+
+button {
+    background-color: #4C51BF; /* Tailwind text-indigo-600 */
+    color: whitesmoke;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #5A67D8; /* Tailwind text-indigo-500 */
+}

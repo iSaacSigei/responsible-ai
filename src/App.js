@@ -7,6 +7,8 @@ import ImportPage from './components/ImportPage/ImportPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Error404 from './components/ErrorPage/Error404';
 import ExportPage from './components/ExportPage/ExportPage';
+import Login from './components/Login/Login';
+import Signup from './components/Signup/Signup';
 const App = () => (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -15,6 +17,8 @@ const App = () => (
       <Route path="/imports" element={<ImportPage/>} />
       <Route path="/exports" element={<ExportPage/>} />
       <Route path="/contact" element={<div>Contact Page</div>} />
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/signup' element={<Signup/>}/>
         {/* Catch all undefined routes and render Error404 component */}
         <Route path='*' element={<Error404 />} />
     </Routes>

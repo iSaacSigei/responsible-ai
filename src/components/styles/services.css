@@ -1,0 +1,50 @@
+.services-container {
+    padding: 40px 20px;
+    background-color: black;
+    color: whitesmoke;
+}
+
+.service-card {
+    background-color: #222;
+    border: none;
+    color: whitesmoke;
+    background: #18453B;
+    background: -webkit-linear-gradient(to right, #18453B, #00AB66);
+    background: linear-gradient(to right,  #18453B, #00AB66);
+    margin-bottom: 20px;
+    width: 80%; /* Reduced width */
+    margin: 0 auto; /* Center align the card */
+    transition: width 0.3s ease-in-out;
+}
+
+.service-card:hover {
+    width: 85%; /* Increase width slightly on hover */
+}
+
+.service-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.service-card .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: red;
+}
+
+.service-card .card-text {
+    font-size: 1rem;
+    color: whitesmoke;
+}
+
+@media (max-width: 768px) {
+    .service-card {
+        width: 90%; /* Cover 90% of the screen on small screens */
+    }
+
+    .row {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* Vertical gap between cards */
+    }
+}
