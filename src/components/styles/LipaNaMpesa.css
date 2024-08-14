@@ -1,0 +1,19 @@
+.lipa-na-mpesa-form {
+    border: 1px solid green;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .lipa-na-mpesa-form h4 {
+    margin-bottom: 20px;
+    color: whitesmoke;
+  }
+  
+  .lipa-na-mpesa-form .form-control {
+    font-size: 1rem;
+  }
+  
+  .lipa-na-mpesa-form .form-row {
+    margin-bottom: 15px;
+  }
+  

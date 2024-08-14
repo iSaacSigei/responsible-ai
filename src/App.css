@@ -74,6 +74,20 @@ h2{
   background: -webkit-linear-gradient(to right, #18453B, #00AB66);
   background: linear-gradient(to right,  #18453B, #00AB66);
 }
+.custom-width {
+  width: 60%;
+  margin: auto;
+  background: #18453B;
+  background: -webkit-linear-gradient(to right, #18453B, #00AB66);
+  background: linear-gradient(to right, #18453B, #00AB66);
+}
+
+@media (max-width: 767px) {
+  .custom-width {
+      width: 95% !important; /* Adjusted width on small screens */
+  }
+}
+
 .btn-1{
   position: relative;
   display: inline-block;
@@ -84,6 +98,17 @@ h2{
   text-decoration: none;
   color: white !important;
   overflow: hidden;
+}
+.custom-width-1 {
+  width: 60%;
+  margin: auto;
+
+}
+
+@media (max-width: 767px) {
+  .custom-width-1 {
+      width: 95% !important; /* Adjusted width on small screens */
+  }
 }
 .btn-1:hover{
   text-decoration: none;

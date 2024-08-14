@@ -1,0 +1,44 @@
+.checkout-page-container {
+    padding: 20px;
+    background: #000;
+}
+
+.custom-width {
+    width: 80%;
+    margin: auto;
+}
+
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.checkout-item h5 {
+    font-size: 1.2rem;
+    color: rgb(212, 208, 208) !important;
+}
+
+.checkout-item p {
+    font-size: 1.2rem;
+    color: rgb(212, 208, 208) !important;
+}
+
+.payment-options {
+    padding: 20px 0;
+    color: whitesmoke;
+}
+
+.payment-option {
+    margin-bottom: 10px;
+}
+
+.payment-option input[type="radio"] {
+    margin-right: 10px;
+}
+.card-details {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

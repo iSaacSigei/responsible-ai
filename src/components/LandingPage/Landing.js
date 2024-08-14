@@ -4,9 +4,9 @@ import '../styles/landing.css';
 
 const Landing = () => {
     return (
-        <div className="container landing d-flex align-items-center justify-content-center min-vh-100">
-            <div className="col-12 col-md-6">
-                <div className='bg'>
+        <div className="container min-vh-100">
+            <div className="">
+                <div className='custom-width'>
                 <div className="message-container">
                     <div className="message">
                         <h2>Welcome to WoMall</h2>
@@ -26,7 +26,7 @@ const Landing = () => {
                     </div>
                 </div>
                 </div>
-                <div className="col pt-4 mt-4 text-white">
+                <div className="pt-4 mt-4 text-white custom-width-1">
                     <p>Partner with WoMall and take your business across borders with ease.</p>
                     <div className="d-flex justify-content-between mt-4 align-items-center w-100">
                         <Link to="/exports" className="slanted-button">Export Now</Link>
@@ -38,7 +38,7 @@ const Landing = () => {
                     </p>
                 </div>
                 {/* Quick Question Section */}
-                <div className="quiz col pt-4 mb-4 mt-4 text-white">
+                <div className="custom-width quiz col pt-4 mb-4 mt-4 text-white">
                     <h3>Quick Question</h3>
                     <p>Do you want to import Bulk goods and you don't know how??</p>
                 </div>

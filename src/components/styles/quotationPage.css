@@ -1,0 +1,42 @@
+.quotation-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.quotation-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.quotation-item h5 {
+    flex: 1;
+    margin-right: 20px;
+    font-size: 1.0rem;
+    color: rgb(212, 208, 208) !important;
+
+}
+
+.quotation-item p {
+    flex: 1;
+    text-align: right;
+    font-size: 0.9rem;
+    color: rgb(212, 208, 208) !important;
+
+
+}
+
+.quotation-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.quotation-total h5, .quotation-total p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(212, 208, 208) !important;
+
+}

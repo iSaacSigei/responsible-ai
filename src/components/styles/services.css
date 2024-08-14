@@ -29,7 +29,7 @@
 .service-card .card-title {
     font-size: 1.5rem;
     margin-bottom: 10px;
-    color: red;
+    color: whitesmoke;
 }
 
 .service-card .card-text {
@@ -40,6 +40,7 @@
 @media (max-width: 768px) {
     .service-card {
         width: 90%; /* Cover 90% of the screen on small screens */
+        margin-top: 54px;
     }
 
     .row {
@@ -47,4 +48,8 @@
         flex-direction: column;
         gap: 20px; /* Vertical gap between cards */
     }
+        /* Add margin-top to the third card */
+        .service-card:nth-child(3) {
+            margin-top: 20px;
+        }
 }
