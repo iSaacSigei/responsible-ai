@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../styles/Import.css'; // Make sure to create this CSS file for styling
-import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
 
 const ImportPage = () => {
@@ -34,8 +33,6 @@ const ImportPage = () => {
 
     return (
       <>
-        <Navbar/>
-        
         <div className="import-page-container mt-5">
         <hr className='text-light'></hr>
             <form onSubmit={handleSubmit} className="import-form">

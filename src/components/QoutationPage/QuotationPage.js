@@ -1,12 +1,10 @@
 import React from 'react';
 import '../styles/quotationPage.css';
-import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
 
 const QuotationPage = () => {
     return (
         <>
-        <Navbar/>
         <div className="quotation-page-container d-flex flex-column align-items-center justify-content-center min-vh-100">
             <div className="quotation-summary custom-width text-center mt-3 py-4 px-3 text-light">
                 <h2>Quotation Summary</h2>

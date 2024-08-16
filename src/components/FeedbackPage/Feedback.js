@@ -1,11 +1,9 @@
 import React from 'react';
 import '../styles/importFeedback.css';
-import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
 const ImportFeedback = () => {
     return (
         <>
-        <Navbar/>
         <div className="import-feedback-container d-flex flex-column align-items-center  min-vh-100">
             <div className="message-section bg text-center py-4 px-3">
                 <h2>Your order has been received!</h2>

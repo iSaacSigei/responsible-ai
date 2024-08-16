@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../styles/checkoutPage.css'; // Ensure to create this CSS file for styling
-import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
 import CreditCard from '../CreditCard/CreditCard'; // Ensure the path is correct
 import LipaNaMpesa from '../LipaNaMpesa/LipaNaMpesa'; // Ensure the path is correct
@@ -14,7 +13,6 @@ const Checkout = () => {
 
     return (
         <>
-            <Navbar />
             <div className="checkout-page-container d-flex flex-column align-items-center justify-content-center min-vh-100">
                 <div className="checkout-summary custom-width text-center mt-3 py-4 px-3 text-light">
                     <h2>Checkout</h2>
