@@ -63,12 +63,12 @@
   font-size: 0.9rem;
 
 }
-p{
+/* p{
   font-size: 0.9rem;
 }
 h2{
   font-size: 1.2rem;
-}
+} */
 .bg{
   background: #18453B;
   background: -webkit-linear-gradient(to right, #18453B, #00AB66);
@@ -210,5 +210,12 @@ body {
   100% {
     opacity: 0;
     transform: translateY(-100%) scale(0.8);
+  }
+}
+/* Add this to your global CSS file */
+@media (max-width: 576px) {
+  .custom-toast-container .Toastify__toast {
+      font-size: 12px;  /* Adjust font size */
+      padding: 8px;     /* Adjust padding */
   }
 }

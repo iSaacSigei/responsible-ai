@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../footer/Footer';
 import { Link, useNavigate } from 'react-router-dom';
-
+import '../styles/Signup.css';
 const Login = ({ updateUser }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,17 +22,32 @@ const Login = ({ updateUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/login', formData);
-      toast.success('Login successful!');
-      console.log('Login successful:', response.data);
-      // Update user state and redirect to the homepage after successful login
-      await updateUser();
-      navigate('/');
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+        const result = await response.json();
+
+        if (response.ok) {
+            toast.success('Login successful!');
+            localStorage.setItem('user', JSON.stringify(result.user));
+            await updateUser();
+            navigate('/');
+        } else if (response.status === 401) {
+            toast.error('Invalid email or password');
+            console.error('Error logging in:', result);
+        } else {
+            // Redirect to Error500Page for any other error
+            navigate('/error500');
+        }
     } catch (error) {
-      toast.error('Invalid email or password');
-      console.error('Error logging in:', error.response ? error.response.data : error.message);
+        console.error('Error logging in:', error);
+        // Redirect to Error500Page in case of network/server errors
+        navigate('/error500');
     }
-  };
+};
+
 
   return (
     <>
@@ -69,7 +83,11 @@ const Login = ({ updateUser }) => {
           <p className='text-light'>Or don't have an account? <Link to="/signup" className="signup-link ">Sign up here</Link></p>
         </div>
       </div>
-      <ToastContainer position="top-center" autoClose={5000} />
+      <ToastContainer 
+  className="custom-toast-container" 
+  position="top-center" 
+  autoClose={4000} 
+/>
       <Footer />
     </>
   );

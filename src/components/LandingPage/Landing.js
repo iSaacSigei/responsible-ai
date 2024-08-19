@@ -9,8 +9,8 @@ const Landing = () => {
                 <div className='custom-width'>
                 <div className="message-container">
                     <div className="message">
-                        <h2>Welcome to WoMall</h2>
-                        <p>Your trusted partner in global export and import services.</p>
+                        <h1>Welcome to WoMall</h1>
+                        <p className='fs-l'>Your trusted partner in global export and import services.</p>
                     </div>
                     <div className="message">
                         <h2>Comprehensive Trade Solutions</h2>
@@ -38,7 +38,7 @@ const Landing = () => {
                     </p>
                 </div>
                 {/* Quick Question Section */}
-                <div className="custom-width quiz col pt-4 mb-4 mt-4 text-white">
+                <div className="custom-width quiz col pt-4  mt-4 text-white">
                     <h3>Quick Question</h3>
                     <p>Do you want to import Bulk goods and you don't know how??</p>
                 </div>

@@ -4,6 +4,7 @@ import Footer from '../footer/Footer';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const SignupPage = () => {
     const [formData, setFormData] = useState({
@@ -20,6 +21,7 @@ const SignupPage = () => {
     });
 
     const [errors, setErrors] = useState({});
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,7 +33,7 @@ const SignupPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         if (formData.password !== formData.confirmPassword) {
             setErrors({ confirmPassword: "Passwords do not match!" });
             return;
@@ -49,17 +51,17 @@ const SignupPage = () => {
                     address: formData.address,
                     city: formData.city,
                     state_province: formData.stateProvince,
-                    password: formData.password,  
-                    password_confirmation: formData.confirmPassword 
+                    password: formData.password,
+                    password_confirmation: formData.confirmPassword
                 }
             });
             toast.success("Signup successful!");
             setTimeout(() => {
-                window.location.href = "/login";
+                navigate('/login');
             }, 3000); // Redirect after 3 seconds
         } catch (error) {
-            const errorMessages = {};
             if (error.response && error.response.data.errors) {
+                const errorMessages = {};
                 error.response.data.errors.forEach((err) => {
                     if (err.includes("Email")) {
                         errorMessages.email = err;
@@ -67,8 +69,12 @@ const SignupPage = () => {
                         errorMessages.password = err;
                     }
                 });
+                setErrors(errorMessages);
+            } else {
+                // Handle unexpected errors and navigate to the error page
+                console.error("Unexpected error:", error);
+                navigate('/error500');
             }
-            setErrors(errorMessages);
         }
     };
 

@@ -7,7 +7,7 @@ import partnersImage from '../../images/partners.png';
 const Services = () => {
     return (
         <div className="services-container">
-            <h2 className="text-center">Our Services</h2>
+            <h1 className="text-center mb-4">Our Services</h1>
             <div className="row">
                 {/* Exportation Card */}
                 <div className="col-lg-4 col-md-6">

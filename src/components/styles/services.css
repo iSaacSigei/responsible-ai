@@ -6,11 +6,10 @@
 
 .service-card {
     background-color: #222;
-    border: none;
+    /* padding: 15px; */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: whitesmoke;
-    background: #18453B;
-    background: -webkit-linear-gradient(to right, #18453B, #00AB66);
-    background: linear-gradient(to right,  #18453B, #00AB66);
     margin-bottom: 20px;
     width: 80%; /* Reduced width */
     margin: 0 auto; /* Center align the card */
@@ -27,14 +26,13 @@
 }
 
 .service-card .card-title {
-    font-size: 1.5rem;
     margin-bottom: 10px;
-    color: whitesmoke;
+    color: #4C51BF; /* Tailwind text-indigo-600 */
 }
 
 .service-card .card-text {
     font-size: 1rem;
-    color: whitesmoke;
+    color: rgb(216, 208, 208);
 }
 
 @media (max-width: 768px) {
