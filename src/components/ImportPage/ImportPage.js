@@ -59,7 +59,7 @@ const ImportPage = ({ user }) => {
         };
 
         try {
-            const response = await fetch('/import_orders', {
+            const response = await fetch('https://mysite-vqs1.onrender.com/import_orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

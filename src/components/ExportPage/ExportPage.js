@@ -71,7 +71,7 @@ const ExportPage = ({ user }) => {
         });
 
         try {
-            const response = await fetch('/export_orders', {
+            const response = await fetch('https://mysite-vqs1.onrender.com/export_orders', {
                 method: 'POST',
                 body: data
             });

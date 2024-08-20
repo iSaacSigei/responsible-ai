@@ -12,8 +12,8 @@ export default function MyOrdersPage() {
     const fetchOrders = async () => {
       try {
         const [exportResponse, importResponse] = await Promise.all([
-          fetch('/export_orders'),
-          fetch('/import_orders')
+          fetch('https://mysite-vqs1.onrender.com/export_orders'),
+          fetch('https://mysite-vqs1.onrender.com/import_orders')
         ]);
 
         if (!exportResponse.ok || !importResponse.ok) {
