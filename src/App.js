@@ -24,10 +24,13 @@ const App = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-useEffect(() => {
+  useEffect(() => {
     const fetchUser = async () => {
         try {
-            const response = await fetch('/sessions');
+            const response = await fetch('https://mysite-vqs1.onrender.com/sessions', {
+                method: 'GET',
+                credentials: 'include'  // This ensures cookies are sent with the request
+            });
             if (response.ok) {
                 const data = await response.json();
                 setUser(data.user || null);
@@ -42,6 +45,7 @@ useEffect(() => {
 
     fetchUser();
 }, []);
+
 
 
   const handleLogout = async () => {
