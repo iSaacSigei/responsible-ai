@@ -23,18 +23,26 @@ import ErrorBoundary from './components/ErrorBoundary';
 const App = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchUser = async () => {
         try {
             const response = await fetch('https://mysite-vqs1.onrender.com/sessions', {
                 method: 'GET',
-                credentials: 'include'  // This ensures cookies are sent with the request
+                credentials: 'include'  // Ensure cookies are sent with the request
             });
+            
             if (response.ok) {
-                const data = await response.json();
-                setUser(data.user || null);
+                // Check if the response content type is JSON
+                const contentType = response.headers.get('Content-Type');
+                if (contentType && contentType.includes('application/json')) {
+                    const data = await response.json();
+                    setUser(data.user || null);
+                } else {
+                    console.error("Unexpected response type:", contentType);
+                    setUser(null);
+                }
             } else {
+                console.error("Response not OK:", response.status);
                 setUser(null);
             }
         } catch (error) {
@@ -45,7 +53,6 @@ const App = () => {
 
     fetchUser();
 }, []);
-
 
 
   const handleLogout = async () => {
