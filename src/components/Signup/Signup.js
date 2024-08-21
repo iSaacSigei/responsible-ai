@@ -41,7 +41,7 @@ const SignupPage = () => {
 
         try {
             // POST request to the Rails backend
-            await axios.post('https://mysite-vqs1.onrender.com/users', {
+            await axios.post('https://mysite-jr5y.onrender.com/users', {
                 user: {
                     first_name: formData.firstName,
                     last_name: formData.lastName,

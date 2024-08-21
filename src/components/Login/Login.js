@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../footer/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Signup.css';
+
 const Login = ({ updateUser }) => {
   const [formData, setFormData] = useState({
     email: '',
@@ -22,7 +23,7 @@ const Login = ({ updateUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://mysite-vqs1.onrender.com/login', {
+      const response = await fetch('https://mysite-jr5y.onrender.com/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -43,14 +44,13 @@ const Login = ({ updateUser }) => {
       const result = await response.json();
       toast.success('Login successful!');
       localStorage.setItem('token', result.token);  // Store the token
-      await updateUser();
+      await updateUser();  // Refresh user data
       navigate('/');
     } catch (error) {
       console.error('Error logging in:', error);
       navigate('/error500');
     }
   };
-  
 
   return (
     <>
@@ -87,10 +87,10 @@ const Login = ({ updateUser }) => {
         </div>
       </div>
       <ToastContainer 
-  className="custom-toast-container" 
-  position="top-center" 
-  autoClose={4000} 
-/>
+        className="custom-toast-container" 
+        position="top-center" 
+        autoClose={4000} 
+      />
       <Footer />
     </>
   );

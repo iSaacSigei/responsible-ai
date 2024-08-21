@@ -59,10 +59,12 @@ const ImportPage = ({ user }) => {
         };
 
         try {
-            const response = await fetch('https://mysite-vqs1.onrender.com/import_orders', {
+            const token = localStorage.getItem('token');
+            const response = await fetch('https://mysite-jr5y.onrender.com/import_orders', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(data)
             });

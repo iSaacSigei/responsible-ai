@@ -70,10 +70,17 @@ const ExportPage = ({ user }) => {
             }
         });
 
+        // Retrieve the token from local storage (adjust if necessary)
+        const token = localStorage.getItem('token');
+
         try {
-            const response = await fetch('https://mysite-vqs1.onrender.com/export_orders', {
+            const response = await fetch('https://mysite-jr5y.onrender.com/export_orders', {
                 method: 'POST',
-                body: data
+                body: data,
+                headers: {
+                    'Authorization': `Bearer ${token}`, // Add Authorization header
+                    'Accept': 'application/json'
+                }
             });
 
             if (response.ok) {
@@ -101,7 +108,7 @@ const ExportPage = ({ user }) => {
             <ExportSuccessModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
             <div className="import-page-container mt-1">
                 <hr className='text-light'></hr>
-                {error && <div className="error-message">{error}</div>}
+                {error && <div className="error-message text-danger text-center">{error}</div>}
                 <form onSubmit={handleSubmit} className="import-form">
                     <div className="form-row">
                         <div className="col-md-12 mb-3">

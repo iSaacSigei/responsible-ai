@@ -11,9 +11,18 @@ export default function MyOrdersPage() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
+        // Retrieve the token from local storage
+        const token = localStorage.getItem('token');
+
+        // Configure the headers to include the Bearer token
+        const headers = new Headers({
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        });
+
         const [exportResponse, importResponse] = await Promise.all([
-          fetch('https://mysite-vqs1.onrender.com/export_orders'),
-          fetch('https://mysite-vqs1.onrender.com/import_orders')
+          fetch('https://mysite-jr5y.onrender.com/export_orders', { headers }),
+          fetch('https://mysite-jr5y.onrender.com/import_orders', { headers })
         ]);
 
         if (!exportResponse.ok || !importResponse.ok) {

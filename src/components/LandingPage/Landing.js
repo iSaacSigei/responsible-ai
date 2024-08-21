@@ -4,7 +4,7 @@ import '../styles/landing.css';
 
 const Landing = () => {
     return (
-        <div className="container min-vh-100">
+        <div className="min-vh-100">
             <div className="">
                 <div className='custom-width'>
                 <div className="message-container">

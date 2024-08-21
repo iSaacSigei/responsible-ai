@@ -7,7 +7,6 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import Home from './components/home/Home';
 import './App.css';
 import ImportPage from './components/ImportPage/ImportPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Error404 from './components/ErrorPage/Error404';
 import ExportPage from './components/ExportPage/ExportPage';
 import Login from './components/Login/Login';
@@ -18,26 +17,32 @@ import Checkout from './components/CheckoutPage/Checkout';
 import Navbar from './components/navbar/Navbar';
 import MyOrdersPage from './components/myOrders/MyOrdersPage';
 import Error500Page from './components/ServerError/Error500Page';
-import ErrorBoundary from './components/ErrorBoundary';
 
 const App = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('https://mysite-vqs1.onrender.com/sessions', {
-          method: 'GET',
-          headers: { 'Authorization': token ? `Bearer ${token}` : '' }
-        });
-    
-        if (!response.ok) {
-          console.error("Response not OK:", response.status);
+        if (!token) {
           setUser(null);
           return;
         }
-    
+        
+        const response = await fetch('https://mysite-jr5y.onrender.com/user', {
+          method: 'GET',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!response.ok) {
+          console.error("Response not OK:", response.status);
+          localStorage.removeItem('token'); // Remove invalid token
+          setUser(null);
+          return;
+        }
+
         const contentType = response.headers.get('Content-Type');
         if (contentType && contentType.includes('application/json')) {
           const data = await response.json();
@@ -48,18 +53,18 @@ const App = () => {
           setUser(null);
         }
       } catch (error) {
-        console.error("Error fetching the session:", error);
+        console.error("Error fetching user:", error);
         setUser(null);
       }
     };
-    
-    fetchUser();
-}, []);
 
+    fetchUser();
+  }, []);
 
   const handleLogout = async () => {
     try {
-      await fetch('/logout', { method: 'DELETE' });
+      await fetch('https://mysite-jr5y.onrender.com/logout', { method: 'DELETE' });
+      localStorage.removeItem('token');
       setUser(null);
       navigate('/login');
     } catch (error) {
@@ -69,11 +74,19 @@ const App = () => {
 
   const updateUser = async () => {
     try {
-      const response = await fetch('/sessions');
+      const response = await fetch('https://mysite-jr5y.onrender.com/user', {
+        method: 'GET',
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+      });
+      if (!response.ok) {
+        console.error("Response not OK:", response.status);
+        setUser(null);
+        return;
+      }
       const data = await response.json();
       setUser(data.user || null);
     } catch (error) {
-      console.error("Error fetching the session:", error);
+      console.error("Error updating user:", error);
       setUser(null);
     }
   };
@@ -93,7 +106,7 @@ const App = () => {
         <Route path="/quotation" element={<QuotationPage />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="*" element={<Error404 />} />
-        <Route path='/my_orders' element={<MyOrdersPage/>}/>
+        <Route path='/my_orders' element={<MyOrdersPage />} />
         <Route path="/error500" element={<Error500Page />} />
       </Routes>
     </>
