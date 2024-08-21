@@ -26,11 +26,12 @@ const App = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
+        const token = localStorage.getItem('token');
         const response = await fetch('https://mysite-vqs1.onrender.com/sessions', {
           method: 'GET',
-          credentials: 'include'  // Ensure cookies are sent with the request
+          headers: { 'Authorization': token ? `Bearer ${token}` : '' }
         });
-        
+    
         if (!response.ok) {
           console.error("Response not OK:", response.status);
           setUser(null);
@@ -42,7 +43,7 @@ const App = () => {
           const data = await response.json();
           setUser(data.user || null);
         } else {
-          const errorText = await response.text();  // Read error text if response is not JSON
+          const errorText = await response.text();
           console.error("Unexpected response type:", contentType, errorText);
           setUser(null);
         }

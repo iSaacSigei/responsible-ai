@@ -29,7 +29,7 @@ const Login = ({ updateUser }) => {
       });
       
       if (!response.ok) {
-        const errorText = await response.text();  // Read error text if response is not ok
+        const errorText = await response.text();
         console.error('Login failed:', errorText);
         if (response.status === 401) {
           toast.error('Invalid email or password');
@@ -42,7 +42,7 @@ const Login = ({ updateUser }) => {
   
       const result = await response.json();
       toast.success('Login successful!');
-      localStorage.setItem('user', JSON.stringify(result.user));
+      localStorage.setItem('token', result.token);  // Store the token
       await updateUser();
       navigate('/');
     } catch (error) {
@@ -51,7 +51,6 @@ const Login = ({ updateUser }) => {
     }
   };
   
-
 
   return (
     <>
