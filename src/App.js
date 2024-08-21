@@ -25,32 +25,33 @@ const App = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const fetchUser = async () => {
-        try {
-            const response = await fetch('https://mysite-vqs1.onrender.com/sessions', {
-                method: 'GET',
-                credentials: 'include'  // Ensure cookies are sent with the request
-            });
-            
-            if (response.ok) {
-                // Check if the response content type is JSON
-                const contentType = response.headers.get('Content-Type');
-                if (contentType && contentType.includes('application/json')) {
-                    const data = await response.json();
-                    setUser(data.user || null);
-                } else {
-                    console.error("Unexpected response type:", contentType);
-                    setUser(null);
-                }
-            } else {
-                console.error("Response not OK:", response.status);
-                setUser(null);
-            }
-        } catch (error) {
-            console.error("Error fetching the session:", error);
-            setUser(null);
+      try {
+        const response = await fetch('https://mysite-vqs1.onrender.com/sessions', {
+          method: 'GET',
+          credentials: 'include'  // Ensure cookies are sent with the request
+        });
+        
+        if (!response.ok) {
+          console.error("Response not OK:", response.status);
+          setUser(null);
+          return;
         }
+    
+        const contentType = response.headers.get('Content-Type');
+        if (contentType && contentType.includes('application/json')) {
+          const data = await response.json();
+          setUser(data.user || null);
+        } else {
+          const errorText = await response.text();  // Read error text if response is not JSON
+          console.error("Unexpected response type:", contentType, errorText);
+          setUser(null);
+        }
+      } catch (error) {
+        console.error("Error fetching the session:", error);
+        setUser(null);
+      }
     };
-
+    
     fetchUser();
 }, []);
 

@@ -22,31 +22,35 @@ const Login = ({ updateUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('https://mysite-vqs1.onrender.com/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
-        });
-        const result = await response.json();
-
-        if (response.ok) {
-            toast.success('Login successful!');
-            localStorage.setItem('user', JSON.stringify(result.user));
-            await updateUser();
-            navigate('/');
-        } else if (response.status === 401) {
-            toast.error('Invalid email or password');
-            console.error('Error logging in:', result);
+      const response = await fetch('https://mysite-vqs1.onrender.com/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();  // Read error text if response is not ok
+        console.error('Login failed:', errorText);
+        if (response.status === 401) {
+          toast.error('Invalid email or password');
         } else {
-            // Redirect to Error500Page for any other error
-            navigate('/error500');
+          toast.error('An error occurred');
+          navigate('/error500');
         }
+        return;
+      }
+  
+      const result = await response.json();
+      toast.success('Login successful!');
+      localStorage.setItem('user', JSON.stringify(result.user));
+      await updateUser();
+      navigate('/');
     } catch (error) {
-        console.error('Error logging in:', error);
-        // Redirect to Error500Page in case of network/server errors
-        navigate('/error500');
+      console.error('Error logging in:', error);
+      navigate('/error500');
     }
-};
+  };
+  
 
 
   return (
