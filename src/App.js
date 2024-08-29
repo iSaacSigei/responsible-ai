@@ -17,7 +17,8 @@ import Checkout from './components/CheckoutPage/Checkout';
 import Navbar from './components/navbar/Navbar';
 import MyOrdersPage from './components/myOrders/MyOrdersPage';
 import Error500Page from './components/ServerError/Error500Page';
-
+// import AdminLogin from "./components/Admin/Login";
+import AdminDashboard from './components/Admin/AdminDashboard';
 const App = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const App = () => {
           return;
         }
         
-        const response = await fetch('https://mysite-jr5y.onrender.com/user', {
+        const response = await fetch('http://127.0.0.1:3000/user', {
           method: 'GET',
           headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -63,7 +64,7 @@ const App = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch('https://mysite-jr5y.onrender.com/logout', { method: 'DELETE' });
+      await fetch('http://127.0.0.1:3000/logout', { method: 'DELETE' });
       localStorage.removeItem('token');
       setUser(null);
       navigate('/login');
@@ -74,7 +75,7 @@ const App = () => {
 
   const updateUser = async () => {
     try {
-      const response = await fetch('https://mysite-jr5y.onrender.com/user', {
+      const response = await fetch('http://127.0.0.1:3000/user', {
         method: 'GET',
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       });
@@ -108,6 +109,8 @@ const App = () => {
         <Route path="*" element={<Error404 />} />
         <Route path='/my_orders' element={<MyOrdersPage />} />
         <Route path="/error500" element={<Error500Page />} />
+        {/* <Route path='/admin_login' element={<AdminLogin/>}/> */}
+        <Route path='/admin_panel' element={<AdminDashboard/>}/>
       </Routes>
     </>
   );
