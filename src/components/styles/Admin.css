@@ -3,9 +3,10 @@
 .dashboard-container {
     display: flex;
     min-height: 100vh;
+    margin-top: 100px !important;
   }
   
-  .sidebar {
+  .sidebar-dash {
     width: 250px;
     background-color: #2c3e50;
     color: white;
@@ -17,16 +18,16 @@
     margin-bottom: 20px;
   }
   
-  .menu ul {
+  .menu-dash ul {
     list-style: none;
     padding: 0;
   }
   
-  .menu li {
+  .menu-dash li {
     margin-bottom: 10px;
   }
   
-  .menu li a {
+  .menu-dash li a {
     color: white;
     text-decoration: none;
     display: block;
@@ -34,8 +35,8 @@
     border-radius: 4px;
   }
   
-  .menu li a.active,
-  .menu li a:hover {
+  .menu-dash li a.active,
+  .menu-dash li a:hover {
     background-color: #34495e;
   }
   
@@ -113,10 +114,19 @@
     margin-top: 2rem;
   }
   
-    h2 {
+  h2 {
     font-size: 1.25rem;
     margin-bottom: 1rem;
     color: white;
+  }
+  .response-message {
+    font-size: 1.5rem;
+    margin: 1.5rem;
+    background: linear-gradient(to right, #E4C664 0%, #B18325 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
   }
   h4{
     font-size: 1.25rem;
@@ -196,4 +206,62 @@
   .btn-primary:hover, .btn-secondary:hover {
     opacity: 0.8;
   }
-  
+  .quotation-details {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: auto;
+  width: 60%;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Add these styles to your CSS file */
+
+/* Style for order details table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.data-table td, .data-table th {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.data-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.order-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.order-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.give-quotation-button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+.modal-header-custom {
+  color: black; /* Black text color for header */
+}
+
+.modal-body-custom {
+  text-align: center; /* Center the text in the modal body */
+}

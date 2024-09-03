@@ -81,7 +81,6 @@ const SignupPage = () => {
     return (
         <>
             <div className="signup-page-container">
-                <hr className='text-light'></hr>
                 <form onSubmit={handleSubmit} className="signup-form">
                     <div className="form-row row">
                         <div className="col-md-6 mb-3">

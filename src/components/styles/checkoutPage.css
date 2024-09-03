@@ -1,6 +1,8 @@
 .checkout-page-container {
     padding: 20px;
     background: #000;
+    margin-top: 130px !important;
+
 }
 
 .custom-width {

@@ -44,8 +44,16 @@ const Login = ({ updateUser }) => {
       const result = await response.json();
       toast.success('Login successful!');
       localStorage.setItem('token', result.token);  // Store the token
-      await updateUser();  // Refresh user data
-      navigate('/');
+      
+      // Update user data
+      await updateUser();
+      console.log(result)
+      // Check user role
+      if (result.user.role === 'admin') {
+        navigate('/admin_panel');
+      } else {
+        navigate('/');
+      }
     } catch (error) {
       console.error('Error logging in:', error);
       navigate('/error500');
@@ -54,7 +62,7 @@ const Login = ({ updateUser }) => {
 
   return (
     <>
-      <div className="auth-page-container mt-5">
+      <div className="signup-page-container mt-5">
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-row">
             <label htmlFor="email">Email</label>

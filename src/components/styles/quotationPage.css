@@ -1,8 +1,34 @@
-.quotation-container {
-    width: 80%;
+.quotation-page-wrapper {
     margin: auto;
     padding: 20px;
     border-radius: 10px;
+    background-color: black !important;
+    margin-top: 130px !important;
+    color: white;
+}
+
+.quotation-summary-box {
+    background-color: #222; /* Darker background for summary */
+}
+
+.quotation-details-box {
+    width: 60%;
+    background-color: black; /* Black background for the details */
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+    .quotation-details-box {
+        width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    .quotation-details-box {
+        width: 95%;
+    }
 }
 
 .quotation-item {
@@ -16,7 +42,6 @@
     margin-right: 20px;
     font-size: 1.0rem;
     color: rgb(212, 208, 208) !important;
-
 }
 
 .quotation-item p {
@@ -24,19 +49,20 @@
     text-align: right;
     font-size: 0.9rem;
     color: rgb(212, 208, 208) !important;
-
-
 }
 
-.quotation-total {
+.quotation-total-box {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-.quotation-total h5, .quotation-total p {
+.quotation-total-box h5, .quotation-total-box p {
     font-size: 1.5rem;
     font-weight: bold;
     color: rgb(212, 208, 208) !important;
+}
 
+.btn-proceed {
+    width: 100%;
 }

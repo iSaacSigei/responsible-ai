@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Spinner } from 'reactstrap'; // Import Spinner from reactstrap
 import '../../components/styles/Admin.css';
+import Logo from "../../images/png/logo-color.png"
+import { ThreeCircles } from 'react-loader-spinner';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 
 const AdminDashboard = () => {
   const [userCount, setUserCount] = useState(0);
@@ -17,10 +20,39 @@ const AdminDashboard = () => {
     warehouse_fee: '',
   });
   const [loading, setLoading] = useState(false); // State for loading spinner
+  const [responseMessage, setResponseMessage] = useState(null); // New state for response message
+  const [quotationDetails, setQuotationDetails] = useState(null); // New state for quotation details
+  const [orderDetails, setOrderDetails] = useState(null); // New state for order details
+  const [showOrderDetails, setShowOrderDetails] = useState(false); // State to control visibility
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
+  const [userToDelete, setUserToDelete] = useState(null); // State to track the user to be deleted
+  const [userToUpdate, setUserToUpdate] = useState(null); // New state for user update
+
+  const handleCloseQuotation = () => {
+    setQuotationDetails(null); // Hide the quotation details
+  };
 
   // Ref to scroll to the form
   const formRef = useRef(null);
+  const updateFormRef = useRef(null); // Ref for scrolling to update form
 
+  const ConfirmDeleteModal = ({ isOpen, toggle, confirmDelete }) => (
+    <Modal isOpen={isOpen} toggle={toggle}>
+      <ModalHeader toggle={toggle} className="modal-header-custom">Confirm Deletion</ModalHeader>
+      <ModalBody className="modal-body-custom">
+        Are you sure you want to delete the user?
+      </ModalBody>
+      <ModalFooter>
+        <Button color="danger" onClick={confirmDelete}>OK</Button>{' '}
+        <Button color="secondary" onClick={toggle}>Cancel</Button>
+      </ModalFooter>
+    </Modal>
+  );
+  const handleCloseOrderDetails = () => {
+    setShowOrderDetails(false);
+    setOrderDetails(null); // Optionally clear order details when closing
+  };
+const [loaders, setLoaders]=useState(false)
   useEffect(() => {
     const token = localStorage.getItem('token');
     
@@ -41,7 +73,7 @@ const AdminDashboard = () => {
     })
       .then(response => response.json())
       .then(data => setImportOrderCount(data.length));
-  }, []);
+  }, [loaders]);
 
   const handleStatClick = (type) => {
     const token = localStorage.getItem('token');
@@ -86,9 +118,8 @@ const AdminDashboard = () => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     
-    setLoading(true); // Show spinners
-
-    // Determine the correct body format based on the selected order type
+    setLoading(true); // Show spinner
+  
     const body = {
       quotation: {
         ...quotationFormData,
@@ -97,7 +128,7 @@ const AdminDashboard = () => {
           : { export_order_id: selectedOrderId }),
       },
     };
-
+  
     fetch('http://127.0.0.1:3000/quotations', {
       method: 'POST',
       headers: {
@@ -108,7 +139,7 @@ const AdminDashboard = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setLoading(false); // Hide spinners
+        setLoading(false); // Hide spinner
         setSelectedOrderId(null); // Clear the selected order after submission
         setSelectedOrderType(null); // Clear the selected order type
         setQuotationFormData({ // Reset form data
@@ -117,13 +148,126 @@ const AdminDashboard = () => {
           logistics_fee: '',
           warehouse_fee: '',
         });
+        setResponseMessage(data.message); // Set the response message
+        setQuotationDetails(data); // Set the quotation details including subtotal and total
       })
       .catch(error => {
-        setLoading(false); // Hide spinners
+        setLoading(false); // Hide spinner
         console.error('Error:', error);
         alert('Failed to create quotation');
       });
   };
+  const handleSidebarClick = (type) => {
+    handleStatClick(type); // Reuse handleStatClick for sidebar clicks
+  };
+  const handleViewMore = (orderId) => {
+    const token = localStorage.getItem('token');
+    const url = selectedData.type === 'importOrders'
+      ? `http://127.0.0.1:3000/import_orders/${orderId}`
+      : `http://127.0.0.1:3000/export_orders/${orderId}`;
+  
+    fetch(url, { headers: { 'Authorization': `Bearer ${token}` } })
+      .then(response => response.json())
+      .then(data => {
+        setOrderDetails(data);
+  
+        // Scroll to the order details section
+        setTimeout(() => {
+          const detailsSection = document.getElementById('order-details');
+          if (detailsSection) {
+            detailsSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100); // Delay to ensure DOM updates
+      })
+      .catch(error => console.error('Error:', error));
+  };
+
+  const handleDeleteClick = (user) => {
+    setUserToDelete(user); // Set the user to be deleted
+    setIsModalOpen(true); // Open the modal
+  };
+  
+  const handleConfirmDelete = () => {
+    const token = localStorage.getItem('token');
+    
+    fetch(`http://127.0.0.1:3000/users/${userToDelete.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+    .then(response => {
+      if (response.ok) {
+        // Remove the deleted user from the state
+        setSelectedData(prevData => ({
+          ...prevData,
+          data: prevData.data.filter(user => user.id !== userToDelete.id)
+        }));
+      }
+      setIsModalOpen(false); // Close the modal
+      setLoaders(true)
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Failed to delete user');
+      setIsModalOpen(false); // Close the modal even if there's an error
+    });
+  };
+  
+  const handleUpdateClick = (user) => {
+    setUserToUpdate(user);
+    setTimeout(() => {
+      if (updateFormRef.current) {
+        updateFormRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
+  const handleUserUpdateChange = (e) => {
+    setUserToUpdate({ ...userToUpdate, [e.target.name]: e.target.value });
+  };
+
+  const handleUserUpdateSubmit = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    const { id, ...updatedUser } = userToUpdate;
+  
+    fetch(`http://127.0.0.1:3000/users/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: updatedUser }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      setUserToUpdate(null);
+      setLoaders(true);
+      setResponseMessage(data.message);
+      // Refetch user data to get the updated list
+      fetch('http://127.0.0.1:3000/users', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      })
+      .then(response => response.json())
+      .then(fetchedData => {
+        setSelectedData({ type: 'users', data: fetchedData });
+        setLoaders(false); // Stop the loader after data is fetched
+      })
+      .catch(error => {
+        console.error('Error fetching updated user data:', error);
+        setLoaders(false); // Stop the loader in case of error
+      });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Failed to update user');
+      setLoaders(false); // Stop the loader in case of error
+    });
+  };
+  
 
   const renderTable = () => {
     if (!selectedData) return null;
@@ -152,8 +296,8 @@ const AdminDashboard = () => {
                   <td>{user.contact}</td>
                   <td>{user.role}</td>
                   <td>
-                    <button className='mx-4 btn py-2 btn-success'>Update</button>
-                    <button className='btn py-2 btn-danger'>Remove</button>
+                  <button className='mx-4 btn py-2 btn-success' onClick={() => handleUpdateClick(user)}>Update</button>
+                  <button className='btn py-2 btn-danger' onClick={() => handleDeleteClick(user)}>Remove</button>
                   </td>
                 </tr>
               ))}
@@ -193,7 +337,12 @@ const AdminDashboard = () => {
                     >
                       Give Quotation
                     </button>
-                    <button className=''>View More</button>
+                    <button
+                      className='mx-4'
+                      onClick={() => handleViewMore(order.id)}
+                    >
+                      View More
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -208,17 +357,18 @@ const AdminDashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <aside className="sidebar">
+      <aside className="sidebar-dash">
         <div className="logo">
-          <img src="logo.png" alt="Company Logo" />
+          <img src={Logo} alt="Company Logo" />
         </div>
-        <nav className="menu">
+        <nav className="menu-dash">
           <ul>
-            <li><a href="#" className="active">Dashboard</a></li>
-            <li><a href="#">Users</a></li>
-            <li><a href="#">Imports</a></li>
-            <li><a href="#">Exports</a></li>
+            <li><a href="#" onClick={() => handleSidebarClick('users')} className="active">Dashboard</a></li>
+            <li><a href="#"onClick={() => handleSidebarClick('users')}>Users</a></li>
+            <li><a href="#"onClick={() => handleSidebarClick('importOrders')}>Imports</a></li>
+            <li><a href="#" onClick={() => handleSidebarClick('exportOrders')}>Exports</a></li>
             <li><a href="#">In Transit</a></li>
+            <li><a href="#">Tenders</a></li>
             <li><a href="#">Pending Approval</a></li>
           </ul>
         </nav>
@@ -246,10 +396,231 @@ const AdminDashboard = () => {
 
         {/* Render the data table if there is selected data */}
         {renderTable()}
+        {userToUpdate && (
+            <div ref={updateFormRef} className='quotation-form'>
+              <h4>Update User</h4>
+              <form onSubmit={handleUserUpdateSubmit}>
+              <div className="form-group">
+              <label>
+                  First Name:
+                </label>
+                <input
+                    type="text"
+                    name="first_name"
+                    className="form-input"
+                    value={userToUpdate.first_name || ''}
+                    onChange={handleUserUpdateChange}
+                  />
+              </div>
+              <div className="form-group">
+                <label>
+                  Last Name: 
+                  </label>
+                  <input
+                    type="text"
+                    name="last_name"
+                    className="form-input"
+                    value={userToUpdate.last_name || ''}
+                    onChange={handleUserUpdateChange}
+                  />
+               </div>
+               <div className="form-group">
+                <label>
+                  Email:
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    className="form-input"
+                    value={userToUpdate.email || ''}
+                    onChange={handleUserUpdateChange}
+                  />
+                  </div>
+                <div className="form-group">
+                <label>
+                  Contact:
+                  </label>
+                  <input
+                    type="text"
+                    name="contact"
+                    className="form-input"
+                    value={userToUpdate.contact || ''}
+                    onChange={handleUserUpdateChange}
+                  />
+                  </div>
+                <div className="form-group">
+                <label>
+                  Role:
+                  </label>
+                  <input
+                    type="text"
+                    name="role"
+                    className="form-input"
+                    value={userToUpdate.role || ''}
+                    onChange={handleUserUpdateChange}
+                  />
+                  </div>
+                <button className="btn btn-primary"type="submit">Submit</button>
+                <button onClick={handleCloseQuotation} className="btn btn-secondary ">Cancel</button>
+              </form>
+            </div>
+          )}
+        <ConfirmDeleteModal
+          isOpen={isModalOpen}
+          toggle={() => setIsModalOpen(false)}
+          confirmDelete={handleConfirmDelete}
+        />
+        {/* Render the response message if available */}
+        {responseMessage && (
+          <div className="response-message">
+            <p>{responseMessage}</p>
+          </div>
+        )}
+        
+        {/* Display Quotation Details */}
+        {quotationDetails && (
+          <>
+          <div className="quotation-details">
+            <h4 className="quotation-title">Quotation Summary</h4>
+            <div className="quotation-item">
+              <span className="label">Price per Unit:</span>
+              <span className="value">{quotationDetails.quotation.price_per_unit} ({quotationDetails.quotation.units} units)</span>
+            </div>
+            <div className="quotation-item">
+              <span className="label">Units Ordered:</span>
+              <span className="value">{quotationDetails.units}</span>
+            </div>
+            <div className="quotation-item">
+              <span className="label">Total Price for Units:</span>
+              <span className="value">{(quotationDetails.quotation.price_per_unit * quotationDetails.units).toFixed(2)}</span>
+            </div>
+            <div className="quotation-item">
+              <span className="label">Custom Clearance Fee:</span>
+              <span className="value">{quotationDetails.quotation.custom_clearance_fee}</span>
+            </div>
+            <div className="quotation-item">
+              <span className="label">Logistics Fee:</span>
+              <span className="value">{quotationDetails.quotation.logistics_fee}</span>
+            </div>
+            <div className="quotation-item">
+              <span className="label">Warehouse Fee:</span>
+              <span className="value">{quotationDetails.quotation.warehouse_fee}</span>
+            </div>
+            <hr className="quotation-divider" />
+            <div className="quotation-item">
+              <span className="label">Subtotal:</span>
+              <span className="value">{quotationDetails.subtotal.toFixed(2)}</span>
+            </div>
+            <hr className="quotation-divider" />
+            <div className="quotation-item">
+              <span className="label">Company Commission (5% of Subtotal):</span>
+              <span className="value">{quotationDetails.quotation.company_commission}</span>
+            </div>
+            <hr className="quotation-divider" />
+            <div className="quotation-item">
+              <span className="label">Total Fee:</span>
+              <span className="value">{quotationDetails.total.toFixed(2)}</span>
+            </div>
+            <button onClick={handleCloseQuotation} className="btn btn-danger text-right">Close</button>
+          </div>
+          </>
+        )}
+        {orderDetails && (
+          <div className="order-details" id="order-details">
+            <h4>Order Details</h4>
+
+            {/* Display Images in Grid */}
+            {orderDetails.images && orderDetails.images.length > 0 && (
+              <div className="order-images">
+                {orderDetails.images.map((image, index) => (
+                  <img key={index} src={image} alt={`Order Image ${index + 1}`} className="order-image" />
+                ))}
+              </div>
+            )}
+
+            {/* Order Details in Table Format */}
+            <div className="order-details-content">
+              <table className="data-table">
+                <tbody>
+                  <tr>
+                    <td><strong>ID:</strong></td>
+                    <td>{orderDetails.id}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>{selectedOrderType === 'import' ? 'Import From' : 'Export To'}:</strong></td>
+                    <td>{orderDetails.import_from || orderDetails.export_to}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Product Name:</strong></td>
+                    <td>{orderDetails.product}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Units:</strong></td>
+                    <td>{orderDetails.units}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Product Description:</strong></td>
+                    <td>{orderDetails.product_description}</td>
+                  </tr>
+                  {selectedOrderType === 'import' && (
+                    <tr>
+                      <td><strong>Product Link:</strong></td>
+                      <td><a href={orderDetails.product_link} target="_blank" rel="noopener noreferrer">{orderDetails.product_link}</a></td>
+                    </tr>
+                  )}
+                  <tr>
+                    <td><strong>Company Name:</strong></td>
+                    <td>{orderDetails.company_name}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Address:</strong></td>
+                    <td>{orderDetails.address}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>City:</strong></td>
+                    <td>{orderDetails.city}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>State/Province:</strong></td>
+                    <td>{orderDetails.state_province}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Contact:</strong></td>
+                    <td>{orderDetails.contact}</td>
+                  </tr>
+                  {selectedOrderType === 'import' && (
+                    <tr>
+                      <td><strong>Request Quotation:</strong></td>
+                      <td>{orderDetails.request_quotation ? 'Yes' : 'No'}</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Add Give Quotation Button */}
+            <button
+              className="btn btn-primary"
+              onClick={() => handleGiveQuotation(orderDetails.id, selectedOrderType)}
+            >
+              Give Quotation
+            </button>
+
+            {/* Add Close Button */}
+            <button
+              className="btn btn-secondary close-order-details-button"
+              onClick={handleCloseOrderDetails}
+            >
+              Close
+            </button>
+            
+          </div>
+        )}
+
 
         {/* Quotation form */}
         {selectedOrderId && (
-          <div ref={formRef} className="quotation-form">
+          <div ref={formRef} className="quotation-form pb-5">
             <h4>Quotation Form</h4>
             <form onSubmit={handleQuotationSubmit}>
               <div className="form-group">
@@ -297,8 +668,18 @@ const AdminDashboard = () => {
                 />
               </div>
               <button type="submit" className="btn btn-primary">
-                {loading ? <Spinner size="m" /> : 'Submit Quotation'}
-              </button>
+              {loading ? (
+                <ThreeCircles
+                  visible={true}
+                  height="100"
+                  width="100"
+                  color="white"
+                  ariaLabel="three-circles-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+              ) : 'Submit Quotation'}
+            </button>
               <button type="button" className="btn btn-secondary" onClick={() => setSelectedOrderId(null)}>Cancel</button>
             </form>
           </div>

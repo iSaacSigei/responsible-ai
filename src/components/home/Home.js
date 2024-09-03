@@ -4,9 +4,11 @@ import Landing from '../LandingPage/Landing';
 import WhyUs from '../whyus/WhyUs';
 import Services from '../Services/Services';
 import OurPartners from '../OurPartners/OurPartners';
+import About from '../AboutPage/About';
 const Home = () => (
   <div>
     <Landing />
+    <About/>
     <Services/>
     <OurPartners/>
     <WhyUs/>

@@ -5,6 +5,8 @@
   display: table;
   width: 90%;
   height: 80%;
+  margin-top: 130px !important;
+
 }
 .page-500 .outer .middle {
   display: table-cell;

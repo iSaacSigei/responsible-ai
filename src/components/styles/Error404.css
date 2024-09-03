@@ -3,6 +3,8 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    margin-top: 130px !important;
+
 }
 
 .error-content {

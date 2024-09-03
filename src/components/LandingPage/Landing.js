@@ -4,9 +4,9 @@ import '../styles/landing.css';
 
 const Landing = () => {
     return (
-        <div className="min-vh-100">
-            <div className="">
-                <div className='custom-width'>
+        <div className="landing mt-3">
+            <div className="mt-4">
+                <div className='custom-width mt-5'>
                 <div className="message-container">
                     <div className="message">
                         <h1>Welcome to WoMall</h1>

@@ -1,0 +1,95 @@
+/* Container for the About page */
+.about-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    color: white !important;
+    text-align: center;
+    transition: background-color 2s ease, transform 1s ease;
+    transform: scale(0.8);
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 130px !important;
+
+  }
+  
+  /* When the element is in view, apply the new background color and zoom effect */
+  .about-page.in-view {
+    background-color: #333;
+    transform: scale(1);
+  }
+  
+  /* Logo section */
+  .about-logo img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 2rem;
+  }
+  
+  /* Header */
+  .about-header {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #E4C664 0%, #B18325 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  /* Subheader for sections */
+  .about-subheader {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #E4C664;
+  }
+  
+  /* Paragraph */
+  .about-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    padding: 0 1rem;
+  }
+  
+  /* Learn More link */
+  .about-learn-more a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .about-learn-more a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .about-header {
+      font-size: 2rem;
+    }
+  
+    .about-paragraph {
+      font-size: 1rem;
+      max-width: 90%;
+      padding: 0 0.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-header {
+      font-size: 1.5rem;
+    }
+  
+    .about-paragraph {
+      font-size: 0.9rem;
+      max-width: 100%;
+      padding: 0 0.5rem;
+    }
+  
+    .about-learn-more a {
+      font-size: 0.9rem;
+    }
+  }
+  

@@ -2,6 +2,9 @@
     background-color: black;
     color: whitesmoke;
     padding: 20px;
+    min-height: 60vh;
+    margin-top: 130px !important;
+
 }
 
 .signup-form {

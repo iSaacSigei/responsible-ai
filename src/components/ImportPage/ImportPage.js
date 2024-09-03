@@ -60,7 +60,7 @@ const ImportPage = ({ user }) => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('https://mysite-jr5y.onrender.com/import_orders', {
+            const response = await fetch('/import_orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -89,7 +89,6 @@ const ImportPage = ({ user }) => {
     return (
         <>
             <div className="import-page-container">
-                <hr className='text-light' />
                 {error && <div className="error-message">{error}</div>}
                 <form onSubmit={handleSubmit} className="import-form">
                     <div className="form-row">

@@ -74,7 +74,7 @@ const ExportPage = ({ user }) => {
         const token = localStorage.getItem('token');
 
         try {
-            const response = await fetch('https://mysite-jr5y.onrender.com/export_orders', {
+            const response = await fetch('/export_orders', {
                 method: 'POST',
                 body: data,
                 headers: {
@@ -107,7 +107,6 @@ const ExportPage = ({ user }) => {
         <>
             <ExportSuccessModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
             <div className="import-page-container mt-1">
-                <hr className='text-light'></hr>
                 {error && <div className="error-message text-danger text-center">{error}</div>}
                 <form onSubmit={handleSubmit} className="import-form">
                     <div className="form-row">

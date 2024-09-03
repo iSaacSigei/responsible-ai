@@ -19,8 +19,11 @@ import MyOrdersPage from './components/myOrders/MyOrdersPage';
 import Error500Page from './components/ServerError/Error500Page';
 // import AdminLogin from "./components/Admin/Login";
 import AdminDashboard from './components/Admin/AdminDashboard';
+import Tenders from './components/Tenders'
 const App = () => {
   const [user, setUser] = useState(null);
+  const [cartCount, setCartCount] = useState(0);
+  const [messageCount, setMessageCount] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +34,7 @@ const App = () => {
           setUser(null);
           return;
         }
-        
+
         const response = await fetch('http://127.0.0.1:3000/user', {
           method: 'GET',
           headers: { 'Authorization': `Bearer ${token}` }
@@ -60,7 +63,40 @@ const App = () => {
     };
 
     fetchUser();
-  }, []);
+  }, []); // Empty dependency array ensures this runs only once
+
+  useEffect(() => {
+    if (user) {
+      const fetchCounts = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          const headers = { 'Authorization': `Bearer ${token}` };
+
+          const [exportOrders, importOrders, quotations] = await Promise.all([
+            fetch('http://127.0.0.1:3000/export_orders', { headers }),
+            fetch('http://127.0.0.1:3000/import_orders', { headers }),
+            fetch('http://127.0.0.1:3000/quotations', { headers }),
+          ]);
+
+          if (!exportOrders.ok || !importOrders.ok || !quotations.ok) {
+            console.error("Error fetching counts");
+            return;
+          }
+
+          const exportData = await exportOrders.json();
+          const importData = await importOrders.json();
+          const quotationsData = await quotations.json();
+
+          setCartCount(exportData.length + importData.length);
+          setMessageCount(quotationsData.length);
+        } catch (error) {
+          console.error("Error fetching counts:", error);
+        }
+      };
+
+      fetchCounts();
+    }
+  }, [user]); // Runs only when the user state changes and is not null
 
   const handleLogout = async () => {
     try {
@@ -94,7 +130,7 @@ const App = () => {
 
   return (
     <>
-      <Navbar user={user} onLogout={handleLogout} />
+      <Navbar user={user} onLogout={handleLogout} cartCount={cartCount} messageCount={messageCount} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<div>About Page</div>} />
@@ -109,7 +145,7 @@ const App = () => {
         <Route path="*" element={<Error404 />} />
         <Route path='/my_orders' element={<MyOrdersPage />} />
         <Route path="/error500" element={<Error500Page />} />
-        {/* <Route path='/admin_login' element={<AdminLogin/>}/> */}
+        <Route path='/tenders' element={<Tenders/>}/>
         <Route path='/admin_panel' element={<AdminDashboard/>}/>
       </Routes>
     </>
