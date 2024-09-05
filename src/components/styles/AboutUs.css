@@ -1,0 +1,190 @@
+.about-us {
+    font-family: Arial, sans-serif;
+}
+
+/* Ensure the image is responsive */
+.responsive-bg-image {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* To place it behind the content */
+}
+
+.about-us-first-page {
+    position: relative;
+    margin-top: 60px;
+    padding: 50px;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start; /* Align items to the start (top) */
+    justify-content: flex-start; /* Align items to the start (left) */
+    flex-direction: column; /* Stack items vertically */
+}
+
+.about-us-content {
+    max-width: 600px;
+    z-index: 1; /* To ensure it's above the image */
+    position: relative;
+    padding: 20px;
+    backdrop-filter: blur(2px); /* Apply blur effect to background within this box */
+}
+
+/* Responsive text sizes */
+.about-us-header {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.underline {
+    position: relative;
+    font-size: 2rem;
+    margin-top: 20px;
+    color: red;
+}
+
+.underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 25%;
+    height: 2px;
+    background: black;
+}
+.about-main{
+    background-color: #f7f7f7; /* Light background color */
+}
+.about-us-second-page {
+    padding: 50px;
+    text-align: center;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 20px; /* Adjust gap between items */
+    justify-content: center; /* Center items horizontally */
+}
+
+/* Individual value item */
+.value-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Stack icon, header, and text vertically */
+    padding: 20px;
+    background: #fff; /* Background color for the value items */
+    flex: 1 1 calc(33.333% - 20px); /* Three items per row on large screens */
+    max-width: calc(33.333% - 20px); /* Ensure the item doesn't exceed its width */
+    margin: 10px;
+}
+
+.value-item-icon {
+    font-size: 3rem;
+    color: #333; /* Icon color */
+    margin-bottom: 20px;
+}
+
+.value-item-header {
+    font-size: 1.4rem;
+    color: #000;
+    margin-bottom: 10px;
+    color: red;
+}
+
+.value-item-text {
+    font-size: 1.0rem;
+    max-width: 600px;
+    color: #666;
+    text-align: center; /* Center text */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .value-item {
+        flex: 1 1 calc(50% - 20px); /* Two items per row on medium screens */
+        max-width: calc(50% - 20px); /* Ensure the item doesn't exceed its width */
+    }
+
+    .value-item-icon {
+        font-size: 2.5rem;
+    }
+
+    .value-item-header {
+        font-size: 1.5rem;
+    }
+
+    .value-item-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .value-item {
+        flex: 1 1 100%; /* Full width for each item on small screens */
+        max-width: 100%; /* Ensure the item takes full width */
+    }
+
+    .value-item-icon {
+        font-size: 2rem;
+    }
+
+    .value-item-header {
+        font-size: 1.2rem;
+    }
+
+    .value-item-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* Make the page responsive */
+@media (max-width: 768px) {
+    .about-us-first-page {
+        padding: 30px;
+        max-height: 70vh;
+        align-items: flex-start; /* Ensure it stays at the top */
+        justify-content: flex-start; /* Ensure it stays to the left */
+    }
+
+    .about-us-header {
+        font-size: 2rem;
+    }
+
+    .underline {
+        font-size: 1.5rem;
+    }
+
+    .about-us-second-page h2 {
+        font-size: 1.5rem;
+    }
+
+    .about-us-second-page p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-us-first-page {
+        padding: 20px;
+        height: auto;
+        max-height: 90vh;
+        align-items: flex-start; /* Ensure it stays at the top */
+        justify-content: flex-start; /* Ensure it stays to the left */
+    }
+
+    .about-us-header {
+        font-size: 1.8rem;
+    }
+
+    .underline {
+        font-size: 1.2rem;
+    }
+
+    .about-us-second-page h2 {
+        font-size: 1.2rem;
+    }
+
+    .about-us-second-page p {
+        font-size: 0.9rem;
+    }
+}

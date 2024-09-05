@@ -17,7 +17,25 @@
     max-width: 100%;
     margin-bottom: 20px;
   }
-  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 20px; /* Adjust padding as needed */
+    color: #fff;
+    background-color: #007bff; /* Adjust background color as needed */
+    border-radius: 4px;
+    font-size: 16px; /* Adjust font size as needed */
+}
+
+.icon-wrapper {
+    margin-right: 8px; /* Adjust space between icon and text */
+}
+
+.text {
+    display: inline-block;
+}
+
   .menu-dash ul {
     list-style: none;
     padding: 0;

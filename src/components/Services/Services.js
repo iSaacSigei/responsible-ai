@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import '../styles/services.css'; // Ensure to create this CSS file for styling
 import importImage from '../../images/Importing_From_China.jpeg';
 import exportImage from '../../images/avocado.jpg';
 import partnersImage from '../../images/partners.png';
 
 const Services = () => {
+    useEffect(() => {
+        AOS.init({
+          duration: 1000,
+          easing: 'ease-in-out',
+          once: true,
+        });
+      }, []);
     return (
-        <div className="services-container">
+        <div className="services-container"data-aos="fade-up">
             <h1 className="text-center mb-4">Our Services</h1>
             <div className="row">
                 {/* Exportation Card */}
@@ -34,7 +43,7 @@ const Services = () => {
                     </div>
                 </div>
                 {/* Connecting with Partners Card */}
-                <div className="col-lg-4 col-md-12">
+                <div id='service-3' className="col-lg-4 col-md-12">
                     <div className="card service-card">
                         <img src={partnersImage} className="card-img-top" alt="Connecting with Partners" />
                         <div className="card-body">

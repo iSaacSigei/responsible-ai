@@ -1,0 +1,98 @@
+.service-page {
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.service-row {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    overflow: hidden;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+.service-column {
+    width: 45%;
+}
+
+.service-image-column img {
+    width: 100%; /* Ensure the image fills the column width */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 550px; /* Adjust maximum width as needed */
+    max-height: 350px; /* Adjust maximum height as needed */
+    object-fit: cover; /* Cover the image container while maintaining aspect ratio */
+    border: 2px solid red; /* Border color for images */
+}
+.service-description-column h2{
+    color: red;
+    font-size: 1.4rem;
+}
+
+.service-description-column {
+    transition: transform 1s ease;
+    color: #333;
+    font-size: 1.2rem;
+    text-align: left;
+    /* background-color: red; */
+    margin: 10px;
+    /* padding-top: 20px; */
+}
+
+.left-image .service-image-column,
+.right-image .service-description-column {
+    transform: translateX(-100%);
+}
+
+.left-image .service-description-column,
+.right-image .service-image-column {
+    transform: translateX(100%);
+}
+
+/* Animation for scrolling */
+.service-row.in-view .service-image-column,
+.service-row.in-view .service-description-column {
+    transform: translateX(0);
+}
+
+.service-row.in-view {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .service-row {
+        flex-direction: column;
+        text-align: center;
+        width: 90%;
+        margin: auto;
+    }
+    .service-column {
+        width: 100%;
+    }
+
+    .service-image-column img {
+        max-width: 100%; /* Ensure image scales with the column on small screens */
+        max-height: 200px; /* Adjust maximum height for smaller screens */
+    }
+
+    .service-image-column {
+        margin-bottom: 20px;
+    }
+   
+}
+@media (max-width: 1200px){
+    .service-page{
+        margin-top: 70px;
+    }
+    p{
+
+        font-size: 1.0rem;
+    }
+}

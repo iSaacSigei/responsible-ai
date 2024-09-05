@@ -4,7 +4,7 @@ import '../../components/styles/Admin.css';
 import Logo from "../../images/png/logo-color.png"
 import { ThreeCircles } from 'react-loader-spinner';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
-
+import { GrAdd } from "react-icons/gr";
 const AdminDashboard = () => {
   const [userCount, setUserCount] = useState(0);
   const [exportOrderCount, setExportOrderCount] = useState(0);
@@ -89,6 +89,18 @@ const [loaders, setLoaders]=useState(false)
       case 'importOrders':
         url = 'http://127.0.0.1:3000/import_orders';
         break;
+      case 'tenders':
+        url = 'http://127.0.0.1:3000/tenders';
+        break;
+      case 'jobs':
+        url = 'http://127.0.0.1:3000/jobs';
+        break;
+      case 'postCareer':
+        setSelectedData({ type: 'postCareer' });
+        return;
+      case 'postTender':
+        setSelectedData({ type: 'postTender' });
+        return;
       default:
         return;
     }
@@ -222,6 +234,177 @@ const [loaders, setLoaders]=useState(false)
       }
     }, 100);
   };
+  const [postCareerFormData, setPostCareerFormData] = useState({
+    job_title: '',
+    job_description: '',
+    job_requirements: '',
+    application_deadline: '',
+    years_of_experience: '',
+    job_level: '',
+    location: '',
+    category: 'job_openings', // Default value
+  });
+  
+
+const [postTenderFormData, setPostTenderFormData] = useState({
+  company: '',
+  tender_fee: '',
+  application_deadline: '',
+  category: '',
+  tender_description: '',
+});
+
+// Handler for form input changes
+const handlePostCareerChange = (e) => {
+  setPostCareerFormData({ ...postCareerFormData, [e.target.name]: e.target.value });
+};
+
+const handlePostCareerSubmit = (e) => {
+  e.preventDefault();
+  const token = localStorage.getItem('token');
+
+  fetch('http://127.0.0.1:3000/jobs', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ job: postCareerFormData }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      setResponseMessage('Job posted successfully');
+      setPostCareerFormData({
+        job_title: '',
+        job_description: '',
+        job_requirements: '',
+        application_deadline: '',
+        years_of_experience: '',
+        job_level: '',
+        location: '',
+        category:''
+      });
+
+      // Fetch the updated jobs list and show the table
+      fetch('http://127.0.0.1:3000/jobs', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+        .then(response => response.json())
+        .then(jobsData => setSelectedData({ type: 'jobs', data: jobsData }));
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Failed to post job');
+    });
+};
+
+// Handler for form input changes
+const handlePostTenderChange = (e) => {
+  setPostTenderFormData({ ...postTenderFormData, [e.target.name]: e.target.value });
+};
+
+// Handler for form submission
+const handlePostTenderSubmit = (e) => {
+  e.preventDefault();
+  const token = localStorage.getItem('token');
+
+  fetch('http://127.0.0.1:3000/tenders', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ tender: postTenderFormData }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      setResponseMessage('Tender posted successfully');
+      alert('Tender posted successfully!')
+      setPostTenderFormData({
+        company: '',
+        tender_fee: '',
+        application_deadline: '',
+        category: '',
+        tender_description: '',
+      });
+      // Fetch the updated tenders list and show the table
+      fetch('http://127.0.0.1:3000/tenders', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+        .then(response => response.json())
+        .then(tendersData => setSelectedData({ type: 'tenders', data: tendersData }));
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Failed to post tender');
+    });
+};
+
+// Handler for deleting a job
+const handleDeleteJob = (job) => {
+  const token = localStorage.getItem('token');
+
+  fetch(`http://127.0.0.1:3000/jobs/${job.id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  })
+    .then(response => {
+      if (response.ok) {
+        // Update the state to remove the deleted job
+        setSelectedData(prevData => ({
+          ...prevData,
+          data: prevData.data.filter(item => item.id !== job.id),
+        }));
+        setResponseMessage('Job deleted successfully');
+      } else {
+        alert('Failed to delete job');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Failed to delete job');
+    });
+};
+
+// Handler for viewing a job (you can implement modal or detailed view)
+const handleViewJob = (job) => {
+  // Implement your logic to view job details
+  alert(`Viewing job: ${job.title}`);
+};
+
+// Similar handlers for tenders
+const handleDeleteTender = (tender) => {
+  const token = localStorage.getItem('token');
+
+  fetch(`http://127.0.0.1:3000/tenders/${tender.id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  })
+    .then(response => {
+      if (response.ok) {
+        setSelectedData(prevData => ({
+          ...prevData,
+          data: prevData.data.filter(item => item.id !== tender.id),
+        }));
+        setResponseMessage('Tender deleted successfully');
+      } else {
+        alert('Failed to delete tender');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Failed to delete tender');
+    });
+};
+
+const handleViewTender = (tender) => {
+  // Implement your logic to view tender details
+  alert(`Viewing tender: ${tender.title}`);
+};
 
   const handleUserUpdateChange = (e) => {
     setUserToUpdate({ ...userToUpdate, [e.target.name]: e.target.value });
@@ -351,7 +534,248 @@ const [loaders, setLoaders]=useState(false)
         </>
       );
     }
+    if (selectedData.type === 'tenders') {
+      return (
+        <>
+          <h4>Tenders Table</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Fee</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {selectedData.data.map(tender => (
+                <tr key={tender.id}>
+                  <td>{tender.id}</td>
+                  <td>{tender.tender_number}</td>
+                  <td>{tender.tender_description}</td>
+                  <td>Ksh {tender.tender_fee}</td>
+                  <td>
+                    {/* Add buttons for actions */}
+                    <button className='btn btn-primary'>View</button>
+                    <button onClick={()=>handleDeleteTender(tender)} className='btn btn-danger'>Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      );
+    }
+    if (selectedData.type === 'jobs') {
+      return (
+        <>
+          <h4>Available Jobs</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Job Title</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {selectedData.data.map(job => (
+                <tr key={job.id}>
+                  <td>{job.id}</td>
+                  <td>{job.job_title}</td>
+                  <td>{job.job_description}</td>
+                  <td>{job.category}</td>
+                  <td>
+                    <button className='btn btn-primary' onClick={() => handleViewJob(job)}>View</button>
+                    <button className='btn btn-danger' onClick={() => handleDeleteJob(job)}>Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      );
+    }
+  
+    if (selectedData.type === 'postCareer') {
+      return (
+        <>
+          <h4>Post Career Form</h4>
+          <form onSubmit={handlePostCareerSubmit}>
+            <div className="form-group">
+              <label>Job Title:</label>
+              <input
+                type="text"
+                name="job_title"
+                value={postCareerFormData.job_title}
+                onChange={handlePostCareerChange}
+                className="form-input"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Category:</label>
+              <select
+                name="category"
+                value={postCareerFormData.category}
+                onChange={handlePostCareerChange}
+                className="form-input"
+                required
+              >
+                <option value="job_openings">Job Openings</option>
+                <option value="graduate_trainee">Graduate Trainee</option>
+                <option value="internships">Internships</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Job Description:</label>
+              <textarea
+                name="job_description"
+                value={postCareerFormData.job_description}
+                onChange={handlePostCareerChange}
+                className="form-input"
+                required
+              ></textarea>
+            </div>
 
+            <div className="form-group">
+              <label>Job Requirements:</label>
+              <textarea
+                name="job_requirements"
+                value={postCareerFormData.job_requirements}
+                onChange={handlePostCareerChange}
+                className="form-input"
+                required
+              ></textarea>
+            </div>
+
+            <div className="form-group">
+              <label>Application Deadline:</label>
+              <input
+                type="date"
+                name="application_deadline"
+                value={postCareerFormData.application_deadline}
+                onChange={handlePostCareerChange}
+                className="form-input"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Years of Experience:</label>
+              <input
+                type="number"
+                name="years_of_experience"
+                value={postCareerFormData.years_of_experience}
+                onChange={handlePostCareerChange}
+                className="form-input"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Job Level:</label>
+              <input
+                type="text"
+                name="job_level"
+                value={postCareerFormData.job_level}
+                onChange={handlePostCareerChange}
+                className="form-input"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Location:</label>
+              <input
+                type="text"
+                name="location"
+                value={postCareerFormData.location}
+                onChange={handlePostCareerChange}
+                className="form-input"
+              />
+            </div>
+            <button className="btn btn-primary" type="submit">Post Job</button>
+          </form>
+
+        </>
+      );
+    }
+  
+    if (selectedData.type === 'postTender') {
+      return (
+        <>
+          <h4>Post Tender Form</h4>
+          <form onSubmit={handlePostTenderSubmit}>
+            <div className="form-group">
+              <label>Company:</label>
+              <input
+                type="text"
+                name="company"
+                value={postTenderFormData.company}
+                onChange={handlePostTenderChange}
+                className="form-input"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Tender Fee:</label>
+              <input
+                type="number"
+                name="tender_fee"
+                value={postTenderFormData.tender_fee}
+                onChange={handlePostTenderChange}
+                className="form-input"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Application Deadline:</label>
+              <input
+                type="date"
+                name="application_deadline"
+                value={postTenderFormData.application_deadline}
+                onChange={handlePostTenderChange}
+                className="form-input"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Category:</label>
+              <input
+                type="text"
+                name="category"
+                value={postTenderFormData.category}
+                onChange={handlePostTenderChange}
+                className="form-input"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Tender Description:</label>
+              <textarea
+                name="tender_description"
+                value={postTenderFormData.tender_description}
+                onChange={handlePostTenderChange}
+                className="form-input"
+                required
+              ></textarea>
+            </div>
+
+            <button className="btn btn-primary" type="submit">Post Tender</button>
+          </form>
+
+        </>
+      );
+    }
+  
     return null;
   };
 
@@ -368,8 +792,22 @@ const [loaders, setLoaders]=useState(false)
             <li><a href="#"onClick={() => handleSidebarClick('importOrders')}>Imports</a></li>
             <li><a href="#" onClick={() => handleSidebarClick('exportOrders')}>Exports</a></li>
             <li><a href="#">In Transit</a></li>
-            <li><a href="#">Tenders</a></li>
             <li><a href="#">Pending Approval</a></li>
+            <li><a href="#" onClick={() => handleSidebarClick('tenders')}>Tenders</a></li>
+            <li><a href="#" onClick={() => handleSidebarClick('jobs')}>Jobs</a></li> {/* New Jobs Section */}
+            <li>
+              <a href="#" onClick={() => handleSidebarClick('postTender')} className="btn btn-primary"> {/* New Post Tender */}
+                <span className="icon-wrapper"><GrAdd /></span>
+                <span className="text">Post Tender</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={() => handleSidebarClick('postCareer')} className="btn btn-primary">
+                <span className="icon-wrapper"><GrAdd /></span>
+                <span className="text">Post Careers</span>
+              </a>
+            </li>
+
           </ul>
         </nav>
       </aside>

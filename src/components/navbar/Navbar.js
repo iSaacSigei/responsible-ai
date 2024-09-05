@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import AOS from 'aos';
 import GLightbox from 'glightbox';
 import PureCounter from '@srexi/purecounterjs';
@@ -11,8 +11,8 @@ import 'glightbox/dist/css/glightbox.min.css';
 import 'swiper/css';
 
 const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
-  console.log(messageCount);
-  
+  const location = useLocation();
+
   useEffect(() => {
     const toggleScrolled = () => {
       const selectBody = document.querySelector('body');
@@ -92,41 +92,66 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
     };
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  const handleLinkClick = () => {
+    const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+    if (mobileNavToggleBtn) {
+      document.querySelector('body').classList.remove('mobile-nav-active');
+      mobileNavToggleBtn.classList.remove('bi-x');
+      mobileNavToggleBtn.classList.add('bi-list');
+    }
+  };
+
   return (
     <header id="header" className="header d-flex align-items-center fixed-top">
       <div className="container-fluid position-relative d-flex align-items-center justify-content-between">
-        <Link to="/" className="logo d-flex align-items-center me-auto me-xl-0">
-          <img src="assets/img/logo.png" alt=""/>
-          <h1 className="sitename">Wo<span style={{color:"red"}}>Mall</span></h1>
+        <Link to="/" className="logo d-flex align-items-center me-auto me-xl-0" onClick={handleLinkClick}>
+          <img src="assets/img/logo.png" alt="" />
+          <h1 className="sitename">Wo<span style={{ color: "red" }}>Mall</span></h1>
         </Link>
 
         <nav id="navmenu" className="navmenu">
           <ul>
-            <li><Link to="/#hero" className="active">Home</Link></li>
-            <li><Link to="/#about">About</Link></li>
-            <li><Link to="/#services">Services</Link></li>
-            <li><Link to="/#portfolio">Portfolio</Link></li>
-            <li><Link to="/tenders">Tenders</Link></li>
-            <li><Link to="/#team">Team</Link></li>
-            <li><Link to="/blog">Blog</Link></li>
-            <li className="dropdown"><Link to="#"><span>Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></Link>
+            <li><Link to="/" className="active" onClick={handleLinkClick}>Home</Link></li>
+            <li><Link to="/about" onClick={handleLinkClick}>About</Link></li>
+            <li><Link to="/services" onClick={handleLinkClick}>Services</Link></li>
+            <li className="dropdown">
+            <Link to="#" onClick={handleLinkClick}>
+              <span>Careers</span> <i className="bi bi-chevron-down toggle-dropdown"></i>
+            </Link>
+            <ul>
+              <li><Link to="/job_openings?category=job opening" onClick={handleLinkClick}>Job Openings</Link></li>
+              <li><Link to="/job_openings?category=graduate_trainee" onClick={handleLinkClick}>Graduate Trainee Programs</Link></li>
+              <li><Link to="/job_openings?category=internships" onClick={handleLinkClick}>Internships</Link></li>
+              <li><Link to="/job_openings?category=faqs" onClick={handleLinkClick}>FAQ'S</Link></li>
+            </ul>
+          </li>
+            <li><Link to="/tenders" onClick={handleLinkClick}>Tenders</Link></li>
+            <li><Link to="/team" onClick={handleLinkClick}>Team</Link></li>
+            <li><Link to="/blog" onClick={handleLinkClick}>Blog</Link></li>
+            <li className="dropdown">
+              <Link to="#" onClick={handleLinkClick}><span>Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></Link>
               <ul>
-                <li><Link to="#">Dropdown 1</Link></li>
-                <li className="dropdown"><Link to="#"><span>Deep Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></Link>
+                <li><Link to="#" onClick={handleLinkClick}>Dropdown 1</Link></li>
+                <li className="dropdown">
+                  <Link to="#" onClick={handleLinkClick}><span>Deep Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></Link>
                   <ul>
-                    <li><Link to="#">Deep Dropdown 1</Link></li>
-                    <li><Link to="#">Deep Dropdown 2</Link></li>
-                    <li><Link to="#">Deep Dropdown 3</Link></li>
-                    <li><Link to="#">Deep Dropdown 4</Link></li>
-                    <li><Link to="#">Deep Dropdown 5</Link></li>
+                    <li><Link to="#" onClick={handleLinkClick}>Deep Dropdown 1</Link></li>
+                    <li><Link to="#" onClick={handleLinkClick}>Deep Dropdown 2</Link></li>
+                    <li><Link to="#" onClick={handleLinkClick}>Deep Dropdown 3</Link></li>
+                    <li><Link to="#" onClick={handleLinkClick}>Deep Dropdown 4</Link></li>
+                    <li><Link to="#" onClick={handleLinkClick}>Deep Dropdown 5</Link></li>
                   </ul>
                 </li>
-                <li><Link to="#">Dropdown 2</Link></li>
-                <li><Link to="#">Dropdown 3</Link></li>
-                <li><Link to="#">Dropdown 4</Link></li>
+                <li><Link to="#" onClick={handleLinkClick}>Dropdown 2</Link></li>
+                <li><Link to="#" onClick={handleLinkClick}>Dropdown 3</Link></li>
+                <li><Link to="#" onClick={handleLinkClick}>Dropdown 4</Link></li>
               </ul>
             </li>
-            <li><Link to="/#contact">Contact</Link></li>
+            <li><Link to="/#contact" onClick={handleLinkClick}>Contact</Link></li>
           </ul>
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -134,44 +159,44 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
         {user ? (
           <ul className='user-icon'>
             <li>
-              <Link to="/my_orders">
+              <Link to="/my_orders" onClick={handleLinkClick}>
                 <i className="bi bi-cart"></i>
                 {cartCount > 0 && <span className="badge text-danger">{cartCount}</span>}
               </Link>
             </li>
             <li className="">
-              <Link to="/quotation">
+              <Link to="/quotation" onClick={handleLinkClick}>
                 <i className="bi bi-envelope toggle-dropdown"></i>
                 {messageCount >= 0 && <span className="badge text-danger">{messageCount}</span>}
               </Link>
             </li>
             <li className="dropdown">
-              <Link to="#">
+              <Link to="#" onClick={handleLinkClick}>
                 <i className="bi bi-person toggle-dropdown"></i>
               </Link>
               <ul id="user">
                 <li>
                   {/* Logout button */}
-                  <button className="btn-getstarted w-100" onClick={onLogout}>
+                  <button className="btn-getstarted w-100" onClick={() => { handleLinkClick(); onLogout(); }}>
                     Logout
                   </button>
                 </li>
                 <li className="dropdown">
-                  <Link to="#">
+                  <Link to="#" onClick={handleLinkClick}>
                     <span>Profile Settings</span> 
                     <i className="bi bi-chevron-down toggle-dropdown"></i>
                   </Link>
                   <ul>
-                    <li><Link to="/update-profile">Update Profile</Link></li>
-                    <li><Link to="/update-password">Update Password</Link></li>
-                    <li><Link to="/update-address">Update Address</Link></li>
+                    <li><Link to="/update-profile" onClick={handleLinkClick}>Update Profile</Link></li>
+                    <li><Link to="/update-password" onClick={handleLinkClick}>Update Password</Link></li>
+                    <li><Link to="/update-address" onClick={handleLinkClick}>Update Address</Link></li>
                   </ul>
                 </li>
               </ul>
             </li>
           </ul>
         ) : (
-          <Link className="btn-getstarted" to="/login">Get Started</Link>
+          <Link className="btn-getstarted" to="/login" onClick={handleLinkClick}>Get Started</Link>
         )}
       </div>
     </header>

@@ -20,6 +20,9 @@ import Error500Page from './components/ServerError/Error500Page';
 // import AdminLogin from "./components/Admin/Login";
 import AdminDashboard from './components/Admin/AdminDashboard';
 import Tenders from './components/Tenders'
+import AboutUs from './components/About/AboutUs';
+import ServicePage from './components/ServiceComponent/Service';
+import Jobs from './components/JobOpeningsPage/JobOpeningsPage';
 const App = () => {
   const [user, setUser] = useState(null);
   const [cartCount, setCartCount] = useState(0);
@@ -133,7 +136,7 @@ const App = () => {
       <Navbar user={user} onLogout={handleLogout} cartCount={cartCount} messageCount={messageCount} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<div>About Page</div>} />
+        <Route path="/about" element={<AboutUs/>} />
         <Route path="/imports" element={<ImportPage user={user} />} />
         <Route path="/exports" element={<ExportPage user={user} />} />
         <Route path="/contact" element={<div>Contact Page</div>} />
@@ -146,7 +149,10 @@ const App = () => {
         <Route path='/my_orders' element={<MyOrdersPage />} />
         <Route path="/error500" element={<Error500Page />} />
         <Route path='/tenders' element={<Tenders/>}/>
+        <Route path='/services' element={<ServicePage/>}/>
         <Route path='/admin_panel' element={<AdminDashboard/>}/>
+        <Route path='/job_openings' element={<Jobs/>}/>
+
       </Routes>
     </>
   );
