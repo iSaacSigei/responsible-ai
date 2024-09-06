@@ -14,30 +14,45 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
   const location = useLocation();
 
   useEffect(() => {
-    const toggleScrolled = () => {
-      const selectBody = document.querySelector('body');
-      const selectHeader = document.querySelector('#header');
-      if (!selectHeader || (!selectHeader.classList.contains('scroll-up-sticky') &&
-          !selectHeader.classList.contains('sticky-top') &&
-          !selectHeader.classList.contains('fixed-top'))) return;
-      window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+    const toggleDropdown = (e) => {
+      if (document.querySelector('body').classList.contains('mobile-nav-active')) {
+        e.preventDefault();
+        e.stopPropagation(); // Prevent event from closing the entire menu
+  
+        const target = e.target;
+        
+        // Ensure the dropdown is clicked
+        const submenu = target.nextElementSibling || target.parentElement?.nextElementSibling;
+  
+        if (submenu && submenu.tagName === 'UL') { // Ensure the submenu is a <ul>
+          submenu.classList.toggle('dropdown-active');
+        } else {
+          console.error('Dropdown submenu not found or is not a UL');
+        }
+      }
     };
-
+  
     const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+    const dropdowns = document.querySelectorAll('.navmenu .dropdown > a');
+  
     if (mobileNavToggleBtn) {
-      const mobileNavToogle = () => {
+      const mobileNavToggle = () => {
         document.querySelector('body').classList.toggle('mobile-nav-active');
         mobileNavToggleBtn.classList.toggle('bi-list');
         mobileNavToggleBtn.classList.toggle('bi-x');
       };
-
-      mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
-
+  
+      mobileNavToggleBtn.addEventListener('click', mobileNavToggle);
+      dropdowns.forEach(dropdown => dropdown.addEventListener('click', toggleDropdown));
+  
       return () => {
-        mobileNavToggleBtn.removeEventListener('click', mobileNavToogle);
+        mobileNavToggleBtn.removeEventListener('click', mobileNavToggle);
+        dropdowns.forEach(dropdown => dropdown.removeEventListener('click', toggleDropdown));
       };
     }
   }, []);
+  
+  
 
   useEffect(() => {
     const scrollTop = document.querySelector('.scroll-top');
@@ -96,14 +111,18 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
     window.scrollTo(0, 0);
   }, [location]);
 
-  const handleLinkClick = () => {
-    const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
-    if (mobileNavToggleBtn) {
-      document.querySelector('body').classList.remove('mobile-nav-active');
-      mobileNavToggleBtn.classList.remove('bi-x');
-      mobileNavToggleBtn.classList.add('bi-list');
+  const handleLinkClick = (e) => {
+    const isDropdownLink = e.target.closest('.dropdown');
+    if (!isDropdownLink) {
+      const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+      if (mobileNavToggleBtn) {
+        document.querySelector('body').classList.remove('mobile-nav-active');
+        mobileNavToggleBtn.classList.remove('bi-x');
+        mobileNavToggleBtn.classList.add('bi-list');
+      }
     }
   };
+  
 
   return (
     <header id="header" className="header d-flex align-items-center fixed-top">
@@ -151,7 +170,7 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
                 <li><Link to="#" onClick={handleLinkClick}>Dropdown 4</Link></li>
               </ul>
             </li>
-            <li><Link to="/#contact" onClick={handleLinkClick}>Contact</Link></li>
+            <li><Link to="/contact" onClick={handleLinkClick}>Contact</Link></li>
           </ul>
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -161,7 +180,7 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
             <li>
               <Link to="/my_orders" onClick={handleLinkClick}>
                 <i className="bi bi-cart"></i>
-                {cartCount > 0 && <span className="badge text-danger">{cartCount}</span>}
+                {cartCount >= 0 && <span className="badge text-danger">{cartCount}</span>}
               </Link>
             </li>
             <li className="">

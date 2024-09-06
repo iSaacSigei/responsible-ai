@@ -23,6 +23,7 @@ import Tenders from './components/Tenders'
 import AboutUs from './components/About/AboutUs';
 import ServicePage from './components/ServiceComponent/Service';
 import Jobs from './components/JobOpeningsPage/JobOpeningsPage';
+import ContactPage from './components/ContactPage/ContactPage';
 const App = () => {
   const [user, setUser] = useState(null);
   const [cartCount, setCartCount] = useState(0);
@@ -139,7 +140,7 @@ const App = () => {
         <Route path="/about" element={<AboutUs/>} />
         <Route path="/imports" element={<ImportPage user={user} />} />
         <Route path="/exports" element={<ExportPage user={user} />} />
-        <Route path="/contact" element={<div>Contact Page</div>} />
+        <Route path="/contact" element={<ContactPage/>} />
         <Route path="/login" element={<Login updateUser={updateUser} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/order_received" element={<Feedback />} />

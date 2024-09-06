@@ -421,7 +421,7 @@
       transform: rotate(180deg);
     }
   
-    .navmenu .dropdown ul {
+    .navmenu .dropdown  ul {
       position: static;
       display: none;
       z-index: 99;
@@ -437,10 +437,57 @@
       background-color: rgba(33, 37, 41, 0.1);
     }
   
-    .navmenu .dropdown>.dropdown-active {
-      display: block;
-      background-color: rgba(33, 37, 41, 0.03);
-    }
+/* Hide dropdowns by default */
+.navmenu .dropdown > ul {
+  display: none;
+}
+
+/* Show dropdown when the dropdown-active class is added */
+.navmenu .dropdown-active {
+  display: block;
+  position: static;
+  padding-left: 15px;
+}
+
+/* Mobile Nav specific styling */
+@media (max-width: 1199px) {
+  .navmenu ul {
+    display: none;
+    list-style: none;
+    position: absolute;
+    inset: 60px 20px 20px 20px;
+    padding: 10px 0;
+    margin: 0;
+    border-radius: 6px;
+    background-color: var(--nav-mobile-background-color);
+    overflow-y: auto;
+    transition: 0.3s;
+    z-index: 9998;
+  }
+
+  /* Ensure the dropdown opens when the mobile-nav-active class is applied */
+  .mobile-nav-active .navmenu > ul {
+    display: block;
+  }
+
+  /* Show dropdowns when active */
+  .mobile-nav-active .navmenu .dropdown-active {
+    display: block;
+  }
+
+  /* Ensure dropdown styles on mobile */
+  .navmenu .dropdown > ul {
+    padding: 10px 20px;
+    background-color: var(--nav-dropdown-background-color);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  }
+
+  /* Adjust child dropdowns in the mobile view */
+  .navmenu .dropdown ul ul {
+    background-color: rgba(33, 37, 41, 0.1);
+  }
+}
+
   
     .mobile-nav-active {
       overflow: hidden;
@@ -458,10 +505,13 @@
   
     .mobile-nav-active .navmenu {
       position: fixed;
-      overflow: hidden;
-      inset: 0;
-      background: rgba(33, 37, 41, 0.8);
-      transition: 0.3s;
+      top: 0;
+      right: 0;
+      width: 70%; /* Adjust width */
+      height: 100vh;
+      background-color: rgba(33, 37, 41, 0.9); /* Dark background */
+      transition: 0.3s ease-in-out;
+      z-index: 9998;
     }
   
     .mobile-nav-active .navmenu>ul {

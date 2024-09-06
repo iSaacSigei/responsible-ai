@@ -16,7 +16,7 @@ const Services = () => {
       }, []);
     return (
         <div className="services-container"data-aos="fade-up">
-            <h1 className="text-center mb-4">Our Services</h1>
+            <h1 className="introduction text-center mb-4">Our Services</h1>
             <div className="row">
                 {/* Exportation Card */}
                 <div className="col-lg-4 col-md-6">

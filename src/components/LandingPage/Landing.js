@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/landing.css';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const Landing = () => {
+    useEffect(() => {
+        AOS.init({
+          duration: 1000,
+          easing: 'ease-in-out',
+          once: true,
+        });
+      }, []);
     return (
-        <div className="landing mt-3">
+        <div className="landing mt-3" data-aos="fade-up">
             <div className="mt-4">
                 <div className='custom-width mt-5'>
                 <div className="message-container">
