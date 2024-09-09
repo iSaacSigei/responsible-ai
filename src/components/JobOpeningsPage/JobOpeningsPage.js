@@ -58,31 +58,6 @@ const JobOpeningsPage = () => {
       <title>WoMall - Careers</title>
         <meta name="description" content="Find the latest job openings, internships, and trainee programs at WoMall. Apply today!"/>
         <meta name="keywords" content="WoMall, Careers, Jobs, Internships, Trainee Programs"/>
-        <script type="application/ld+json">
-        {`
-        {
-          "@context": "https://schema.org",
-          "@type": "JobPosting",
-          "title": "Find Vacancies",
-          "description": "Jobs Opening, Internships, Graduate Trainee",
-          "employmentType": "FULL_TIME",
-          "hiringOrganization": {
-            "@type": "Organization",
-            "name": "WoMall",
-            "sameAs": "https://womall.africa",
-            "logo": "URL_to_logo"
-          },
-          "jobLocation": {
-            "@type": "Place",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Kenya and Abroad",
-              "addressCountry": "Country"
-            }
-          }
-        }
-        `}
-        </script>
       </Helmet>
       <div className="job-openings bg-light" data-aos="fade-up">
         <div className="intro bg-light">
