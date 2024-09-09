@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import '../styles/JobOpeningsPage.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -8,7 +8,9 @@ import Footer from '../footer/Footer';
 
 const JobOpeningsPage = () => {
   const [jobs, setJobs] = useState([]);
-  const location = useLocation(); // To get the current URL
+  const [faqs, setFaqs] = useState([]); // State for FAQs
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+  const location = useLocation();
   const [selectedCategory, setSelectedCategory] = useState('job opening');
 
   useEffect(() => {
@@ -19,37 +21,65 @@ const JobOpeningsPage = () => {
     });
   }, []);
 
-  // Extract category from query parameters
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const category = params.get('category') || 'job opening'; // Default to 'job opening' if no category is set
+    const category = params.get('category') || 'job opening';
     setSelectedCategory(category);
   }, [location.search]);
 
-  // Fetch jobs based on the selected category
+  // Fetch jobs or FAQs based on the selected category
   useEffect(() => {
-    const fetchJobs = async () => {
+    const fetchData = async () => {
+      setIsLoading(true); // Start loading
       try {
-        const response = await axios.get(`http://127.0.0.1:3000/jobs?category=${selectedCategory}`);
-        setJobs(response.data);
+        if (selectedCategory === 'faqs') {
+          // Fetch FAQs when category is FAQs
+          const response = await axios.get('https://mysite-jr5y.onrender.com/faqs');
+          setFaqs(response.data);
+        } else {
+          // Fetch jobs for other categories
+          const response = await axios.get(`https://mysite-jr5y.onrender.com/jobs?category=${selectedCategory}`);
+          setJobs(response.data);
+        }
       } catch (error) {
-        console.error('Error fetching jobs:', error);
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false); // End loading
       }
     };
 
-    fetchJobs();
+    fetchData();
   }, [selectedCategory]);
 
   return (
     <>
       <div className="job-openings bg-light" data-aos="fade-up">
-        <section className="intro bg-light">
+        <div className="intro bg-light">
           <p>
             At WoMall, we believe in fostering a vibrant and dynamic work environment where your contributions make a real impact. Join us in shaping the future of exportation and importation, and be part of a team that values innovation, collaboration, and growth.
           </p>
-        </section>
+        </div>
         <section className="job-content">
-          {jobs.length > 0 ? (
+          {isLoading ? (
+            <div className="loading-container">
+              <h2>Loading...</h2>
+              <p>Please wait while we fetch the latest job openings.</p>
+            </div>
+          ) : selectedCategory === 'faqs' ? (
+            faqs.length > 0 ? (
+              faqs.map((faq) => (
+                <div className="no-jobs-container" key={faq.id}>
+                  <h2>{faq.question}</h2>
+                  <p>{faq.answer}</p>
+                </div>
+              ))
+            ) : (
+              <div className="no-faqs-container">
+                <h2>No FAQs available right now</h2>
+                <p>Please check back later for more FAQs.</p>
+              </div>
+            )
+          ) : jobs.length > 0 ? (
             jobs.map((job) => (
               <div className="job-row" key={job.id}>
                 <div className="job-column job-description-column">
@@ -60,7 +90,7 @@ const JobOpeningsPage = () => {
                   </div>
                   <p className="description">{job.job_description}</p>
                   <p><strong>Application Deadline:</strong> {new Date(job.application_deadline).toLocaleDateString()}</p>
-                  <a href={`/jobs/${job.id}`} className="read-more">View More</a>
+                  <Link to={`/jobs/${job.id}`} className="read-more">View More</Link>
                 </div>
               </div>
             ))

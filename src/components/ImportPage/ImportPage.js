@@ -3,7 +3,7 @@ import '../styles/Import.css';
 import Footer from '../footer/Footer';
 import { useNavigate } from 'react-router-dom';
 
-const ImportPage = ({ user }) => {
+const ImportPage = ({ user, setReloadPage }) => {
     const [formData, setFormData] = useState({
         importFrom: '',
         product: '',
@@ -60,7 +60,7 @@ const ImportPage = ({ user }) => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('/import_orders', {
+            const response = await fetch('https://mysite-jr5y.onrender.com/import_orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -72,6 +72,7 @@ const ImportPage = ({ user }) => {
             if (response.ok) {
                 const result = await response.json();
                 console.log('Success:', result);
+                setReloadPage(true);
                 navigate('/order_received');
             } else {
                 const errorData = await response.json();

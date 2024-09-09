@@ -21,11 +21,11 @@ const AboutUs = () => {
         <img src={Background} alt="Background" className="responsive-bg-image" />
         <div className="about-us-content">
           <h1 className="about-us-header">About Wo<span className='text-danger'>Mall</span> Expo</h1>
-          <p>The region’s leading...</p>
+          <p>WoMall is a revolutionary B2B platform designed to simplify international trade by connecting producers and manufacturers with global suppliers and retailers. We manage every stage of the global trade process.</p>
           <h2 className="underline">Mission</h2>
           <p>Our mission is to transform global B2B interactions, making international trade accessible to all.</p>
           <h3 className="underline">Our Vision</h3>
-          <p>To create a seamless international B2B trade environment where businesses of all sizes can maximize the global value of their products and services. By connecting producers and manufacturers with global distributors through innovative technology and dedicated support, we aim to build an efficient, transparent, and empowering trade ecosystem that drives growth and success for all stakeholders.</p>
+          <p>To create a seamless international B2B trade environment where businesses of all sizes can maximize the global value of their products and services.</p>
         </div>
       </section>
 

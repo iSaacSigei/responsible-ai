@@ -1,0 +1,145 @@
+.job-details-page .job-details {
+    padding: 20px;
+    width: 90%; /* Adjusted for better responsiveness */
+    margin: auto;
+    margin-top: 100px;
+  }
+  
+  .job-details-page .job-details h1 {
+    font-size: 2.0rem;
+    margin-bottom: 20px;
+    padding: 4px;
+  }
+  
+  .job-details-page .job-details-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .job-details-page .job-details section {
+    margin-bottom: 20px;
+  }
+  
+  .job-details-page ul {
+    list-style-type: none; /* Remove default bullets */
+    padding-left: 0; /* Remove default padding */
+  }
+  
+  .job-details-page ul li {
+    margin-bottom: 10px;
+    position: relative; /* To position the red dot */
+    padding-left: 30px; /* Space for the red dot */
+  }
+  
+  .job-details-page ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red; /* Red color for the dot */
+  }
+  
+  .job-details-page .loading, .job-details-page .error {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.5em;
+  }
+  
+  /* Media Queries for Responsiveness */
+  
+  /* Small devices (phones) */
+  @media (max-width: 576px) {
+    .job-details-page .job-details {
+      width: 100%; /* Full width on very small screens */
+      padding: 10px;
+      margin-top: 70px;
+    }
+    
+    .job-details-page .job-details h1 {
+      font-size: 1.8em;
+    }
+  
+    .job-details-page .job-details-container {
+      padding: 10px;
+    }
+  
+    .job-details-page .job-details section {
+      margin-bottom: 15px;
+    }
+    
+    .job-details-page ul {
+      margin-left: 10px;
+    }
+  
+    .job-details-page .loading, .job-details-page .error {
+      font-size: 1.2em;
+    }
+  }
+  
+  /* Medium devices (tablets) */
+  @media (min-width: 576px) and (max-width: 768px) {
+    .job-details-page .job-details {
+      width: 95%; /* Slightly less than full width for tablets */
+      padding: 15px;
+      margin-top: 70px;
+    }
+    
+    .job-details-page .job-details h1 {
+      font-size: 2em;
+    }
+  
+    .job-details-page .job-details-container {
+      padding: 15px;
+    }
+  
+    .job-details-page .job-details section {
+      margin-bottom: 18px;
+    }
+    
+    .job-details-page ul {
+      margin-left: 15px;
+    }
+  
+    .job-details-page .loading, .job-details-page .error {
+      font-size: 1.3em;
+    }
+  }
+  
+  /* Large devices (desktops) */
+  @media (min-width: 768px) {
+    .job-details-page .job-details {
+      width: 80%; /* Original width for larger screens */
+    }
+    
+    .job-details-page .job-details h1 {
+      font-size: 2.5em;
+    }
+  
+    .job-details-page .job-details-container {
+      padding: 20px;
+    }
+  
+    .job-details-page .job-details section {
+      margin-bottom: 20px;
+    }
+    
+    .job-details-page ul {
+      margin-left: 10px;
+    }
+  
+    .job-details-page .loading, .job-details-page .error {
+      font-size: 1.5em;
+    }
+  }
+  
+  @media (max-width: 1200px){
+    .job-details-page .job-details{
+      margin-top: 70px;
+    }
+  }
+  

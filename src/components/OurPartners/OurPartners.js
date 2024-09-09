@@ -3,17 +3,25 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import '../styles/OurPartners.css'; // Ensure this CSS file is created and styled
 
+// Importing the partner logos from the /src/images folder
+import partner1 from '../../images/eigoll.png';
+import partner2 from '../../images/unilever.png';
+import partner3 from '../../images/haco-brands-gold-bck.png';
+import partner4 from '../../images/starlite.png';
+import partner5 from '../../images/hapag.png';
+import partner6 from '../../images/freshela-exporters-logo.jpeg';
+import partner7 from '../../images/kakuzi-logo.svg';
+
+
+
 const partnerLogos = [
-  'https://via.placeholder.com/150?text=Partner+1',
-  'https://via.placeholder.com/150?text=Partner+2',
-  'https://via.placeholder.com/150?text=Partner+3',
-  'https://via.placeholder.com/150?text=Partner+4',
-  'https://via.placeholder.com/150?text=Partner+5',
-  'https://via.placeholder.com/150?text=Partner+6',
-  'https://via.placeholder.com/150?text=Partner+7',
-  'https://via.placeholder.com/150?text=Partner+8',
-  'https://via.placeholder.com/150?text=Partner+9',
-  'https://via.placeholder.com/150?text=Partner+10',
+  { logo: partner1},
+  { logo: partner2},
+  { logo: partner3},
+  { logo: partner4},
+  { logo: partner5},
+  { logo: partner6},
+  { logo: partner7},
 ];
 
 const OurPartners = () => {
@@ -45,10 +53,9 @@ const OurPartners = () => {
         transition={{ duration: 0.6 }}
       >
         <div className="partners-list">
-          {partnerLogos.map((logo, index) => (
+          {partnerLogos.map((partner, index) => (
             <div key={index} className="partner-item">
-              <img src={logo} alt={`Partner ${index + 1}`} />
-              <p>Partner {index + 1} Description</p>
+              <img src={partner.logo} alt={`Partner ${index + 1}`} />
             </div>
           ))}
         </div>

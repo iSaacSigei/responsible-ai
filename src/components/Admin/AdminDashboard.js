@@ -56,19 +56,19 @@ const [loaders, setLoaders]=useState(false)
   useEffect(() => {
     const token = localStorage.getItem('token');
     
-    fetch('http://127.0.0.1:3000/users', {
+    fetch('https://mysite-jr5y.onrender.com/users', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(response => response.json())
       .then(data => setUserCount(data.length));
 
-    fetch('http://127.0.0.1:3000/export_orders', {
+    fetch('https://mysite-jr5y.onrender.com/export_orders', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(response => response.json())
       .then(data => setExportOrderCount(data.length));
 
-    fetch('http://127.0.0.1:3000/import_orders', {
+    fetch('https://mysite-jr5y.onrender.com/import_orders', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(response => response.json())
@@ -81,19 +81,22 @@ const [loaders, setLoaders]=useState(false)
     
     switch(type) {
       case 'users':
-        url = 'http://127.0.0.1:3000/users';
+        url = 'https://mysite-jr5y.onrender.com/users';
         break;
       case 'exportOrders':
-        url = 'http://127.0.0.1:3000/export_orders';
+        url = 'https://mysite-jr5y.onrender.com/export_orders';
         break;
       case 'importOrders':
-        url = 'http://127.0.0.1:3000/import_orders';
+        url = 'https://mysite-jr5y.onrender.com/import_orders';
+        break;
+      case 'contact_messages':
+        url = 'https://mysite-jr5y.onrender.com/contact_messages';
         break;
       case 'tenders':
-        url = 'http://127.0.0.1:3000/tenders';
+        url = 'https://mysite-jr5y.onrender.com/tenders';
         break;
       case 'jobs':
-        url = 'http://127.0.0.1:3000/jobs';
+        url = 'https://mysite-jr5y.onrender.com/jobs';
         break;
       case 'postCareer':
         setSelectedData({ type: 'postCareer' });
@@ -141,7 +144,7 @@ const [loaders, setLoaders]=useState(false)
       },
     };
   
-    fetch('http://127.0.0.1:3000/quotations', {
+    fetch('https://mysite-jr5y.onrender.com/quotations', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -175,8 +178,8 @@ const [loaders, setLoaders]=useState(false)
   const handleViewMore = (orderId) => {
     const token = localStorage.getItem('token');
     const url = selectedData.type === 'importOrders'
-      ? `http://127.0.0.1:3000/import_orders/${orderId}`
-      : `http://127.0.0.1:3000/export_orders/${orderId}`;
+      ? `https://mysite-jr5y.onrender.com/import_orders/${orderId}`
+      : `https://mysite-jr5y.onrender.com/export_orders/${orderId}`;
   
     fetch(url, { headers: { 'Authorization': `Bearer ${token}` } })
       .then(response => response.json())
@@ -202,7 +205,7 @@ const [loaders, setLoaders]=useState(false)
   const handleConfirmDelete = () => {
     const token = localStorage.getItem('token');
     
-    fetch(`http://127.0.0.1:3000/users/${userToDelete.id}`, {
+    fetch(`https://mysite-jr5y.onrender.com/users/${userToDelete.id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -234,17 +237,43 @@ const [loaders, setLoaders]=useState(false)
       }
     }, 100);
   };
-  const [postCareerFormData, setPostCareerFormData] = useState({
-    job_title: '',
-    job_description: '',
-    job_requirements: '',
-    application_deadline: '',
-    years_of_experience: '',
-    job_level: '',
-    location: '',
-    category: 'job_openings', // Default value
+// Initial state for the job posting form
+const [postCareerFormData, setPostCareerFormData] = useState({
+  job_title: '',
+  category: 'job opening', // Default value
+  job_description: '',
+  requirements: [''], // Initialize as an array
+  benefits: [''], // Initialize as an array
+  how_to_apply: '',
+  contact_email: '',
+  contact_phone: '',
+  application_deadline: '',
+  years_of_experience: '',
+  job_level: '',
+  location: '',
+});
+
+// Handler to manage changes for array fields like requirements and benefits
+const handleArrayChange = (e, index, field) => {
+  const updatedArray = [...postCareerFormData[field]];
+  updatedArray[index] = e.target.value;
+  setPostCareerFormData({ ...postCareerFormData, [field]: updatedArray });
+};
+
+// Handler to add a new empty item to the array (requirements or benefits)
+const handleAddItem = (field) => {
+  setPostCareerFormData({
+    ...postCareerFormData,
+    [field]: [...postCareerFormData[field], '']
   });
-  
+};
+
+// Handler to remove an item from the array (requirements or benefits)
+const handleRemoveItem = (index, field) => {
+  const updatedArray = postCareerFormData[field].filter((_, i) => i !== index);
+  setPostCareerFormData({ ...postCareerFormData, [field]: updatedArray });
+};
+
 
 const [postTenderFormData, setPostTenderFormData] = useState({
   company: '',
@@ -263,13 +292,19 @@ const handlePostCareerSubmit = (e) => {
   e.preventDefault();
   const token = localStorage.getItem('token');
 
-  fetch('http://127.0.0.1:3000/jobs', {
+  fetch('https://mysite-jr5y.onrender.com/jobs', {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ job: postCareerFormData }),
+    body: JSON.stringify({
+      job: {
+        ...postCareerFormData,
+        requirements: postCareerFormData.requirements || [], // Ensure it's an array
+        benefits: postCareerFormData.benefits || [] // Ensure it's an array
+      }
+    }),
   })
     .then(response => response.json())
     .then(data => {
@@ -277,16 +312,19 @@ const handlePostCareerSubmit = (e) => {
       setPostCareerFormData({
         job_title: '',
         job_description: '',
-        job_requirements: '',
+        requirements: [], // Reset to empty array
+        benefits: [], // Reset to empty array
         application_deadline: '',
         years_of_experience: '',
         job_level: '',
         location: '',
-        category:''
+        category: 'job opening',
+        how_to_apply: '',
+        contact_email: '',
+        contact_phone: ''
       });
 
-      // Fetch the updated jobs list and show the table
-      fetch('http://127.0.0.1:3000/jobs', {
+      fetch('https://mysite-jr5y.onrender.com/jobs', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
         .then(response => response.json())
@@ -298,6 +336,7 @@ const handlePostCareerSubmit = (e) => {
     });
 };
 
+
 // Handler for form input changes
 const handlePostTenderChange = (e) => {
   setPostTenderFormData({ ...postTenderFormData, [e.target.name]: e.target.value });
@@ -308,7 +347,7 @@ const handlePostTenderSubmit = (e) => {
   e.preventDefault();
   const token = localStorage.getItem('token');
 
-  fetch('http://127.0.0.1:3000/tenders', {
+  fetch('https://mysite-jr5y.onrender.com/tenders', {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -328,7 +367,7 @@ const handlePostTenderSubmit = (e) => {
         tender_description: '',
       });
       // Fetch the updated tenders list and show the table
-      fetch('http://127.0.0.1:3000/tenders', {
+      fetch('https://mysite-jr5y.onrender.com/tenders', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
         .then(response => response.json())
@@ -344,7 +383,7 @@ const handlePostTenderSubmit = (e) => {
 const handleDeleteJob = (job) => {
   const token = localStorage.getItem('token');
 
-  fetch(`http://127.0.0.1:3000/jobs/${job.id}`, {
+  fetch(`https://mysite-jr5y.onrender.com/jobs/${job.id}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -378,7 +417,7 @@ const handleViewJob = (job) => {
 const handleDeleteTender = (tender) => {
   const token = localStorage.getItem('token');
 
-  fetch(`http://127.0.0.1:3000/tenders/${tender.id}`, {
+  fetch(`https://mysite-jr5y.onrender.com/tenders/${tender.id}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -415,7 +454,7 @@ const handleViewTender = (tender) => {
     const token = localStorage.getItem('token');
     const { id, ...updatedUser } = userToUpdate;
   
-    fetch(`http://127.0.0.1:3000/users/${id}`, {
+    fetch(`https://mysite-jr5y.onrender.com/users/${id}`, {
       method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -429,7 +468,7 @@ const handleViewTender = (tender) => {
       setLoaders(true);
       setResponseMessage(data.message);
       // Refetch user data to get the updated list
-      fetch('http://127.0.0.1:3000/users', {
+      fetch('https://mysite-jr5y.onrender.com/users', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -534,6 +573,36 @@ const handleViewTender = (tender) => {
         </>
       );
     }
+    if (selectedData.type === 'contact_messages') {
+      return (
+        <>
+          <h4>Data Table</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Number</th>
+                <th>Message</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {selectedData.data.map(user => (
+                <tr key={user.id}>
+                  <td>{user.id}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.number}</td>
+                  <td>{user.message}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      );
+    }
     if (selectedData.type === 'tenders') {
       return (
         <>
@@ -605,6 +674,7 @@ const handleViewTender = (tender) => {
         <>
           <h4>Post Career Form</h4>
           <form onSubmit={handlePostCareerSubmit}>
+            {/* Job Title */}
             <div className="form-group">
               <label>Job Title:</label>
               <input
@@ -616,6 +686,8 @@ const handleViewTender = (tender) => {
                 required
               />
             </div>
+
+            {/* Category */}
             <div className="form-group">
               <label>Category:</label>
               <select
@@ -630,6 +702,8 @@ const handleViewTender = (tender) => {
                 <option value="internships">Internships</option>
               </select>
             </div>
+
+            {/* Job Description */}
             <div className="form-group">
               <label>Job Description:</label>
               <textarea
@@ -640,18 +714,81 @@ const handleViewTender = (tender) => {
                 required
               ></textarea>
             </div>
-
+            {/* Requirements */}
             <div className="form-group">
-              <label>Job Requirements:</label>
+            <label>Job Requirements:</label>
+            {Array.isArray(postCareerFormData.requirements) && postCareerFormData.requirements.map((requirement, index) => (
+              <div key={index} className="array-input-group">
+                <input
+                  type="text"
+                  value={requirement}
+                  onChange={(e) => handleArrayChange(e, index, 'requirements')}
+                  className="form-input"
+                  required
+                />
+                <button type="button" className="btn btn-danger" onClick={() => handleRemoveItem(index, 'requirements')}>Remove</button>
+              </div>
+            ))}
+            <button type="button" className="btn btn-primary" onClick={() => handleAddItem('requirements')}>Add Requirement</button>
+          </div>
+
+            {/* Benefits */}
+            <div className="form-group">
+            <label>Benefits:</label>
+            {Array.isArray(postCareerFormData.benefits) && postCareerFormData.benefits.map((benefit, index) => (
+              <div key={index} className="array-input-group">
+                <input
+                  type="text"
+                  value={benefit}
+                  onChange={(e) => handleArrayChange(e, index, 'benefits')}
+                  className="form-input"
+                  required
+                />
+                <button type="button" className="btn btn-danger" onClick={() => handleRemoveItem(index, 'benefits')}>Remove</button>
+              </div>
+            ))}
+            <button type="button" className="btn btn-primary" onClick={() => handleAddItem('benefits')}>Add Benefit</button>
+          </div>
+
+            {/* How to Apply */}
+            <div className="form-group">
+              <label>How to Apply:</label>
               <textarea
-                name="job_requirements"
-                value={postCareerFormData.job_requirements}
+                name="how_to_apply"
+                value={postCareerFormData.how_to_apply}
                 onChange={handlePostCareerChange}
                 className="form-input"
                 required
               ></textarea>
             </div>
 
+            {/* Contact Email */}
+            <div className="form-group">
+              <label>Contact Email:</label>
+              <input
+                type="email"
+                name="contact_email"
+                value={postCareerFormData.contact_email}
+                onChange={handlePostCareerChange}
+                className="form-input"
+                required
+              />
+            </div>
+
+            {/* Contact Phone */}
+            <div className="form-group">
+              <label>Contact Phone:</label>
+              <input
+                type="tel"
+                name="contact_phone"
+                value={postCareerFormData.contact_phone}
+                onChange={handlePostCareerChange}
+                className="form-input"
+                required
+              />
+            </div>
+
+            {/* Application Deadline */}
             <div className="form-group">
               <label>Application Deadline:</label>
               <input
@@ -664,6 +801,7 @@ const handleViewTender = (tender) => {
               />
             </div>
 
+            {/* Years of Experience */}
             <div className="form-group">
               <label>Years of Experience:</label>
               <input
@@ -676,6 +814,7 @@ const handleViewTender = (tender) => {
               />
             </div>
 
+            {/* Job Level */}
             <div className="form-group">
               <label>Job Level:</label>
               <input
@@ -688,6 +827,7 @@ const handleViewTender = (tender) => {
               />
             </div>
 
+            {/* Location */}
             <div className="form-group">
               <label>Location:</label>
               <input
@@ -696,10 +836,14 @@ const handleViewTender = (tender) => {
                 value={postCareerFormData.location}
                 onChange={handlePostCareerChange}
                 className="form-input"
+                required
               />
             </div>
+
+            {/* Submit Button */}
             <button className="btn btn-primary" type="submit">Post Job</button>
           </form>
+
 
         </>
       );
@@ -791,6 +935,7 @@ const handleViewTender = (tender) => {
             <li><a href="#"onClick={() => handleSidebarClick('users')}>Users</a></li>
             <li><a href="#"onClick={() => handleSidebarClick('importOrders')}>Imports</a></li>
             <li><a href="#" onClick={() => handleSidebarClick('exportOrders')}>Exports</a></li>
+            <li><a href="#" onClick={() => handleSidebarClick('contact_messages')}>Messages</a></li>
             <li><a href="#">In Transit</a></li>
             <li><a href="#">Pending Approval</a></li>
             <li><a href="#" onClick={() => handleSidebarClick('tenders')}>Tenders</a></li>

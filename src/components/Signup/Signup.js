@@ -21,6 +21,7 @@ const SignupPage = () => {
     });
 
     const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -39,9 +40,11 @@ const SignupPage = () => {
             return;
         }
 
+        setIsSubmitting(true); // Start the submission process
+
         try {
             // POST request to the Rails backend
-            await axios.post('/users', {
+            await axios.post('https://mysite-jr5y.onrender.com/users', {
                 user: {
                     first_name: formData.firstName,
                     last_name: formData.lastName,
@@ -75,6 +78,8 @@ const SignupPage = () => {
                 console.error("Unexpected error:", error);
                 navigate('/error500');
             }
+        } finally {
+            setIsSubmitting(false); // Reset the submission state
         }
     };
 
@@ -165,7 +170,9 @@ const SignupPage = () => {
                         </div>
                     </div>
 
-                    <button type="submit" className="btn-1 w-100">Sign Up</button>
+                    <button type="submit" className="btn-1 w-100" disabled={isSubmitting}>
+                        {isSubmitting ? "Signing up..." : "Sign Up"}
+                    </button>
                 </form>
             </div>
             <hr className='text-light'></hr>

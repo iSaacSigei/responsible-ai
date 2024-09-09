@@ -17,19 +17,20 @@ import Checkout from './components/CheckoutPage/Checkout';
 import Navbar from './components/navbar/Navbar';
 import MyOrdersPage from './components/myOrders/MyOrdersPage';
 import Error500Page from './components/ServerError/Error500Page';
-// import AdminLogin from "./components/Admin/Login";
 import AdminDashboard from './components/Admin/AdminDashboard';
 import Tenders from './components/Tenders'
 import AboutUs from './components/About/AboutUs';
 import ServicePage from './components/ServiceComponent/Service';
 import Jobs from './components/JobOpeningsPage/JobOpeningsPage';
 import ContactPage from './components/ContactPage/ContactPage';
+import JobDetailsPage from './components/JobDetailsPage/JobDetailsPage';
+
 const App = () => {
   const [user, setUser] = useState(null);
   const [cartCount, setCartCount] = useState(0);
   const [messageCount, setMessageCount] = useState(0);
   const navigate = useNavigate();
-
+  const [reloadPage, setReloadPage]=useState(false)
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -39,7 +40,7 @@ const App = () => {
           return;
         }
 
-        const response = await fetch('http://127.0.0.1:3000/user', {
+        const response = await fetch('https://mysite-jr5y.onrender.com/user', {
           method: 'GET',
           headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -77,9 +78,9 @@ const App = () => {
           const headers = { 'Authorization': `Bearer ${token}` };
 
           const [exportOrders, importOrders, quotations] = await Promise.all([
-            fetch('http://127.0.0.1:3000/export_orders', { headers }),
-            fetch('http://127.0.0.1:3000/import_orders', { headers }),
-            fetch('http://127.0.0.1:3000/quotations', { headers }),
+            fetch('https://mysite-jr5y.onrender.com/export_orders', { headers }),
+            fetch('https://mysite-jr5y.onrender.com/import_orders', { headers }),
+            fetch('https://mysite-jr5y.onrender.com/quotations', { headers }),
           ]);
 
           if (!exportOrders.ok || !importOrders.ok || !quotations.ok) {
@@ -100,11 +101,11 @@ const App = () => {
 
       fetchCounts();
     }
-  }, [user]); // Runs only when the user state changes and is not null
+  }, [user, reloadPage]); // Runs only when the user state changes and is not null
 
   const handleLogout = async () => {
     try {
-      await fetch('http://127.0.0.1:3000/logout', { method: 'DELETE' });
+      await fetch('https://mysite-jr5y.onrender.com/logout', { method: 'DELETE' });
       localStorage.removeItem('token');
       setUser(null);
       navigate('/login');
@@ -115,7 +116,7 @@ const App = () => {
 
   const updateUser = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:3000/user', {
+      const response = await fetch('https://mysite-jr5y.onrender.com/user', {
         method: 'GET',
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       });
@@ -138,8 +139,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs/>} />
-        <Route path="/imports" element={<ImportPage user={user} />} />
-        <Route path="/exports" element={<ExportPage user={user} />} />
+        <Route path="/imports" element={<ImportPage user={user} setReloadPage={setReloadPage} />} />
+        <Route path="/exports" element={<ExportPage user={user} setReloadPage={setReloadPage} />} />
         <Route path="/contact" element={<ContactPage/>} />
         <Route path="/login" element={<Login updateUser={updateUser} />} />
         <Route path="/signup" element={<Signup />} />
@@ -153,7 +154,7 @@ const App = () => {
         <Route path='/services' element={<ServicePage/>}/>
         <Route path='/admin_panel' element={<AdminDashboard/>}/>
         <Route path='/job_openings' element={<Jobs/>}/>
-
+        <Route path="/jobs/:id" element={<JobDetailsPage />} /> {/* Corrected route */}
       </Routes>
     </>
   );

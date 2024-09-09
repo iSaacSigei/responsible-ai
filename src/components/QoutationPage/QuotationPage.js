@@ -12,7 +12,7 @@ const QuotationPage = () => {
             const token = localStorage.getItem('token');
             try {
                 // Fetch quotations
-                const response = await fetch('/quotations/', {
+                const response = await fetch('https://mysite-jr5y.onrender.com/quotations', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -28,7 +28,7 @@ const QuotationPage = () => {
 
                 // Determine which endpoint to fetch order details from
                 const orderId = quotationData.import_order_id || quotationData.export_order_id;
-                const orderEndpoint = quotationData.import_order_id ? `/import_orders/${orderId}` : `/export_orders/${orderId}`;
+                const orderEndpoint = quotationData.import_order_id ? `https://mysite-jr5y.onrender.com/import_orders/${orderId}` : `https://mysite-jr5y.onrender.com/export_orders/${orderId}`;
 
                 // Fetch order details
                 const orderResponse = await fetch(orderEndpoint, {

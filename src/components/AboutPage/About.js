@@ -44,8 +44,7 @@ const About = () => {
       <div className="about-section">
         <h2 className="about-subheader">Our Vision</h2>
         <p className="about-paragraph">
-          To create a seamless international B2B trade environment where businesses of all sizes can maximize the global value of their products and services. By connecting producers and manufacturers with global distributors through innovative technology and dedicated support, we aim to build an efficient, transparent, and empowering trade ecosystem that drives growth and success for all stakeholders.
-        </p>
+        To create a seamless international B2B trade environment where businesses of all sizes can maximize the global value of their products and services.        </p>
       </div>
 
       {/* Learn More Link */}

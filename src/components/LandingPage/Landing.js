@@ -18,19 +18,19 @@ const Landing = () => {
                 <div className="message-container">
                     <div className="message">
                         <h1>Welcome to WoMall</h1>
-                        <p className='fs-l'>Your trusted partner in global export and import services.</p>
+                        <p className=''>Your trusted partner in global export and import services.</p>
                     </div>
                     <div className="message">
-                        <h2>Comprehensive Trade Solutions</h2>
-                        <p>Explore our services designed to simplify your international trade operations.</p>
+                        <h1>End-to-End International Trade Management </h1>
+                        <p>WoMall’s comprehensive approach ensures a smooth and efficient trade process, reducing the operational burden on businesses.</p>
                     </div>
                     <div className="message">
-                        <h2>Exclusive Resources</h2>
-                        <p>Access tools and resources to streamline your import/export processes.</p>
+                        <h1>Expert Support </h1>
+                        <p>Personalized assistance and expert guidance help businesses navigate the complexities of international trade, making global commerce more accessible.</p>
                     </div>
                     <div className="message">
-                        <h2>Stay Updated</h2>
-                        <p>Join our community and stay informed about the latest in global trade.</p>
+                        <h1>High-Quality Partner Network</h1>
+                        <p>Our curated list of reputable international partners fosters trust and reliability, enhancing business confidence in global transactions</p>
                     </div>
                 </div>
                 </div>

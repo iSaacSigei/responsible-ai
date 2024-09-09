@@ -49,6 +49,7 @@ h2{
   text-decoration: none;
   color: white !important;
   overflow: hidden;
+  border-radius: 5px;
 }
 .custom-width-1 {
   width: 60%;
@@ -112,19 +113,20 @@ body {
   margin-bottom: 20px;
 }
 
-.message {
+.message{
   position: absolute;
   margin-top: 20px;
   width: 100%;
   height: 100%;
   text-align: center;
-  font-size: 2.0rem;
   padding: 26px;
   color: white;
   transform: translateY(100%) scale(0.8);
   animation: cardAnimation 20s linear infinite;
 }
-
+.message h1{
+  font-size: 2.0rem;
+}
 .message p {
   font-size: 0.9rem;
 }

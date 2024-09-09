@@ -18,8 +18,8 @@ export default function MyOrdersPage() {
         });
 
         const [exportResponse, importResponse] = await Promise.all([
-          fetch('/export_orders', { headers }),
-          fetch('/import_orders', { headers }),
+          fetch('https://mysite-jr5y.onrender.com/export_orders', { headers }),
+          fetch('https://mysite-jr5y.onrender.com/import_orders', { headers }),
         ]);
 
         if (!exportResponse.ok || !importResponse.ok) {

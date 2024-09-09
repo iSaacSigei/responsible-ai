@@ -5,7 +5,6 @@ import GLightbox from 'glightbox';
 import PureCounter from '@srexi/purecounterjs';
 import Swiper from 'swiper';
 import '../styles/Navbar.css';
-
 import 'aos/dist/aos.css';
 import 'glightbox/dist/css/glightbox.min.css';
 import 'swiper/css';
@@ -128,7 +127,6 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
     <header id="header" className="header d-flex align-items-center fixed-top">
       <div className="container-fluid position-relative d-flex align-items-center justify-content-between">
         <Link to="/" className="logo d-flex align-items-center me-auto me-xl-0" onClick={handleLinkClick}>
-          <img src="assets/img/logo.png" alt="" />
           <h1 className="sitename">Wo<span style={{ color: "red" }}>Mall</span></h1>
         </Link>
 
@@ -137,6 +135,7 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
             <li><Link to="/" className="active" onClick={handleLinkClick}>Home</Link></li>
             <li><Link to="/about" onClick={handleLinkClick}>About</Link></li>
             <li><Link to="/services" onClick={handleLinkClick}>Services</Link></li>
+            <li><Link to="/tenders" onClick={handleLinkClick}>Tenders</Link></li>
             <li className="dropdown">
             <Link to="#" onClick={handleLinkClick}>
               <span>Careers</span> <i className="bi bi-chevron-down toggle-dropdown"></i>
@@ -148,28 +147,20 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
               <li><Link to="/job_openings?category=faqs" onClick={handleLinkClick}>FAQ'S</Link></li>
             </ul>
           </li>
-            <li><Link to="/tenders" onClick={handleLinkClick}>Tenders</Link></li>
-            <li><Link to="/team" onClick={handleLinkClick}>Team</Link></li>
-            <li><Link to="/blog" onClick={handleLinkClick}>Blog</Link></li>
+            {/* <li><Link to="/team" onClick={handleLinkClick}>Team</Link></li>
+            <li><Link to="/blog" onClick={handleLinkClick}>Blog</Link></li> */}
             <li className="dropdown">
-              <Link to="#" onClick={handleLinkClick}><span>Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></Link>
-              <ul>
-                <li><Link to="#" onClick={handleLinkClick}>Dropdown 1</Link></li>
-                <li className="dropdown">
-                  <Link to="#" onClick={handleLinkClick}><span>Deep Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></Link>
-                  <ul>
-                    <li><Link to="#" onClick={handleLinkClick}>Deep Dropdown 1</Link></li>
-                    <li><Link to="#" onClick={handleLinkClick}>Deep Dropdown 2</Link></li>
-                    <li><Link to="#" onClick={handleLinkClick}>Deep Dropdown 3</Link></li>
-                    <li><Link to="#" onClick={handleLinkClick}>Deep Dropdown 4</Link></li>
-                    <li><Link to="#" onClick={handleLinkClick}>Deep Dropdown 5</Link></li>
-                  </ul>
-                </li>
-                <li><Link to="#" onClick={handleLinkClick}>Dropdown 2</Link></li>
-                <li><Link to="#" onClick={handleLinkClick}>Dropdown 3</Link></li>
-                <li><Link to="#" onClick={handleLinkClick}>Dropdown 4</Link></li>
-              </ul>
-            </li>
+            <Link to="#" onClick={handleLinkClick}>
+              <span>Resources</span>
+              <i className="bi bi-chevron-down toggle-dropdown"></i>
+            </Link>
+            <ul>
+              <li><Link to="/special-offers" onClick={handleLinkClick}>Special Offers</Link></li>
+              <li><Link to="/events" onClick={handleLinkClick}>Events</Link></li>
+              <li><Link to="/community" onClick={handleLinkClick}>Community</Link></li>
+              <li><Link to="/case-studies" onClick={handleLinkClick}>Case Studies</Link></li>
+            </ul>
+          </li>
             <li><Link to="/contact" onClick={handleLinkClick}>Contact</Link></li>
           </ul>
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -195,10 +186,15 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
               </Link>
               <ul id="user">
                 <li>
-                  {/* Logout button */}
-                  <button className="btn-getstarted w-100" onClick={() => { handleLinkClick(); onLogout(); }}>
-                    Logout
-                  </button>
+                <button
+                  className="btn-getstarted w-100"
+                  onClick={(e) => {
+                    handleLinkClick(e); // Pass the event
+                    onLogout();
+                  }}
+                >
+                  Logout
+                </button>
                 </li>
                 <li className="dropdown">
                   <Link to="#" onClick={handleLinkClick}>

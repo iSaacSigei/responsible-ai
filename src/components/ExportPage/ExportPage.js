@@ -4,7 +4,7 @@ import '../styles/Import.css';
 import Footer from '../footer/Footer';
 import ExportSuccessModal from '../Modal/ExportSuccessModal'; // Import the modal component
 
-const ExportPage = ({ user }) => {
+const ExportPage = ({ user, setReloadPage }) => {
     const [formData, setFormData] = useState({
         exportTo: '',
         product: '',
@@ -74,7 +74,7 @@ const ExportPage = ({ user }) => {
         const token = localStorage.getItem('token');
 
         try {
-            const response = await fetch('/export_orders', {
+            const response = await fetch('https://mysite-jr5y.onrender.com/export_orders', {
                 method: 'POST',
                 body: data,
                 headers: {
@@ -87,6 +87,7 @@ const ExportPage = ({ user }) => {
                 const result = await response.json();
                 console.log('Success:', result);
                 setModalOpen(true);
+                setReloadPage(true);
             } else {
                 const errorData = await response.json();
                 throw new Error(errorData.errors || 'An error occurred while submitting the form.');
@@ -191,7 +192,7 @@ const ExportPage = ({ user }) => {
                         </div>
                     </div>
 
-                    <button type="submit" className="btn-1 text-end" disabled={loading}>
+                    <button type="submit" className="btn-1 w-100 text-center" disabled={loading}>
                         {loading ? 'Submitting...' : 'Request Now'}
                     </button>
                 </form>

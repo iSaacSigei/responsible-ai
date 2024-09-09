@@ -10,6 +10,7 @@ const Login = ({ updateUser }) => {
     email: '',
     password: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,8 +23,10 @@ const Login = ({ updateUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Set loading state to true
+
     try {
-      const response = await fetch('http://127.0.0.1:3000/login', {
+      const response = await fetch('https://mysite-jr5y.onrender.com/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -47,7 +50,8 @@ const Login = ({ updateUser }) => {
       
       // Update user data
       await updateUser();
-      console.log(result)
+      console.log(result);
+      
       // Check user role
       if (result.user.role === 'admin') {
         navigate('/admin_panel');
@@ -57,6 +61,8 @@ const Login = ({ updateUser }) => {
     } catch (error) {
       console.error('Error logging in:', error);
       navigate('/error500');
+    } finally {
+      setIsLoading(false); // Reset loading state
     }
   };
 
@@ -88,10 +94,12 @@ const Login = ({ updateUser }) => {
               className="form-control"
             />
           </div>
-          <button type="submit" className="btn-1 w-100">Login</button>
+          <button type="submit" className="btn-1 w-100" disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Login"}
+          </button>
         </form>
         <div className="signup-link-container text-center mt-4">
-          <p className='text-light'>Or don't have an account? <Link to="/signup" className="signup-link ">Sign up here</Link></p>
+          <p className='text-light'>Or don't have an account? <Link to="/signup" className="signup-link">Sign up here</Link></p>
         </div>
       </div>
       <ToastContainer 

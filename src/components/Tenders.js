@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../components/styles/Tenders.css'; // Ensure this CSS file is created and styled
+import '../components/styles/Tenders.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Footer from './footer/Footer';
 
+// Import the PDF file
+import tenderPDF from '../images/tender.pdf';
+
 const Tenders = () => {
   const [tenders, setTenders] = useState([]);
   const [groupedTenders, setGroupedTenders] = useState({});
-  const [companyName, setCompanyName] = useState(''); // State for company name
+  const [companyName, setCompanyName] = useState('');
 
   useEffect(() => {
     AOS.init({
@@ -19,13 +22,11 @@ const Tenders = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch tenders from the backend
     const fetchTenders = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:3000/tenders');
+        const response = await axios.get('https://mysite-jr5y.onrender.com/tenders');
         const tendersData = response.data;
 
-        // Group tenders by category
         const tendersByCategory = tendersData.reduce((acc, tender) => {
           const category = tender.category || 'Uncategorized';
           if (!acc[category]) {
@@ -35,7 +36,6 @@ const Tenders = () => {
           return acc;
         }, {});
 
-        // Set the company name dynamically (use the company of the first tender)
         if (tendersData.length > 0) {
           setCompanyName(tendersData[0].company);
         }
@@ -50,15 +50,13 @@ const Tenders = () => {
     fetchTenders();
   }, []);
 
-  // Function to convert index to a corresponding letter (A, B, C, etc.)
   const getCategoryLabel = (index) => {
-    return String.fromCharCode(65 + index); // ASCII value 65 is 'A'
+    return String.fromCharCode(65 + index);
   };
 
   return (
     <>
       <div className="tenders-page" data-aos="fade-up">
-        {/* Introduction Section */}
         <div className="tenders-intro">
           <h1>PREQUALIFICATION/REGISTRATION OF SUPPLIERS FOR SUPPLY AND DELIVERY OF GOODS, WORKS AND SERVICES</h1>
           <p>
@@ -85,14 +83,14 @@ const Tenders = () => {
           </p>
         </div>
 
-        {/* Buttons Section */}
         <div className="tenders-buttons">
-          <button className="apply-button">APPLY HERE</button>
+          <a href={tenderPDF} target="_blank" rel="noopener noreferrer">
+            <button className="apply-button">APPLY HERE</button>
+          </a>
           <button className="tier-button">TENDER PRE-QUALIFICATION TIER 1 - GENERAL SUPPLIERS</button>
           <button className="tier-button">TENDER PRE-QUALIFICATION TIER 2 - AGRIBUSINESS SMEs</button>
         </div>
 
-        {/* Table Section */}
         {Object.keys(groupedTenders).map((category, index) => (
           <div key={index} className="tenders-table">
             <h2>Category {getCategoryLabel(index)} – {category}</h2>
