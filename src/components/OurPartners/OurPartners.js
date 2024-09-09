@@ -9,8 +9,8 @@ import partner2 from '../../images/unilever.png';
 import partner3 from '../../images/haco-brands-gold-bck.png';
 import partner4 from '../../images/starlite.png';
 import partner5 from '../../images/hapag.png';
-import partner6 from '../../images/freshela-exporters-logo.jpeg';
-import partner7 from '../../images/kakuzi-logo.svg';
+import partner6 from '../../images/Dl-cargo-Feight-400-2.png';
+import partner7 from '../../images/intracen.png';
 
 
 
@@ -39,7 +39,7 @@ const OurPartners = () => {
         transition={{ duration: 0.6 }}
       >
         <h1>Our Partners</h1>
-        <p>
+        <p className='intro'>
           At WoMall, we are proud to work with a diverse range of partners who share our commitment to excellence. Our partners contribute to our mission by providing top-notch services and support.
         </p>
       </motion.section>

@@ -18,7 +18,7 @@ const Landing = () => {
                 <div className="message-container">
                     <div className="message">
                         <h1>Welcome to WoMall</h1>
-                        <p className=''>Your trusted partner in global export and import services.</p>
+                        <p className=''>Your Trusted Global B2B Hub</p>
                     </div>
                     <div className="message">
                         <h1>End-to-End International Trade Management </h1>

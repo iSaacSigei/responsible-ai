@@ -1,19 +1,39 @@
 /* Container for the Our Partners page */
 .our-partners-page {
     padding: 2rem;
+    width: 100%;
   }
   
-  /* Introduction Section */
-  .introduction {
-    text-align: center;
-    margin-bottom: 3rem;
-    background: linear-gradient(to right, #E4C664 0%, #B18325 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    width: 60%;
-    margin: auto;
+/* Introduction Section */
+.introduction {
+  margin: 0 auto;
+  /* text-align: center; */
+  margin-bottom: 3rem;
+  min-width: 100% !important;
+}
+
+/* Responsive Widths */
+@media (min-width: 1200px) {
+  /* Large screens */
+  .intro {
+    width: 70% !important;
   }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  /* Medium screens */
+  .intro {
+    width: 80% !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Small screens */
+  .intro {
+    width: 90% !important;
+  }
+}
+
   .our-partners-page h1{
     font-size: 2.5rem;
     margin-bottom: 1rem;
@@ -44,7 +64,7 @@
   
   .partner-item img {
     max-width: 100%;
-    height: auto;
+    height: 70px;
     transition: transform 0.3s ease;
   }
   

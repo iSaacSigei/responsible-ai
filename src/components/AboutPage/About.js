@@ -30,7 +30,7 @@ const About = () => {
     >
       {/* Logo Section */}
       <div className="about-logo">
-        <img src={Logo} alt="Eigoll Logo" />
+        <img src={Logo} alt="WomallLogo" />
       </div>
       {/* Mission */}
       <div className="about-section">

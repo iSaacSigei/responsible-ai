@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../styles/AboutUs.css';
 import Background from '../../images/importexport1.jpg';
-import { FaUsers, FaHandshake, FaClock, FaStar } from 'react-icons/fa'; // Added FaStar for Quality Service
+import { FaShieldAlt, FaHandshake, FaClock, FaStar } from 'react-icons/fa'; // Added FaStar for Quality Service
 import Footer from '../footer/Footer'
 const AboutUs = () => {
   useEffect(() => {
@@ -30,12 +30,12 @@ const AboutUs = () => {
       </section>
 
       <section className="about-main" data-aos="zoom-in">
-        <h1 className='text-center text-dark'>Our Values</h1>
+        <h1 className='text-center text-dark py-3'>Our Values</h1>
         <div className='about-us-second-page'>
         <div className="value-item">
-          <FaUsers className="value-item-icon" />
-          <h2 className="value-item-header">Teamwork</h2>
-          <p className="value-item-text">We believe that no individual can win a game by themselves. We have confidence in each others' capabilities and intentions.</p>
+        <FaShieldAlt className="value-item-icon" />
+        <h2 className="value-item-header">Reliability</h2>
+          <p className="value-item-text">At WoMall, reliability is at the core of everything we do. We pride ourselves on being a dependable partner in your shopping journey, ensuring that you can trust us to deliver high-quality products and services consistently</p>
         </div>
         <div className="value-item">
           <FaHandshake className="value-item-icon" />

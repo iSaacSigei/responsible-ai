@@ -51,8 +51,6 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
     }
   }, []);
   
-  
-
   useEffect(() => {
     const scrollTop = document.querySelector('.scroll-top');
     if (scrollTop) {
@@ -121,47 +119,46 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
       }
     }
   };
-  
+
+  const isActive = (path) => location.pathname === path ? 'active' : '';
 
   return (
     <header id="header" className="header d-flex align-items-center fixed-top">
       <div className="container-fluid position-relative d-flex align-items-center justify-content-between">
-        <Link to="/" className="logo d-flex align-items-center me-auto me-xl-0" onClick={handleLinkClick}>
+        <Link to="/" className={`logo d-flex align-items-center me-auto me-xl-0 ${isActive('/')}`} onClick={handleLinkClick}>
           <h1 className="sitename">Wo<span style={{ color: "red" }}>Mall</span></h1>
         </Link>
 
         <nav id="navmenu" className="navmenu">
           <ul>
-            <li><Link to="/" className="active" onClick={handleLinkClick}>Home</Link></li>
-            <li><Link to="/about" onClick={handleLinkClick}>About</Link></li>
-            <li><Link to="/services" onClick={handleLinkClick}>Services</Link></li>
-            <li><Link to="/tenders" onClick={handleLinkClick}>Tenders</Link></li>
+            <li><Link to="/" className={isActive('/')} onClick={handleLinkClick}>Home</Link></li>
+            <li><Link to="/about" className={isActive('/about')} onClick={handleLinkClick}>About</Link></li>
+            <li><Link to="/services" className={isActive('/services')} onClick={handleLinkClick}>Services</Link></li>
+            <li><Link to="/tenders" className={isActive('/tenders')} onClick={handleLinkClick}>Tenders</Link></li>
             <li className="dropdown">
-            <Link to="#" onClick={handleLinkClick}>
-              <span>Careers</span> <i className="bi bi-chevron-down toggle-dropdown"></i>
-            </Link>
-            <ul>
-              <li><Link to="/job_openings?category=job opening" onClick={handleLinkClick}>Job Openings</Link></li>
-              <li><Link to="/job_openings?category=graduate_trainee" onClick={handleLinkClick}>Graduate Trainee Programs</Link></li>
-              <li><Link to="/job_openings?category=internships" onClick={handleLinkClick}>Internships</Link></li>
-              <li><Link to="/job_openings?category=faqs" onClick={handleLinkClick}>FAQ'S</Link></li>
-            </ul>
-          </li>
-            {/* <li><Link to="/team" onClick={handleLinkClick}>Team</Link></li>
-            <li><Link to="/blog" onClick={handleLinkClick}>Blog</Link></li> */}
+              <Link to="#" onClick={handleLinkClick} className={isActive('/job_openings') ? 'active' : ''}>
+                <span>Careers</span> <i className="bi bi-chevron-down toggle-dropdown"></i>
+              </Link>
+              <ul>
+                <li><Link to="/job_openings?category=job opening" className={isActive('/job_openings?category=job opening')} onClick={handleLinkClick}>Job Openings</Link></li>
+                <li><Link to="/job_openings?category=graduate_trainee" className={isActive('/job_openings?category=graduate_trainee')} onClick={handleLinkClick}>Graduate Trainee Programs</Link></li>
+                <li><Link to="/job_openings?category=internships" className={isActive('/job_openings?category=internships')} onClick={handleLinkClick}>Internships</Link></li>
+                <li><Link to="/job_openings?category=faqs" className={isActive('/job_openings?category=faqs')} onClick={handleLinkClick}>FAQ'S</Link></li>
+              </ul>
+            </li>
             <li className="dropdown">
-            <Link to="#" onClick={handleLinkClick}>
-              <span>Resources</span>
-              <i className="bi bi-chevron-down toggle-dropdown"></i>
-            </Link>
-            <ul>
-              <li><Link to="/special-offers" onClick={handleLinkClick}>Special Offers</Link></li>
-              <li><Link to="/events" onClick={handleLinkClick}>Events</Link></li>
-              <li><Link to="/community" onClick={handleLinkClick}>Community</Link></li>
-              <li><Link to="/case-studies" onClick={handleLinkClick}>Case Studies</Link></li>
-            </ul>
-          </li>
-            <li><Link to="/contact" onClick={handleLinkClick}>Contact</Link></li>
+              <Link to="#" onClick={handleLinkClick} className={isActive('/special-offers') ? 'active' : ''}>
+                <span>Resources</span>
+                <i className="bi bi-chevron-down toggle-dropdown"></i>
+              </Link>
+              <ul>
+                <li><Link to="/special-offers" className={isActive('/special-offers')} onClick={handleLinkClick}>Special Offers</Link></li>
+                <li><Link to="/events" className={isActive('/events')} onClick={handleLinkClick}>Events</Link></li>
+                <li><Link to="/community" className={isActive('/community')} onClick={handleLinkClick}>Community</Link></li>
+                <li><Link to="/case-studies" className={isActive('/case-studies')} onClick={handleLinkClick}>Case Studies</Link></li>
+              </ul>
+            </li>
+            <li><Link to="/contact" className={isActive('/contact')} onClick={handleLinkClick}>Contact</Link></li>
           </ul>
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -186,15 +183,15 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
               </Link>
               <ul id="user">
                 <li>
-                <button
-                  className="btn-getstarted w-100"
-                  onClick={(e) => {
-                    handleLinkClick(e); // Pass the event
-                    onLogout();
-                  }}
-                >
-                  Logout
-                </button>
+                  <button
+                    className="btn-getstarted w-100"
+                    onClick={(e) => {
+                      handleLinkClick(e); // Pass the event
+                      onLogout();
+                    }}
+                  >
+                    Logout
+                  </button>
                 </li>
                 <li className="dropdown">
                   <Link to="#" onClick={handleLinkClick}>
@@ -202,16 +199,15 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
                     <i className="bi bi-chevron-down toggle-dropdown"></i>
                   </Link>
                   <ul>
-                    <li><Link to="/update-profile" onClick={handleLinkClick}>Update Profile</Link></li>
+                    <li><Link to="/profile" onClick={handleLinkClick}>Profile</Link></li>
                     <li><Link to="/update-password" onClick={handleLinkClick}>Update Password</Link></li>
-                    <li><Link to="/update-address" onClick={handleLinkClick}>Update Address</Link></li>
                   </ul>
                 </li>
               </ul>
             </li>
           </ul>
         ) : (
-          <Link className="btn-getstarted" to="/login" onClick={handleLinkClick}>Get Started</Link>
+          <Link to="/login" className="btn-getstarted">Login</Link>
         )}
       </div>
     </header>
