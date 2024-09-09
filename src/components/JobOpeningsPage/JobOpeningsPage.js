@@ -63,10 +63,8 @@ const JobOpeningsPage = () => {
         {
           "@context": "https://schema.org",
           "@type": "JobPosting",
-          "title": "${job.title}",
-          "description": "${job.description}",
-          "datePosted": "${job.datePosted}",
-          "validThrough": "${job.validThrough}",
+          "title": "Find Vacancies",
+          "description": "Jobs Opening, Internships, Graduate Trainee",
           "employmentType": "FULL_TIME",
           "hiringOrganization": {
             "@type": "Organization",
@@ -78,7 +76,7 @@ const JobOpeningsPage = () => {
             "@type": "Place",
             "address": {
               "@type": "PostalAddress",
-              "addressLocality": "${job.location}",
+              "addressLocality": "Kenya and Abroad",
               "addressCountry": "Country"
             }
           }
