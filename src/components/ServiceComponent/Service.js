@@ -4,7 +4,8 @@ import Image1 from '../../images/importexport1.jpg'; // Update paths as needed
 import Image2 from '../../images/manufacturer.png';
 import Image3 from '../../images/transaction.png';
 import Image4 from '../../images/logistics.png';
-import Footer from '../footer/Footer'
+import Footer from '../footer/Footer';
+import { Helmet } from 'react-helmet-async';
 const content = [
   {
     image: Image1,
@@ -52,6 +53,12 @@ const Service = () => {
   
     return (
     <>
+      <Helmet>
+        <title>WoMall - Our Services</title>
+        <meta name="description" content="Discover WoMall's range of services including global trade facilitation, manufacturer-buyer connections, and seamless transactions." />
+        <meta name="keywords" content="WoMall services, global trade, logistics, manufacturers, import, export" />
+      </Helmet>
+
       <div className="service-page bg-light">
         {content.map((item, index) => (
           <div className={`service-row ${index % 2 === 0 ? 'left-image' : 'right-image'}`} key={index}>

@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Home from './components/home/Home';
 import './App.css';
+import { HelmetProvider } from 'react-helmet-async';
 import ImportPage from './components/ImportPage/ImportPage';
 import Error404 from './components/ErrorPage/Error404';
 import ExportPage from './components/ExportPage/ExportPage';
@@ -135,6 +136,7 @@ const App = () => {
 
   return (
     <>
+    <HelmetProvider>
       <Navbar user={user} onLogout={handleLogout} cartCount={cartCount} messageCount={messageCount} />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -156,6 +158,7 @@ const App = () => {
         <Route path='/job_openings' element={<Jobs/>}/>
         <Route path="/jobs/:id" element={<JobDetailsPage />} /> {/* Corrected route */}
       </Routes>
+      </HelmetProvider>
     </>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/Import.css';
 import Footer from '../footer/Footer';
 import { useNavigate } from 'react-router-dom';
-
+import { Helmet } from 'react-helmet-async'; // Import Helmet for SEO
 const ImportPage = ({ user, setReloadPage }) => {
     const [formData, setFormData] = useState({
         importFrom: '',
@@ -89,6 +89,11 @@ const ImportPage = ({ user, setReloadPage }) => {
 
     return (
         <>
+            <Helmet>
+                <title>Import Products - Submit Your Import Orders</title>
+                <meta name="description" content="Submit your import orders to our platform. We provide services to import products from various countries at competitive rates." />
+                <meta name="keywords" content="import, import products, submit import order, global trade" />
+            </Helmet>
             <div className="import-page-container">
                 {error && <div className="error-message">{error}</div>}
                 <form onSubmit={handleSubmit} className="import-form">

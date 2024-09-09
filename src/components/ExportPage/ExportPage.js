@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Import.css';
 import Footer from '../footer/Footer';
 import ExportSuccessModal from '../Modal/ExportSuccessModal'; // Import the modal component
+import { Helmet } from 'react-helmet-async'; // Import Helmet for SEO
 
 const ExportPage = ({ user, setReloadPage }) => {
     const [formData, setFormData] = useState({
@@ -106,6 +107,11 @@ const ExportPage = ({ user, setReloadPage }) => {
 
     return (
         <>
+         <Helmet>
+                <title>Export Products - Submit Your Export Orders</title>
+                <meta name="description" content="Submit your export orders to our platform. We provide services to export your products to multiple countries. Get your products delivered fast and safe." />
+                <meta name="keywords" content="export, export products, submit export order, global trade" />
+            </Helmet>
             <ExportSuccessModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
             <div className="import-page-container mt-1">
                 {error && <div className="error-message text-danger text-center">{error}</div>}

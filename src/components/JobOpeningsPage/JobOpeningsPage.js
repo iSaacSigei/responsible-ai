@@ -5,6 +5,7 @@ import '../styles/JobOpeningsPage.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Footer from '../footer/Footer';
+import { Helmet } from 'react-helmet-async';
 
 const JobOpeningsPage = () => {
   const [jobs, setJobs] = useState([]);
@@ -53,6 +54,38 @@ const JobOpeningsPage = () => {
 
   return (
     <>
+      <Helmet>
+      <title>WoMall - Careers</title>
+        <meta name="description" content="Find the latest job openings, internships, and trainee programs at WoMall. Apply today!"/>
+        <meta name="keywords" content="WoMall, Careers, Jobs, Internships, Trainee Programs"/>
+        <script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "JobPosting",
+          "title": "${job.title}",
+          "description": "${job.description}",
+          "datePosted": "${job.datePosted}",
+          "validThrough": "${job.validThrough}",
+          "employmentType": "FULL_TIME",
+          "hiringOrganization": {
+            "@type": "Organization",
+            "name": "WoMall",
+            "sameAs": "https://womall.africa",
+            "logo": "URL_to_logo"
+          },
+          "jobLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "${job.location}",
+              "addressCountry": "Country"
+            }
+          }
+        }
+        `}
+        </script>
+      </Helmet>
       <div className="job-openings bg-light" data-aos="fade-up">
         <div className="intro bg-light">
           <p>

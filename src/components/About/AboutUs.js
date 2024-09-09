@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
+import { Helmet } from 'react-helmet-async';
 import 'aos/dist/aos.css';
 import '../styles/AboutUs.css';
 import Background from '../../images/importexport1.jpg';
@@ -16,6 +17,12 @@ const AboutUs = () => {
 
   return (
     <>
+     <Helmet>
+        <title>About Us - WoMall</title>
+        <meta name="description" content="Learn about WoMall, a revolutionary B2B platform that simplifies international trade by connecting manufacturers and suppliers globally." />
+        <meta name="keywords" content="WoMall, B2B platform, international trade, manufacturers, suppliers, retailers" />
+        <link rel="canonical" href="https://womall.africa/about" />
+      </Helmet>
     <div className="about-us">
       <section className="about-us-first-page" data-aos="fade-up">
         <img src={Background} alt="Background" className="responsive-bg-image" />

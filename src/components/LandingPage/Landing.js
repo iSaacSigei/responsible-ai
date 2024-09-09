@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import '../styles/landing.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Helmet } from 'react-helmet-async';
+
 const Landing = () => {
     useEffect(() => {
         AOS.init({
@@ -12,6 +14,13 @@ const Landing = () => {
         });
       }, []);
     return (
+        <>
+         <Helmet>
+        <title>WoMall - Your Trusted B2B Hub</title>
+        <meta name="description" content="Welcome to WoMall, your one-stop platform for global trade solutions. Connect with manufacturers, importers, and exporters worldwide." />
+        <meta name="keywords" content="WoMall, B2B, global trade, import, export, manufacturers" />
+      </Helmet>
+        
         <div className="landing mt-3" data-aos="fade-up">
             <div className="mt-4">
                 <div className='custom-width mt-5'>
@@ -53,6 +62,7 @@ const Landing = () => {
                 {/* End of Quick Question Section */}
             </div>
         </div>
+        </>
     );
 };
 
