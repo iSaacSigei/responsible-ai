@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /admin_panel/
-Allow: /
-Sitemap: https://womall.africa/sitemap.xml

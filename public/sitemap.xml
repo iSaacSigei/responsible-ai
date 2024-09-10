@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.womall.africa/</loc>
+    <lastmod>2024-09-10</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Export Now Page -->
+  <url>
+    <loc>https://www.womall.africa/exports</loc>
+    <lastmod>2024-09-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Import Now Page -->
+  <url>
+    <loc>https://www.womall.africa/imports</loc>
+    <lastmod>2024-09-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About Us Page -->
+  <url>
+    <loc>https://www.womall.africa/about</loc>
+    <lastmod>2024-09-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact Us Page -->
+  <url>
+    <loc>https://www.womall.africa/contact</loc>
+    <lastmod>2024-09-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Service Page -->
+  <url>
+    <loc>https://www.womall.africa/services</loc>
+    <lastmod>2024-09-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Job Openings Page -->
+  <url>
+    <loc>https://www.womall.africa/job_openings?category=job%20opening</loc>
+    <lastmod>2024-09-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Admin Panel Page -->
+  <url>
+    <loc>https://www.womall.africa/admin_panel</loc>
+    <lastmod>2024-09-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- My Orders Page -->
+  <url>
+    <loc>https://www.womall.africa/my_orders</loc>
+    <lastmod>2024-09-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Login Page -->
+  <url>
+    <loc>https://www.womall.africa/login</loc>
+    <lastmod>2024-09-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Quotation Page -->
+  <url>
+    <loc>https://www.womall.africa/quotation</loc>
+    <lastmod>2024-09-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+</urlset>

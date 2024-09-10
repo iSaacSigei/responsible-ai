@@ -1,3 +1,7 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /admin_panel
+Disallow: /login
+Disallow: /quotation
+Allow: /
+
+Sitemap: https://womall.africa/sitemap.xml
