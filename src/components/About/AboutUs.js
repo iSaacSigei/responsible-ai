@@ -17,12 +17,22 @@ const AboutUs = () => {
 
   return (
     <>
-     <Helmet>
+      <Helmet>
         <title>About Us - WoMall</title>
-        <meta name="description" content="Learn about WoMall, a revolutionary B2B platform that simplifies international trade by connecting manufacturers and suppliers globally." />
-        <meta name="keywords" content="WoMall, B2B platform, international trade, manufacturers, suppliers, retailers" />
-        <link rel="canonical" href="https://womall.africa/about" />
+        <meta name="description" content="Learn about WoMall, a revolutionary B2B platform that simplifies international trade by connecting manufacturers and suppliers globally. Discover our mission, vision, and values." />
+        <meta name="keywords" content="WoMall, B2B platform, international trade, manufacturers, suppliers, retailers, global trade, business values" />
+        <meta property="og:title" content="About Us - WoMall" />
+        <meta property="og:description" content="Discover WoMall's mission to transform global B2B interactions, our vision for seamless international trade, and our core values of reliability, integrity, timely delivery, and quality service." />
+        {/* <meta property="og:image" content="URL_to_image_for_about_us_page" /> */}
+        <meta property="og:url" content="https://www.womall.africa/about" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Us - WoMall" />
+        <meta name="twitter:description" content="Learn about WoMall's role in revolutionizing B2B trade, our commitment to excellence, and our core values." />
+        <meta name="twitter:image" content="URL_to_image_for_about_us_page" />
+        <link rel="canonical" href="https://www.womall.africa/about" />
       </Helmet>
+
     <div className="about-us">
       <section className="about-us-first-page" data-aos="fade-up">
         <img src={Background} alt="Background" className="responsive-bg-image" />

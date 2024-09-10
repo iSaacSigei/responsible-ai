@@ -52,13 +52,26 @@ const JobOpeningsPage = () => {
     fetchData();
   }, [selectedCategory]);
 
+  const currentUrl = `https://www.womall.africa/jobs?category=${selectedCategory}`;
+
   return (
     <>
       <Helmet>
-      <title>WoMall - Careers</title>
-        <meta name="description" content="Find the latest job openings, internships, and trainee programs at WoMall. Apply today!"/>
-        <meta name="keywords" content="WoMall, Careers, Jobs, Internships, Trainee Programs"/>
+        <title>Careers</title>
+        <meta name="description" content="Find the latest job openings, internships, and trainee programs at WoMall. Apply today!" />
+        <meta name="keywords" content="WoMall, Careers, Jobs, Internships, Trainee Programs" />
+        <meta property="og:title" content="WoMall - Careers" />
+        <meta property="og:description" content="Explore job openings, internships, and trainee programs at WoMall. Join our innovative team and make an impact in the world of import and export." />
+        <meta property="og:image" content="URL_to_image_for_careers_page" />
+        <meta property="og:url" content={currentUrl} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="WoMall - Careers" />
+        <meta name="twitter:description" content="Discover exciting career opportunities at WoMall. Apply now for jobs, internships, and trainee programs." />
+        <meta name="twitter:image" content="URL_to_image_for_careers_page" />
+        <link rel="canonical" href={currentUrl} />
       </Helmet>
+
       <div className="job-openings bg-light" data-aos="fade-up">
         <div className="intro bg-light">
           <p>

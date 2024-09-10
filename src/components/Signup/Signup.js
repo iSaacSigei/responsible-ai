@@ -5,7 +5,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-
+import { Helmet } from 'react-helmet-async';
 const SignupPage = () => {
     const [formData, setFormData] = useState({
         firstName: '',
@@ -85,6 +85,21 @@ const SignupPage = () => {
 
     return (
         <>
+        <Helmet>
+        <title>Sign Up</title>
+        <meta name="description" content="Create a WoMall account to start connecting with global suppliers and retailers. Join our platform for seamless trade and business growth." />
+        <meta name="keywords" content="WoMall sign up, register, create account, B2B platform, global trade" />
+        <meta property="og:title" content="WoMall - Sign Up" />
+        <meta property="og:description" content="Sign up to WoMall to connect with international markets and access a network of suppliers and buyers. Start your journey with us today." />
+        {/* <meta property="og:image" content="URL_to_image_for_signup_page" /> */}
+        <meta property="og:url" content="https://www.womall.africa/signup" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="WoMall - Sign Up" />
+        <meta name="twitter:description" content="Register for a WoMall account to connect with global trade partners and access our comprehensive platform." />
+        <meta name="twitter:image" content="URL_to_image_for_signup_page" />
+        </Helmet>
+
             <div className="signup-page-container">
                 <form onSubmit={handleSubmit} className="signup-form">
                     <div className="form-row row">

@@ -53,12 +53,20 @@ const Service = () => {
   
     return (
     <>
-      <Helmet>
-        <title>WoMall - Our Services</title>
-        <meta name="description" content="Discover WoMall's range of services including global trade facilitation, manufacturer-buyer connections, and seamless transactions." />
-        <meta name="keywords" content="WoMall services, global trade, logistics, manufacturers, import, export" />
-      </Helmet>
-
+    <Helmet>
+      <title>WoMall - Our Services</title>
+      <meta name="description" content="Discover WoMall's range of services including global trade facilitation, manufacturer-buyer connections, and seamless transactions." />
+      <meta name="keywords" content="WoMall services, global trade, logistics, manufacturers, import, export" />
+      <meta property="og:title" content="WoMall - Our Services" />
+      <meta property="og:description" content="Explore WoMall's comprehensive services designed to streamline global trade, connect manufacturers to buyers, and ensure seamless transactions. Learn more about our expertise in import, export, and logistics." />
+      {/* <meta property="og:image" content="URL_to_image_of_service_page" /> */}
+      <meta property="og:url" content="https://www.womall.africa/services" />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="WoMall - Our Services" />
+      <meta name="twitter:description" content="Explore WoMall's services for efficient global trade, connecting manufacturers to buyers, and enhancing transaction processes." />
+      <meta name="twitter:image" content="URL_to_image_of_service_page" />
+    </Helmet>
       <div className="service-page bg-light">
         {content.map((item, index) => (
           <div className={`service-row ${index % 2 === 0 ? 'left-image' : 'right-image'}`} key={index}>
