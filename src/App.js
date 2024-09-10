@@ -1,38 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Home from './components/home/Home';
 import './App.css';
-import { HelmetProvider } from 'react-helmet-async';
-import ImportPage from './components/ImportPage/ImportPage';
-import Error404 from './components/ErrorPage/Error404';
-import ExportPage from './components/ExportPage/ExportPage';
-import Login from './components/Login/Login';
-import Signup from './components/Signup/Signup';
-import Feedback from './components/FeedbackPage/Feedback';
-import QuotationPage from './components/QoutationPage/QuotationPage';
-import Checkout from './components/CheckoutPage/Checkout';
+import { Helmet, HelmetProvider } from 'react-helmet-async'; // Helmet for SEO
 import Navbar from './components/navbar/Navbar';
-import MyOrdersPage from './components/myOrders/MyOrdersPage';
-import Error500Page from './components/ServerError/Error500Page';
-import AdminDashboard from './components/Admin/AdminDashboard';
-import Tenders from './components/Tenders'
-import AboutUs from './components/About/AboutUs';
-import ServicePage from './components/ServiceComponent/Service';
-import Jobs from './components/JobOpeningsPage/JobOpeningsPage';
-import ContactPage from './components/ContactPage/ContactPage';
-import JobDetailsPage from './components/JobDetailsPage/JobDetailsPage';
+import Error404 from './components/ErrorPage/Error404';
+
+// Lazy Loading Components
+const Home = lazy(() => import('./components/home/Home'));
+const ImportPage = lazy(() => import('./components/ImportPage/ImportPage'));
+const ExportPage = lazy(() => import('./components/ExportPage/ExportPage'));
+const Login = lazy(() => import('./components/Login/Login'));
+const Signup = lazy(() => import('./components/Signup/Signup'));
+const Feedback = lazy(() => import('./components/FeedbackPage/Feedback'));
+const QuotationPage = lazy(() => import('./components/QoutationPage/QuotationPage'));
+const Checkout = lazy(() => import('./components/CheckoutPage/Checkout'));
+const MyOrdersPage = lazy(() => import('./components/myOrders/MyOrdersPage'));
+const Error500Page = lazy(() => import('./components/ServerError/Error500Page'));
+const AdminDashboard = lazy(() => import('./components/Admin/AdminDashboard'));
+const Tenders = lazy(() => import('./components/Tenders'));
+const AboutUs = lazy(() => import('./components/About/AboutUs'));
+const ServicePage = lazy(() => import('./components/ServiceComponent/Service'));
+const Jobs = lazy(() => import('./components/JobOpeningsPage/JobOpeningsPage'));
+const ContactPage = lazy(() => import('./components/ContactPage/ContactPage'));
+const JobDetailsPage = lazy(() => import('./components/JobDetailsPage/JobDetailsPage'));
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [cartCount, setCartCount] = useState(0);
   const [messageCount, setMessageCount] = useState(0);
   const navigate = useNavigate();
-  const [reloadPage, setReloadPage]=useState(false)
+  const [reloadPage, setReloadPage] = useState(false);
+
   useEffect(() => {
+    // Fetch user details
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -48,20 +52,13 @@ const App = () => {
 
         if (!response.ok) {
           console.error("Response not OK:", response.status);
-          localStorage.removeItem('token'); // Remove invalid token
+          localStorage.removeItem('token');
           setUser(null);
           return;
         }
 
-        const contentType = response.headers.get('Content-Type');
-        if (contentType && contentType.includes('application/json')) {
-          const data = await response.json();
-          setUser(data.user || null);
-        } else {
-          const errorText = await response.text();
-          console.error("Unexpected response type:", contentType, errorText);
-          setUser(null);
-        }
+        const data = await response.json();
+        setUser(data.user || null);
       } catch (error) {
         console.error("Error fetching user:", error);
         setUser(null);
@@ -69,7 +66,7 @@ const App = () => {
     };
 
     fetchUser();
-  }, []); // Empty dependency array ensures this runs only once
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -102,7 +99,7 @@ const App = () => {
 
       fetchCounts();
     }
-  }, [user, reloadPage]); // Runs only when the user state changes and is not null
+  }, [user, reloadPage]);
 
   const handleLogout = async () => {
     try {
@@ -136,28 +133,41 @@ const App = () => {
 
   return (
     <>
-    <HelmetProvider>
-      <Navbar user={user} onLogout={handleLogout} cartCount={cartCount} messageCount={messageCount} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs/>} />
-        <Route path="/imports" element={<ImportPage user={user} setReloadPage={setReloadPage} />} />
-        <Route path="/exports" element={<ExportPage user={user} setReloadPage={setReloadPage} />} />
-        <Route path="/contact" element={<ContactPage/>} />
-        <Route path="/login" element={<Login updateUser={updateUser} />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/order_received" element={<Feedback />} />
-        <Route path="/quotation" element={<QuotationPage />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="*" element={<Error404 />} />
-        <Route path='/my_orders' element={<MyOrdersPage />} />
-        <Route path="/error500" element={<Error500Page />} />
-        <Route path='/tenders' element={<Tenders/>}/>
-        <Route path='/services' element={<ServicePage/>}/>
-        <Route path='/admin_panel' element={<AdminDashboard/>}/>
-        <Route path='/job_openings' element={<Jobs/>}/>
-        <Route path="/jobs/:id" element={<JobDetailsPage />} /> {/* Corrected route */}
-      </Routes>
+      <HelmetProvider>
+        {/* SEO Meta Tags */}
+        <Helmet>
+          <title>WoMall - Your Global B2B Trade Partner</title>
+          <meta name="description" content="Welcome to WoMall, your global trade partner for imports, exports, and more." />
+          <meta name="keywords" content="trade, import, export, online shopping, WoMall, global trade" />
+          <meta name="robots" content="index, follow" />
+        </Helmet>
+
+        {/* Navbar */}
+        <Navbar user={user} onLogout={handleLogout} cartCount={cartCount} messageCount={messageCount} />
+
+        {/* Routes */}
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/imports" element={<ImportPage user={user} setReloadPage={setReloadPage} />} />
+            <Route path="/exports" element={<ExportPage user={user} setReloadPage={setReloadPage} />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/login" element={<Login updateUser={updateUser} />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/order_received" element={<Feedback />} />
+            <Route path="/quotation" element={<QuotationPage />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="*" element={<Error404 />} />
+            <Route path='/my_orders' element={<MyOrdersPage />} />
+            <Route path="/error500" element={<Error500Page />} />
+            <Route path='/tenders' element={<Tenders />} />
+            <Route path='/services' element={<ServicePage />} />
+            <Route path='/admin_panel' element={<AdminDashboard />} />
+            <Route path='/job_openings' element={<Jobs />} />
+            <Route path="/jobs/:id" element={<JobDetailsPage />} />
+          </Routes>
+        </Suspense>
       </HelmetProvider>
     </>
   );

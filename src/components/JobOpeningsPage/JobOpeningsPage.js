@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import axios from 'axios';
 import { useLocation, Link } from 'react-router-dom';
 import '../styles/JobOpeningsPage.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Footer from '../footer/Footer';
 import { Helmet } from 'react-helmet-async';
+
+// Lazy load Footer component
+const Footer = lazy(() => import('../footer/Footer'));
 
 const JobOpeningsPage = () => {
   const [jobs, setJobs] = useState([]);
@@ -14,14 +16,16 @@ const JobOpeningsPage = () => {
   const location = useLocation();
   const [selectedCategory, setSelectedCategory] = useState('job opening');
 
+  // Initialize AOS for animations
   useEffect(() => {
     AOS.init({
       duration: 1000,
       easing: 'ease-in-out',
-      once: true,
+      once: true, // Run animations once
     });
   }, []);
 
+  // Set category from URL params
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const category = params.get('category') || 'job opening';
@@ -62,6 +66,7 @@ const JobOpeningsPage = () => {
         <meta name="keywords" content="WoMall, Careers, Jobs, Internships, Trainee Programs" />
         <meta property="og:title" content="WoMall - Careers" />
         <meta property="og:description" content="Explore job openings, internships, and trainee programs at WoMall. Join our innovative team and make an impact in the world of import and export." />
+        {/* Replace with the actual image URL */}
         <meta property="og:image" content="URL_to_image_for_careers_page" />
         <meta property="og:url" content={currentUrl} />
         <meta property="og:type" content="website" />
@@ -78,6 +83,7 @@ const JobOpeningsPage = () => {
             At WoMall, we believe in fostering a vibrant and dynamic work environment where your contributions make a real impact. Join us in shaping the future of exportation and importation, and be part of a team that values innovation, collaboration, and growth.
           </p>
         </div>
+        
         <section className="job-content">
           {isLoading ? (
             <div className="loading-container">
@@ -121,7 +127,11 @@ const JobOpeningsPage = () => {
           )}
         </section>
       </div>
-      <Footer />
+
+      {/* Lazy loaded Footer */}
+      <Suspense fallback={<div>Loading Footer...</div>}>
+        <Footer />
+      </Suspense>
     </>
   );
 };

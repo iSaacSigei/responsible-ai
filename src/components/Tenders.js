@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Helmet } from 'react-helmet-async'; // For SEO meta tags
 import '../components/styles/Tenders.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -54,11 +55,35 @@ const Tenders = () => {
     return String.fromCharCode(65 + index);
   };
 
+  const currentUrl = `https://www.womall.africa/tenders`;
+
   return (
     <>
+      {/* SEO Meta Tags */}
+      <Helmet>
+        <title>{companyName} - Tenders and Supplier Prequalification 2024-2027</title>
+        <meta
+          name="description"
+          content={`${companyName} invites applications for registration of suppliers and contractors for the financial year 2024-2027. Explore prequalification categories and apply now.`}
+        />
+        <meta
+          name="keywords"
+          content="tenders, prequalification, supplier registration, procurement, 2024-2027, {companyName}, tender opportunities"
+        />
+        <meta property="og:title" content={`${companyName} - Supplier Prequalification and Tenders`} />
+        <meta
+          property="og:description"
+          content="Explore prequalification of suppliers for goods and services at {companyName}. Apply to be part of the procurement process for the financial year 2024-2027."
+        />
+        <meta property="og:url" content={currentUrl} />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href={currentUrl} />
+      </Helmet>
+
       <div className="tenders-page" data-aos="fade-up">
+        {/* Header */}
         <div className="tenders-intro">
-          <h1>PREQUALIFICATION/REGISTRATION OF SUPPLIERS FOR SUPPLY AND DELIVERY OF GOODS, WORKS AND SERVICES</h1>
+          <h1>{companyName} - Prequalification of Suppliers 2024-2027</h1>
           <p>
             {companyName} invites applications for registration of suppliers, service providers, and contractors for the financial year 2024 – 2027.
           </p>
@@ -83,6 +108,7 @@ const Tenders = () => {
           </p>
         </div>
 
+        {/* CTA Buttons */}
         <div className="tenders-buttons">
           <a href={tenderPDF} target="_blank" rel="noopener noreferrer">
             <button className="apply-button">APPLY HERE</button>
@@ -91,6 +117,7 @@ const Tenders = () => {
           <button className="tier-button">TENDER PRE-QUALIFICATION TIER 2 - AGRIBUSINESS SMEs</button>
         </div>
 
+        {/* Tenders Table */}
         {Object.keys(groupedTenders).map((category, index) => (
           <div key={index} className="tenders-table">
             <h2>Category {getCategoryLabel(index)} – {category}</h2>
@@ -117,6 +144,7 @@ const Tenders = () => {
           </div>
         ))}
       </div>
+
       <Footer />
     </>
   );
