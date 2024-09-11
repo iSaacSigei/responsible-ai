@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet'; // Import Helmet
 import '../styles/ContactPage.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -61,6 +62,14 @@ const ContactPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Contact Us | WOMALL</title>
+        <meta name="description" content="Get in touch with WOMALL through our contact page. Fill out the form for inquiries or use our alternative contact details." />
+        <meta name="keywords" content="Contact WOMALL, Customer Support, WOMALL Inquiries, WOMALL Customer Care" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://www.womall.africa/contact" />
+      </Helmet>
+
       <div className="contact-page bg-light" data-aos="fade-up">
         <h1 className="contact-header">Inquiries</h1>
         <p className="contact-intro">
