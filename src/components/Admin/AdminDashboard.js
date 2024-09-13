@@ -281,6 +281,7 @@ const [postTenderFormData, setPostTenderFormData] = useState({
   application_deadline: '',
   category: '',
   tender_description: '',
+  tender_number:''
 });
 
 // Handler for form input changes
@@ -365,6 +366,7 @@ const handlePostTenderSubmit = (e) => {
         application_deadline: '',
         category: '',
         tender_description: '',
+        tender_number:'',
       });
       // Fetch the updated tenders list and show the table
       fetch('https://mysite-jr5y.onrender.com/tenders', {
@@ -865,7 +867,19 @@ const handleViewTender = (tender) => {
                 required
               />
             </div>
-
+            <div className="form-group">
+              <label>Tender Number</label>
+              <input
+                type="text"
+                name="tender_number"
+                value={postTenderFormData.tender_number}
+                onChange={handlePostTenderChange}
+                placeholder='EIG/PREG/1992/2024-2027'
+                className="form-input"
+                required
+              />
+            </div>
+          
             <div className="form-group">
               <label>Tender Fee:</label>
               <input
