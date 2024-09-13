@@ -43,3 +43,27 @@ button {
 button:hover {
     background-color: #5A67D8; /* Tailwind text-indigo-500 */
 }
+.auth-form {
+    /* Default styles, can be applied to all screen sizes */
+    width: 95%; /* This will be the default width for small screens */
+    margin: auto;
+
+  }
+  
+  /* For medium screens and larger */
+  @media (min-width: 768px) {
+    .auth-form {
+      width: 60%;
+      margin: auto;
+
+    }
+  }
+  
+  /* For large screens and larger */
+  @media (min-width: 1200px) {
+    .auth-form {
+      width: 30%;
+      margin: auto;
+    }
+  }
+  
