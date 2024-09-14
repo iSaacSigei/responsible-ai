@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../footer/Footer';
 import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import '../styles/Signup.css';
 
 const Login = ({ updateUser }) => {
@@ -68,6 +69,12 @@ const Login = ({ updateUser }) => {
 
   return (
     <>
+      {/* Helmet for page-specific meta tags */}
+      <Helmet>
+        <title>Login - WoMall</title>
+        <meta name="description" content="Login to access your WoMall account and start connecting with global manufacturers and suppliers." />
+      </Helmet>
+
       <div className="signup-page-container mt-5">
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-row">
