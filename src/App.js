@@ -5,7 +5,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
-import { Helmet, HelmetProvider } from 'react-helmet-async'; // Helmet for SEO
+import { HelmetProvider } from 'react-helmet-async'; // Helmet for SEO
 import Navbar from './components/navbar/Navbar';
 import Error404 from './components/ErrorPage/Error404';
 
@@ -135,12 +135,7 @@ const App = () => {
     <>
       <HelmetProvider>
         {/* SEO Meta Tags */}
-        <Helmet>
-          <title>WoMall - Your Global B2B Trade Partner</title>
-          <meta name="description" content="Welcome to WoMall, your global trade partner for imports, exports, and more." />
-          <meta name="keywords" content="trade, import, export, online shopping, WoMall, global trade" />
-          <meta name="robots" content="index, follow" />
-        </Helmet>
+
 
         {/* Navbar */}
         <Navbar user={user} onLogout={handleLogout} cartCount={cartCount} messageCount={messageCount} />
