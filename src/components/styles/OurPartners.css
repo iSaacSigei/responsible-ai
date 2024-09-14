@@ -5,7 +5,7 @@
   }
   
 /* Introduction Section */
-.introduction {
+.intro{
   margin: 0 auto;
   /* text-align: center; */
   margin-bottom: 3rem;
@@ -17,6 +17,7 @@
   /* Large screens */
   .intro {
     width: 70% !important;
+    margin: auto;
   }
 }
 
@@ -24,6 +25,8 @@
   /* Medium screens */
   .intro {
     width: 80% !important;
+    margin: auto;
+
   }
 }
 
@@ -31,6 +34,8 @@
   /* Small screens */
   .intro {
     width: 90% !important;
+    margin: auto;
+
   }
 }
 
