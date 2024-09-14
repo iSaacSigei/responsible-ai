@@ -68,24 +68,6 @@ const Service = () => {
         <meta name="twitter:title" content="WoMall - Our Services" />
         <meta name="twitter:description" content="Explore WoMall's services for efficient global trade, connecting manufacturers to buyers, and enhancing transaction processes." />
         <meta name="twitter:image" content="URL_to_image_of_service_page" />
-
-        {/* Structured Data for Services */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Service",
-              "serviceType": "Global Trade Facilitation",
-              "provider": {
-                "@type": "Organization",
-                "name": "WoMall",
-                "url": "https://www.womall.africa"
-              },
-              "description": "WoMall offers services in exportation, importation, manufacturer connections, and seamless transactions, enhancing global trade operations.",
-              "areaServed": "Worldwide"
-            }
-          `}
-        </script>
       </Helmet>
 
       <div className="service-page bg-light">
