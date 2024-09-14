@@ -10,7 +10,7 @@ import Footer from '../footer/Footer';
 const AboutUs = () => {
   useEffect(() => {
     AOS.init({
-      duration: 1000,
+      duration: 1000, 
       easing: 'ease-in-out',
       once: true, // This ensures the animations run only once, which reduces performance impact.
     });
