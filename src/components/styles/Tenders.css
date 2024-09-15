@@ -62,7 +62,6 @@
 /* Wrapper for making the table responsive */
 .table-wrapper {
     width: 100%;
-    overflow-x: auto; /* Adds horizontal scrolling for small screens */
     background-color: #f8f9fa; /* Ensures a consistent background color */
 }
 table {
