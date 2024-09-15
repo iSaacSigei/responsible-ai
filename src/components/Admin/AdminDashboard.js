@@ -598,13 +598,13 @@ const handleTenderUpdateSubmit = (e) => {
                   <td>{order.company_name}</td>
                   <td>
                     <button
-                      className='mx-4'
+                      className=' btn btn-primary mx-4'
                       onClick={() => handleGiveQuotation(order.id, selectedData.type === 'importOrders' ? 'import' : 'export')}
                     >
                       Give Quotation
                     </button>
                     <button
-                      className='mx-4'
+                      className='btn btn-success mx-4'
                       onClick={() => handleViewMore(order.id)}
                     >
                       View More
@@ -670,8 +670,8 @@ const handleTenderUpdateSubmit = (e) => {
                 <td>Ksh {tender.tender_fee}</td>
                 <td>
                   {/* Replace "View" button with "Update" */}
-                  <button className='btn btn-success py-2 mx-3' onClick={() => handleUpdateTenderClick(tender)}>Update</button>
-                  <button onClick={() => handleDeleteTender(tender)} className='btn btn-danger py-2 mx-3'>Delete</button>
+                  <button className='btn btn-success m-3' onClick={() => handleUpdateTenderClick(tender)}>Update</button>
+                  <button onClick={() => handleDeleteTender(tender)} className='btn btn-danger'>Delete</button>
                 </td>
               </tr>
             ))}
@@ -702,8 +702,8 @@ const handleTenderUpdateSubmit = (e) => {
                   <td>{job.job_description}</td>
                   <td>{job.category}</td>
                   <td>
-                    <button className='btn btn-primary py-2 mx-3' onClick={() => handleViewJob(job)}>View</button>
-                    <button className='btn btn-danger py-2 mx-3' onClick={() => handleDeleteJob(job)}>Delete</button>
+                    <button className='btn btn-primary' onClick={() => handleViewJob(job)}>View</button>
+                    <button className='btn btn-danger' onClick={() => handleDeleteJob(job)}>Delete</button>
                   </td>
                 </tr>
               ))}
@@ -770,10 +770,10 @@ const handleTenderUpdateSubmit = (e) => {
                   className="form-input"
                   required
                 />
-                <button type="button" className="btn btn-danger py-2 mx-3" onClick={() => handleRemoveItem(index, 'requirements')}>Remove</button>
+                <button type="button" className="btn btn-danger my-2" onClick={() => handleRemoveItem(index, 'requirements')}>Remove</button>
               </div>
             ))}
-            <button type="button" className="btn btn-primary py-2 mx-3" onClick={() => handleAddItem('requirements')}>Add Requirement</button>
+            <button type="button" className="btn btn-primary my2" onClick={() => handleAddItem('requirements')}>Add Requirement</button>
           </div>
 
             {/* Benefits */}
@@ -788,10 +788,10 @@ const handleTenderUpdateSubmit = (e) => {
                   className="form-input"
                   required
                 />
-                <button type="button" className="btn btn-danger py-2 mx-3" onClick={() => handleRemoveItem(index, 'benefits')}>Remove</button>
+                <button type="button" className="btn btn-danger my-2" onClick={() => handleRemoveItem(index, 'benefits')}>Remove</button>
               </div>
             ))}
-            <button type="button" className="btn btn-primary py-2 mx-3" onClick={() => handleAddItem('benefits')}>Add Benefit</button>
+            <button type="button" className="btn btn-primary" onClick={() => handleAddItem('benefits')}>Add Benefit</button>
           </div>
 
             {/* How to Apply */}
