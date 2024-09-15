@@ -59,24 +59,27 @@
     background-clip: text;
     color: transparent;
 }
-
 /* Wrapper for making the table responsive */
 .table-wrapper {
     width: 100%;
     overflow-x: auto; /* Adds horizontal scrolling for small screens */
     background-color: #f8f9fa; /* Ensures a consistent background color */
 }
-
 table {
     width: 100%;
-    table-layout: auto;
     border-collapse: collapse;
     margin-bottom: 2rem;
-    background-color: #fff; /* Ensures table background is white */
+    table-layout: auto;
+    margin-bottom: 2rem;
+    background-color: #fff;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
 }
 
 th, td {
-    padding: 0.5rem;
+    padding: 0.75rem;
     text-align: left;
     font-size: 0.9rem;
     word-wrap: break-word;
@@ -84,6 +87,10 @@ th, td {
     text-overflow: ellipsis;
     white-space: normal;
 }
+td {
+    padding: 0.75rem;
+}
+
 
 th {
     background-color: #f2f2f2;
@@ -92,10 +99,6 @@ th {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-}
-
-td {
-    padding: 0.75rem;
 }
 
 tr:nth-child(even) {
