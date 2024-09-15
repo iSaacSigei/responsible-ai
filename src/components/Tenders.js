@@ -117,32 +117,36 @@ const Tenders = () => {
           <button className="tier-button">TENDER PRE-QUALIFICATION TIER 2 - AGRIBUSINESS SMEs</button>
         </div>
 
-        {/* Tenders Table */}
         {Object.keys(groupedTenders).map((category, index) => (
           <div key={index} className="tenders-table">
             <h2>Category {getCategoryLabel(index)} – {category}</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>S. NO.</th>
-                  <th>TENDER NO.</th>
-                  <th>TENDER DESCRIPTION</th>
-                  <th>NON-REFUNDABLE TENDER FEE</th>
-                </tr>
-              </thead>
-              <tbody>
-                {groupedTenders[category].map((tender, i) => (
-                  <tr key={tender.id}>
-                    <td style={{ width: '50px', textAlign: 'center' }}>{i + 1}</td>
-                    <td style={{ maxWidth: '150px', wordWrap: 'break-word', whiteSpace: 'normal' }}>{tender.tender_number}</td>
-                    <td style={{ maxWidth: '300px', wordWrap: 'break-word', whiteSpace: 'normal' }}>{tender.tender_description}</td>
-                    <td style={{ width: '100px', wordWrap: 'break-word', whiteSpace: 'normal' }}>KSH {tender.tender_fee}</td>
+            
+            {/* Table Wrapper for responsive scrolling */}
+            <div className="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>S. NO.</th>
+                    <th>TENDER NO.</th>
+                    <th>TENDER DESCRIPTION</th>
+                    <th>NON-REFUNDABLE TENDER FEE</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {groupedTenders[category].map((tender, i) => (
+                    <tr key={tender.id}>
+                      <td style={{ width: '50px', textAlign: 'center' }}>{i + 1}</td>
+                      <td style={{ maxWidth: '150px', wordWrap: 'break-word', whiteSpace: 'normal' }}>{tender.tender_number}</td>
+                      <td style={{ maxWidth: '300px', wordWrap: 'break-word', whiteSpace: 'normal' }}>{tender.tender_description}</td>
+                      <td style={{ width: '100px', wordWrap: 'break-word', whiteSpace: 'normal' }}>KSH {tender.tender_fee}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         ))}
+
       </div>
 
       <Footer />

@@ -60,14 +60,22 @@
     color: transparent;
 }
 
-table {
-    width: 100%; /* Ensures the table doesn't overflow the viewport */
-    table-layout: auto; /* Automatically adjusts column widths */
-    border-collapse: collapse;
-    margin-bottom: 2rem;
+/* Wrapper for making the table responsive */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Adds horizontal scrolling for small screens */
+    background-color: #f8f9fa; /* Ensures a consistent background color */
 }
 
-td, th {
+table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    background-color: #fff; /* Ensures table background is white */
+}
+
+th, td {
     padding: 0.5rem;
     text-align: left;
     font-size: 0.9rem;
@@ -92,4 +100,11 @@ td {
 
 tr:nth-child(even) {
     background-color: #f9f9f9;
+}
+
+/* On small screens, ensure the table container is scrollable */
+@media screen and (max-width: 768px) {
+    .table-wrapper {
+        overflow-x: scroll; /* Enable scrolling on small screens */
+    }
 }
