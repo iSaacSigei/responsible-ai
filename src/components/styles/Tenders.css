@@ -92,7 +92,6 @@ td {
     text-align: left;
     font-size: 0.9rem;
     word-wrap: break-word; /* Allows long words to be wrapped */
-    max-width: 300px; /* Set a max-width to avoid stretching */
     overflow: hidden;
     text-overflow: ellipsis; /* Show "..." for overflowed text */
     white-space: normal; /* Allows wrapping onto multiple lines */
