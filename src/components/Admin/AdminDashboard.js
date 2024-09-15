@@ -444,10 +444,18 @@ const handleDeleteTender = (tender) => {
 
 const [tenderToUpdate, setTenderToUpdate] = useState(null);
 
-// Function to handle update click
-const handleUpdateTenderClick = (tender) => {
-  setTenderToUpdate(tender);
-};
+  // Function to handle update click
+  const handleUpdateTenderClick = (tender) => {
+    setTenderToUpdate(tender);
+
+    // Scroll to the update form
+    setTimeout(() => {
+      if (updateFormRef.current) {
+        updateFormRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100); // Ensure a slight delay for DOM updates
+  };
+  
 const handleTenderUpdateChange = (e) => {
   setTenderToUpdate({ ...tenderToUpdate, [e.target.name]: e.target.value });
 };
@@ -1097,7 +1105,7 @@ const handleTenderUpdateSubmit = (e) => {
             </div>
           )}
           {tenderToUpdate && (
-            <div className="update-tender-form">
+            <div ref={updateFormRef} className="update-tender-form">
               <h4>Update Tender</h4>
               <form onSubmit={handleTenderUpdateSubmit}>
                 <div className="form-group">
@@ -1132,6 +1140,19 @@ const handleTenderUpdateSubmit = (e) => {
                     value={tenderToUpdate.application_deadline}
                     onChange={handleTenderUpdateChange}
                     placeholder={tenderToUpdate.application_deadline}
+                    className="form-input"
+                    required
+                  />
+                </div>
+                {/* Add the category field */}
+                <div className="form-group">
+                  <label>Category:</label>
+                  <input
+                    type="text"
+                    name="category"
+                    value={tenderToUpdate.category}
+                    onChange={handleTenderUpdateChange}
+                    placeholder={tenderToUpdate.category}
                     className="form-input"
                     required
                   />
