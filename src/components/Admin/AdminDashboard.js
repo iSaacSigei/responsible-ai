@@ -10,6 +10,9 @@ const AdminDashboard = () => {
   const [exportOrderCount, setExportOrderCount] = useState(0);
   const [importOrderCount, setImportOrderCount] = useState(0);
   const [pendingOrderCount, setPendingOrderCount] = useState(0);
+  const [messageCount, setMessageCount]=useState(0);
+  const [tenderCount, setTenderCount] = useState(0); // For Tenders
+  const [jobCount, setJobCount] = useState(0); // For Jobs
   const [selectedData, setSelectedData] = useState(null);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [selectedOrderType, setSelectedOrderType] = useState(null); // New state to track order type
@@ -73,6 +76,25 @@ const [loaders, setLoaders]=useState(false)
     })
       .then(response => response.json())
       .then(data => setImportOrderCount(data.length));
+      // Fetch tenders count
+    fetch('https://mysite-jr5y.onrender.com/tenders', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+      .then(response => response.json())
+      .then(data => setTenderCount(data.length)); // Set tenders count
+
+    // Fetch jobs count
+    fetch('https://mysite-jr5y.onrender.com/jobs', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+      .then(response => response.json())
+      .then(data => setJobCount(data.length)); // Set jobs count
+    fetch('https://mysite-jr5y.onrender.com/contact_messages', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+      .then(response => response.json())
+      .then(data => setMessageCount(data.length)); // Set tenders count
+  
   }, [loaders]);
 
   const handleStatClick = (type) => {
@@ -329,7 +351,10 @@ const handlePostCareerSubmit = (e) => {
         headers: { 'Authorization': `Bearer ${token}` }
       })
         .then(response => response.json())
-        .then(jobsData => setSelectedData({ type: 'jobs', data: jobsData }));
+        .then(jobsData => {
+          setJobCount(jobsData.length)
+          setSelectedData({ type: 'jobs', data: jobsData })
+        });
     })
     .catch(error => {
       console.error('Error:', error);
@@ -373,7 +398,10 @@ const handlePostTenderSubmit = (e) => {
         headers: { 'Authorization': `Bearer ${token}` }
       })
         .then(response => response.json())
-        .then(tendersData => setSelectedData({ type: 'tenders', data: tendersData }));
+        .then(tendersData => {
+          setTenderCount(tendersData.length)
+          setSelectedData({ type: 'tenders', data: tendersData })
+        });
     })
     .catch(error => {
       console.error('Error:', error);
@@ -988,14 +1016,14 @@ const handleTenderUpdateSubmit = (e) => {
         <nav className="menu-dash">
           <ul>
             <li><a href="#" onClick={() => handleSidebarClick('users')} className="active">Dashboard</a></li>
-            <li><a href="#"onClick={() => handleSidebarClick('users')}>Users</a></li>
-            <li><a href="#"onClick={() => handleSidebarClick('importOrders')}>Imports</a></li>
-            <li><a href="#" onClick={() => handleSidebarClick('exportOrders')}>Exports</a></li>
-            <li><a href="#" onClick={() => handleSidebarClick('contact_messages')}>Messages</a></li>
+            <li><a href="#"onClick={() => handleSidebarClick('users')}>Users ({userCount})</a></li>
+            <li><a href="#"onClick={() => handleSidebarClick('importOrders')}>Imports ({importOrderCount})</a></li>
+            <li><a href="#" onClick={() => handleSidebarClick('exportOrders')}>Exports ({exportOrderCount})</a></li>
+            <li><a href="#" onClick={() => handleSidebarClick('contact_messages')}>Messages ({messageCount})</a></li>
             <li><a href="#">In Transit</a></li>
             <li><a href="#">Pending Approval</a></li>
-            <li><a href="#" onClick={() => handleSidebarClick('tenders')}>Tenders</a></li>
-            <li><a href="#" onClick={() => handleSidebarClick('jobs')}>Jobs</a></li> {/* New Jobs Section */}
+            <li><a href="#" onClick={() => handleSidebarClick('tenders')}>Tenders ({tenderCount})</a></li>
+            <li><a href="#" onClick={() => handleSidebarClick('jobs')}>Jobs ({jobCount})</a></li> {/* New Jobs Section */}
             <li>
               <a href="#" onClick={() => handleSidebarClick('postTender')} className="btn btn-primary"> {/* New Post Tender */}
                 <span className="icon-wrapper"><GrAdd /></span>
