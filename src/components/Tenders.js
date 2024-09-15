@@ -138,7 +138,7 @@ const Tenders = () => {
                       <td style={{ width: '50px', textAlign: 'center' }}>{i + 1}</td>
                       <td style={{ maxWidth: '100px', wordWrap: 'break-word', whiteSpace: 'normal' }}>{tender.tender_number}</td>
                       <td style={{ maxWidth: '300px', wordWrap: 'break-word', whiteSpace: 'normal' }}>{tender.tender_description}</td>
-                      <td style={{ width: '90px', wordWrap: 'break-word', whiteSpace: 'normal' }}>KSH {tender.tender_fee}</td>
+                      <td style={{ width: '150px', wordWrap: 'break-word', whiteSpace: 'normal' }}>KSH {tender.tender_fee}</td>
                     </tr>
                   ))}
                 </tbody>
