@@ -670,7 +670,7 @@ const handleTenderUpdateSubmit = (e) => {
                 <td>Ksh {tender.tender_fee}</td>
                 <td>
                   {/* Replace "View" button with "Update" */}
-                  <button className='btn btn-success m-3' onClick={() => handleUpdateTenderClick(tender)}>Update</button>
+                  <button className='btn btn-success my-2' onClick={() => handleUpdateTenderClick(tender)}>Update</button>
                   <button onClick={() => handleDeleteTender(tender)} className='btn btn-danger'>Delete</button>
                 </td>
               </tr>
@@ -702,7 +702,7 @@ const handleTenderUpdateSubmit = (e) => {
                   <td>{job.job_description}</td>
                   <td>{job.category}</td>
                   <td>
-                    <button className='btn btn-primary' onClick={() => handleViewJob(job)}>View</button>
+                    <button className='btn btn-primary my-2' onClick={() => handleViewJob(job)}>View</button>
                     <button className='btn btn-danger' onClick={() => handleDeleteJob(job)}>Delete</button>
                   </td>
                 </tr>
