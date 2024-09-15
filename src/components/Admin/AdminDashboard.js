@@ -1055,9 +1055,9 @@ const handleTenderUpdateSubmit = (e) => {
             <h2>{importOrderCount}</h2>
             <p>Import Orders</p>
           </div>
-          <div className="stat-box stat-pending">
-            <h2>{pendingOrderCount}</h2>
-            <p>Pending Orders</p>
+          <div className="stat-box stat-pending" onClick={()=>handleStatClick('tenders')}>
+            <h2>{tenderCount}</h2>
+            <p>Tenders</p>
           </div>
         </div>
 
