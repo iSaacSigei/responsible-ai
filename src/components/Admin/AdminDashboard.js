@@ -442,9 +442,43 @@ const handleDeleteTender = (tender) => {
     });
 };
 
-const handleViewTender = (tender) => {
-  // Implement your logic to view tender details
-  alert(`Viewing tender: ${tender.title}`);
+const [tenderToUpdate, setTenderToUpdate] = useState(null);
+
+// Function to handle update click
+const handleUpdateTenderClick = (tender) => {
+  setTenderToUpdate(tender);
+};
+const handleTenderUpdateChange = (e) => {
+  setTenderToUpdate({ ...tenderToUpdate, [e.target.name]: e.target.value });
+};
+
+const handleTenderUpdateSubmit = (e) => {
+  e.preventDefault();
+  const token = localStorage.getItem('token');
+  
+  fetch(`https://mysite-jr5y.onrender.com/tenders/${tenderToUpdate.id}`, {
+    method: 'PATCH',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ tender: tenderToUpdate }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      setTenderToUpdate(null); // Close the form
+      setResponseMessage('Tender updated successfully');
+      // Fetch updated tenders list
+      fetch('https://mysite-jr5y.onrender.com/tenders', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+        .then(response => response.json())
+        .then(tendersData => setSelectedData({ type: 'tenders', data: tendersData }));
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Failed to update tender');
+    });
 };
 
   const handleUserUpdateChange = (e) => {
@@ -620,19 +654,19 @@ const handleViewTender = (tender) => {
               </tr>
             </thead>
             <tbody>
-              {selectedData.data.map(tender => (
-                <tr key={tender.id}>
-                  <td>{tender.id}</td>
-                  <td>{tender.tender_number}</td>
-                  <td>{tender.tender_description}</td>
-                  <td>Ksh {tender.tender_fee}</td>
-                  <td>
-                    {/* Add buttons for actions */}
-                    <button className='btn btn-primary'>View</button>
-                    <button onClick={()=>handleDeleteTender(tender)} className='btn btn-danger'>Delete</button>
-                  </td>
-                </tr>
-              ))}
+            {selectedData.data.map(tender => (
+              <tr key={tender.id}>
+                <td>{tender.id}</td>
+                <td>{tender.tender_number}</td>
+                <td>{tender.tender_description}</td>
+                <td>Ksh {tender.tender_fee}</td>
+                <td>
+                  {/* Replace "View" button with "Update" */}
+                  <button className='btn btn-success' onClick={() => handleUpdateTenderClick(tender)}>Update</button>
+                  <button onClick={() => handleDeleteTender(tender)} className='btn btn-danger'>Delete</button>
+                </td>
+              </tr>
+            ))}
             </tbody>
           </table>
         </>
@@ -1062,6 +1096,63 @@ const handleViewTender = (tender) => {
               </form>
             </div>
           )}
+          {tenderToUpdate && (
+            <div className="update-tender-form">
+              <h4>Update Tender</h4>
+              <form onSubmit={handleTenderUpdateSubmit}>
+                <div className="form-group">
+                  <label>Tender Number:</label>
+                  <input
+                    type="text"
+                    name="tender_number"
+                    value={tenderToUpdate.tender_number}
+                    onChange={handleTenderUpdateChange}
+                    placeholder={tenderToUpdate.tender_number}
+                    className="form-input"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Tender Fee:</label>
+                  <input
+                    type="number"
+                    name="tender_fee"
+                    value={tenderToUpdate.tender_fee}
+                    onChange={handleTenderUpdateChange}
+                    placeholder={tenderToUpdate.tender_fee}
+                    className="form-input"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Application Deadline:</label>
+                  <input
+                    type="date"
+                    name="application_deadline"
+                    value={tenderToUpdate.application_deadline}
+                    onChange={handleTenderUpdateChange}
+                    placeholder={tenderToUpdate.application_deadline}
+                    className="form-input"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Description:</label>
+                  <textarea
+                    name="tender_description"
+                    value={tenderToUpdate.tender_description}
+                    onChange={handleTenderUpdateChange}
+                    placeholder={tenderToUpdate.tender_description}
+                    className="form-input"
+                    required
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary">Update</button>
+                <button type="button" className="btn btn-secondary" onClick={() => setTenderToUpdate(null)}>Close</button>
+              </form>
+            </div>
+          )}
+
         <ConfirmDeleteModal
           isOpen={isModalOpen}
           toggle={() => setIsModalOpen(false)}
