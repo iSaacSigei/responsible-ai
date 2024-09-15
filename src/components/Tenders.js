@@ -135,7 +135,7 @@ const Tenders = () => {
                   <tr key={tender.id}>
                     <td>{i + 1}</td>
                     <td>{tender.tender_number}</td>
-                    <td>{tender.tender_description}</td>
+                    <td style={{ maxWidth: '400px', wordWrap: 'break-word', whiteSpace: 'normal' }}>{tender.tender_description}</td>
                     <td>KSH {tender.tender_fee}</td>
                   </tr>
                 ))}
