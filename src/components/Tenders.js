@@ -133,10 +133,10 @@ const Tenders = () => {
               <tbody>
                 {groupedTenders[category].map((tender, i) => (
                   <tr key={tender.id}>
-                    <td>{i + 1}</td>
-                    <td  style={{ maxWidth: '250px', wordWrap: 'break-word', whiteSpace: 'normal' }}>{tender.tender_number}</td>
+                    <td style={{ width: '50px', textAlign: 'center' }}>{i + 1}</td>
+                    <td style={{ maxWidth: '150px', wordWrap: 'break-word', whiteSpace: 'normal' }}>{tender.tender_number}</td>
                     <td style={{ maxWidth: '300px', wordWrap: 'break-word', whiteSpace: 'normal' }}>{tender.tender_description}</td>
-                    <td  style={{ maxWidth: '150px', wordWrap: 'break-word', whiteSpace: 'normal' }}>KSH {tender.tender_fee}</td>
+                    <td style={{ width: '100px', wordWrap: 'break-word', whiteSpace: 'normal' }}>KSH {tender.tender_fee}</td>
                   </tr>
                 ))}
               </tbody>
