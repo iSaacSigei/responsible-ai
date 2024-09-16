@@ -61,13 +61,14 @@ const Service = () => {
         <meta property="og:title" content="WoMall - Our Services" />
         <meta property="og:description" content="Explore WoMall's comprehensive services designed to streamline global trade, connect manufacturers to buyers, and ensure seamless transactions." />
         {/* Ensure to replace with actual image URL */}
-        <meta property="og:image" content="URL_to_image_of_service_page" />
+        <meta property="og:image" content={Image1} />
         <meta property="og:url" content="https://www.womall.africa/services" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="WoMall - Our Services" />
         <meta name="twitter:description" content="Explore WoMall's services for efficient global trade, connecting manufacturers to buyers, and enhancing transaction processes." />
-        <meta name="twitter:image" content="URL_to_image_of_service_page" />
+        <meta name="twitter:image" content={Image1} />
+        <link rel="canonical" href="https://www.womall.africa/services" />
       </Helmet>
 
       <div className="service-page bg-light">
