@@ -52,6 +52,25 @@ const Service = () => {
     };
   }, []);
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Global Trade Facilitation",
+    "provider": {
+      "@type": "Organization",
+      "name": "WoMall",
+      "url": "https://www.womall.africa",
+      "logo": "https://www.womall.africa/apple-touch-icon.png", // Update this with the actual logo URL
+    },
+    "offers": content.map(item => ({
+      "@type": "Offer",
+      "name": item.header,
+      "description": item.description,
+      "image": item.image,
+    })),
+    "description": "WoMall offers a range of services designed to streamline global trade, connect manufacturers with buyers, and enhance transaction processes.",
+  };
+
   return (
     <>
       <Helmet>
@@ -69,6 +88,11 @@ const Service = () => {
         <meta name="twitter:description" content="Explore WoMall's services for efficient global trade, connecting manufacturers to buyers, and enhancing transaction processes." />
         <meta name="twitter:image" content={Image1} />
         <link rel="canonical" href="https://www.womall.africa/services" />
+
+        {/* Structured Data - JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
       </Helmet>
 
       <div className="service-page bg-light">

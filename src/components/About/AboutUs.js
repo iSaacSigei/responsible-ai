@@ -12,9 +12,45 @@ const AboutUs = () => {
     AOS.init({
       duration: 1000, 
       easing: 'ease-in-out',
-      once: true, // This ensures the animations run only once, which reduces performance impact.
+      once: true,
     });
   }, []);
+
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "WoMall",
+    "url": "https://www.womall.africa",
+    "logo": "https://www.womall.africa/apple-touch-icon.png", // Update this with the actual logo URL
+    "sameAs": [
+      "https://www.facebook.com/womall",
+      "https://www.twitter.com/womall",
+      "https://www.linkedin.com/company/womall"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+254 711 398749", // Update this with the actual contact number
+      "contactType": "Customer Service",
+      "areaServed": "Worldwide",
+      "availableLanguage": ["English", "French", "Spanish"]
+    },
+    "description": "WoMall is a revolutionary B2B platform that simplifies international trade by connecting manufacturers, suppliers, and retailers globally.",
+    "foundingDate": "2022",
+    "founders": [
+      {
+        "@type": "Person",
+        "name": "Sigei Isack" // Replace with actual founder names
+      }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Trade Street",
+      "addressLocality": "Nairobi",
+      "addressRegion": "Nairobi County",
+      "postalCode": "00100",
+      "addressCountry": "KE"
+    }
+  };
 
   return (
     <>
@@ -24,7 +60,6 @@ const AboutUs = () => {
         <meta name="keywords" content="WoMall, B2B platform, international trade, manufacturers, suppliers, retailers, global trade, business values" />
         <meta property="og:title" content="About Us - WoMall" />
         <meta property="og:description" content="Discover WoMall's mission to transform global B2B interactions, our vision for seamless international trade, and our core values of reliability, integrity, timely delivery, and quality service." />
-        {/* Replace with the actual image URL */}
         <meta property="og:image" content="URL_to_image_for_about_us_page" />
         <meta property="og:url" content="https://www.womall.africa/about" />
         <meta property="og:type" content="website" />
@@ -33,10 +68,14 @@ const AboutUs = () => {
         <meta name="twitter:description" content="Learn about WoMall's role in revolutionizing B2B trade, our commitment to excellence, and our core values." />
         <meta name="twitter:image" content="URL_to_image_for_about_us_page" />
         <link rel="canonical" href="https://www.womall.africa/about" />
+        
+        {/* Structured Data - JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
       </Helmet>
 
       <div className="about-us">
-        {/* First Section */}
         <section className="about-us-first-page" data-aos="fade-up">
           <img src={Background} alt="Background" className="responsive-bg-image" loading="lazy" />
           <div className="about-us-content">
@@ -49,7 +88,6 @@ const AboutUs = () => {
           </div>
         </section>
 
-        {/* Our Values Section */}
         <section className="about-main" data-aos="zoom-in">
           <h1 className="text-center text-dark py-3">Our Values</h1>
           <div className="about-us-second-page">

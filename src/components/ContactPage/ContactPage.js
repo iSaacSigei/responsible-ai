@@ -68,6 +68,28 @@ const ContactPage = () => {
         <meta name="keywords" content="Contact WOMALL, Customer Support, WOMALL Inquiries, WOMALL Customer Care" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.womall.africa/contact" />
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "WoMall",
+            "url": "https://www.womall.africa",
+            "logo": "https://www.womall.africa/apple-touch-icon.png",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+254 711 398 749",
+              "contactType": "Customer Service",
+              "areaServed": "KE",
+              "availableLanguage": "English"
+            },
+            "sameAs": [
+              "https://www.facebook.com/womall",
+              "https://www.instagram.com/womall"
+            ]
+          }
+          `}
+          </script>
       </Helmet>
 
       <div className="contact-page bg-light" data-aos="fade-up">

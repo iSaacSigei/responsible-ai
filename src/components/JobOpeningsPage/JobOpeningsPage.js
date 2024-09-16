@@ -57,7 +57,34 @@ const JobOpeningsPage = () => {
   }, [selectedCategory]);
 
   const currentUrl = `https://www.womall.africa/jobs?category=${selectedCategory}`;
-
+ // Create schema data for Job Openings
+ const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "title": "Job Openings at WoMall",
+  "description": "Explore the latest job openings at WoMall. Join our team and make an impact in the world of import and export.",
+  "identifier": {
+    "@type": "PropertyValue",
+    "name": "WoMall",
+    "value": "JobOpeningsPage"
+  },
+  "datePosted": new Date().toISOString(),
+  "employmentType": "FULL_TIME",
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": "WoMall",
+    "sameAs": "https://www.womall.africa",
+    "logo": "https://www.womall.africa/apple-touch-icon.png" // Replace with actual logo URL
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Trade Street",
+    "addressLocality": "Nairobi",
+    "addressRegion": "Nairobi County",
+    "postalCode": "00100",
+    "addressCountry": "KE"
+  }
+};
   return (
     <>
       <Helmet>
@@ -75,6 +102,10 @@ const JobOpeningsPage = () => {
         <meta name="twitter:description" content="Discover exciting career opportunities at WoMall. Apply now for jobs, internships, and trainee programs." />
         <meta name="twitter:image" content="URL_to_image_for_careers_page" />
         <link rel="canonical" href={currentUrl} />
+          {/* Structured Data - JSON-LD */}
+          <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
       </Helmet>
 
       <div className="job-openings bg-light" data-aos="fade-up">
