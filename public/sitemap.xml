@@ -11,42 +11,42 @@
   <url>
     <loc>https://www.womall.africa/exports</loc>
     <lastmod>2024-09-10</lastmod>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
 
   <!-- Import Now Page -->
   <url>
     <loc>https://www.womall.africa/imports</loc>
     <lastmod>2024-09-10</lastmod>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
 
   <!-- About Us Page -->
   <url>
     <loc>https://www.womall.africa/about</loc>
     <lastmod>2024-09-10</lastmod>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
 
   <!-- Contact Us Page -->
   <url>
     <loc>https://www.womall.africa/contact</loc>
     <lastmod>2024-09-10</lastmod>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
 
   <!-- Service Page -->
   <url>
     <loc>https://www.womall.africa/services</loc>
     <lastmod>2024-09-10</lastmod>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
   </url>
 
   <!-- Job Openings Page -->
   <url>
     <loc>https://www.womall.africa/job_openings?category=job%20opening</loc>
     <lastmod>2024-09-10</lastmod>
-    <priority>0.6</priority>
+    <priority>1.0</priority>
   </url>
 
   <!-- Admin Panel Page -->
