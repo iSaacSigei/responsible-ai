@@ -6,7 +6,7 @@ import '../styles/AboutUs.css';
 import Background from '../../images/importexport1.jpg';
 import { FaShieldAlt, FaHandshake, FaClock, FaStar } from 'react-icons/fa';
 import Footer from '../footer/Footer';
-
+import Logo from '../../images/womall-logo.png';
 const AboutUs = () => {
   useEffect(() => {
     AOS.init({
@@ -21,7 +21,7 @@ const AboutUs = () => {
     "@type": "Organization",
     "name": "WoMall",
     "url": "https://www.womall.africa",
-    "logo": "https://www.womall.africa/apple-touch-icon.png", // Update this with the actual logo URL
+    "logo": {Logo}, // Update this with the actual logo URL
     "sameAs": [
       "https://www.facebook.com/womall",
       "https://www.twitter.com/womall",
@@ -60,7 +60,7 @@ const AboutUs = () => {
         <meta name="keywords" content="WoMall, B2B platform, international trade, manufacturers, suppliers, retailers, global trade, business values" />
         <meta property="og:title" content="About Us - WoMall" />
         <meta property="og:description" content="Discover WoMall's mission to transform global B2B interactions, our vision for seamless international trade, and our core values of reliability, integrity, timely delivery, and quality service." />
-        <meta property="og:image" content="URL_to_image_for_about_us_page" />
+        <meta property="og:image" content={Logo} />
         <meta property="og:url" content="https://www.womall.africa/about" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -79,7 +79,7 @@ const AboutUs = () => {
         <section className="about-us-first-page" data-aos="fade-up">
           <img src={Background} alt="Background" className="responsive-bg-image" loading="lazy" />
           <div className="about-us-content">
-            <h1 className="about-us-header">About Wo<span className="text-danger">Mall</span> Expo</h1>
+            <h1 className="about-us-header">About Wo<span className="text-danger">Mall</span></h1>
             <p>WoMall is a revolutionary B2B platform designed to simplify international trade by connecting producers and manufacturers with global suppliers and retailers. We manage every stage of the global trade process.</p>
             <h2 className="underline">Mission</h2>
             <p>Our mission is to transform global B2B interactions, making international trade accessible to all.</p>

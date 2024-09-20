@@ -8,7 +8,6 @@ import './App.css';
 import { HelmetProvider } from 'react-helmet-async'; // Helmet for SEO
 import Navbar from './components/navbar/Navbar';
 import Error404 from './components/ErrorPage/Error404';
-
 // Lazy Loading Components
 const Home = lazy(() => import('./components/home/Home'));
 const ImportPage = lazy(() => import('./components/ImportPage/ImportPage'));
@@ -27,7 +26,7 @@ const ServicePage = lazy(() => import('./components/ServiceComponent/Service'));
 const Jobs = lazy(() => import('./components/JobOpeningsPage/JobOpeningsPage'));
 const ContactPage = lazy(() => import('./components/ContactPage/ContactPage'));
 const JobDetailsPage = lazy(() => import('./components/JobDetailsPage/JobDetailsPage'));
-
+const SpecialOffers = lazy(() => import('./components/SpecialOffers/SpecialOffers'));
 const App = () => {
   const [user, setUser] = useState(null);
   const [cartCount, setCartCount] = useState(0);
@@ -161,6 +160,7 @@ const App = () => {
             <Route path='/admin_panel' element={<AdminDashboard />} />
             <Route path='/job_openings' element={<Jobs />} />
             <Route path="/jobs/:id" element={<JobDetailsPage />} />
+            <Route path='/special-offers' element={<SpecialOffers/>}/>
           </Routes>
         </Suspense>
       </HelmetProvider>

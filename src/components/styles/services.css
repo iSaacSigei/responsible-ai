@@ -1,7 +1,7 @@
 .services-container {
     padding: 40px 20px;
-    background-color: black;
-    color: #4C51BF;
+    color: #333;
+    background-color: #f9f9f9;
 }
 /* Introduction Section */
 .introduction {
@@ -15,11 +15,9 @@
     margin: auto;
   }
 .service-card {
-    background-color: #222;
-    /* padding: 15px; */
+    background-color: #fff;    
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: whitesmoke;
     margin-bottom: 20px;
     width: 80%; /* Reduced width */
     margin: 0 auto; /* Center align the card */
@@ -42,7 +40,7 @@
 
 .service-card .card-text {
     font-size: 1rem;
-    color: rgb(216, 208, 208);
+    color: #666
 }
 
 @media (max-width: 768px) {

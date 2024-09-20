@@ -6,7 +6,7 @@ import Image3 from '../../images/transaction.png';
 import Image4 from '../../images/logistics.png';
 import Footer from '../footer/Footer';
 import { Helmet } from 'react-helmet-async';
-
+import Logo from '../../images/womall-logo.png';
 const content = [
   {
     image: Image1,
@@ -60,7 +60,6 @@ const Service = () => {
       "@type": "Organization",
       "name": "WoMall",
       "url": "https://www.womall.africa",
-      "logo": "https://www.womall.africa/apple-touch-icon.png", // Update this with the actual logo URL
     },
     "offers": content.map(item => ({
       "@type": "Offer",
@@ -79,8 +78,7 @@ const Service = () => {
         <meta name="keywords" content="WoMall services, global trade, logistics, manufacturers, import, export" />
         <meta property="og:title" content="WoMall - Our Services" />
         <meta property="og:description" content="Explore WoMall's comprehensive services designed to streamline global trade, connect manufacturers to buyers, and ensure seamless transactions." />
-        {/* Ensure to replace with actual image URL */}
-        <meta property="og:image" content={Image1} />
+        <meta property="og:image" content={Logo} />
         <meta property="og:url" content="https://www.womall.africa/services" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />

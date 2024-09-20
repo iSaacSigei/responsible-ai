@@ -10,13 +10,12 @@
     transform: scale(0.8);
     width: 100%;
     box-sizing: border-box;
-    margin-top: 130px !important;
 
   }
   
   /* When the element is in view, apply the new background color and zoom effect */
   .about-page.in-view {
-    background-color: #333;
+    background-color: #999;
     transform: scale(1);
   }
   

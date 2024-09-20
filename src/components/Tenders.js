@@ -83,30 +83,31 @@ const Tenders = () => {
       <div className="tenders-page" data-aos="fade-up">
         {/* Header */}
         <div className="tenders-intro">
-          <h1>{companyName} - Prequalification of Suppliers 2024-2027</h1>
+          <h1>WoMall - As we Expand our Business, We are Seeking for Suppliers</h1>
           <p>
-            {companyName} invites applications for registration of suppliers, service providers, and contractors for the financial year 2024 – 2027.
+            WoMall invites applications for registration of suppliers, service providers, and contractors for the financial year 2024 – 2027.
           </p>
           <p>
             Interested suppliers are invited to apply for prequalification, indicating the category of the goods, works, and services they wish to supply/provide.
           </p>
           <p>
-            The completed pre-qualification documents are to be addressed to:
+            The completed pre-qualification documents are to be addressed to out Procurement Partner:
           </p>
           <p className="address">
             Finance Director <br />
-            {companyName} <br />
+            Eigoll Enterprise LTD.<br />
             P.O BOX 43903- 00100 Nairobi, Kenya.
           </p>
           <p>
             Any queries regarding pre-qualification must be sent in writing to{' '}
-            <a href="mailto:procurement@eigoll.com">procurement@eigoll.com</a>.
+            <a href="mailto:procurement@eigoll.co.ke">procurement@eigoll.co.ke</a>.
           </p>
           <p>
             Completed pre-qualification documents should be submitted electronically as PDF documents clearly indicating the PREQ NO. and DESCRIPTION of the item being applied for, through email{' '}
-            <a href="mailto:tenders@eigoll.com">tenders@eigoll.com</a> not later than 5:00pm, 30th August 2024.
+            <a href="mailto:tenders@eigoll.co.ke">tenders@eigoll.co.ke</a> not later than 5:00pm, 30th August 2024.
           </p>
         </div>
+
 
         {/* CTA Buttons */}
         <div className="tenders-buttons">

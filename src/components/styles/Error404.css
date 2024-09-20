@@ -3,8 +3,8 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    margin-top: 130px !important;
-
+    margin-top: 100px !important;
+background-color: #333;
 }
 
 .error-content {

@@ -5,6 +5,7 @@ import Footer from '../footer/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import '../styles/Signup.css';
+import Logo from '../../images/womall-logo.png';
 
 const Login = ({ updateUser }) => {
   const [formData, setFormData] = useState({
@@ -72,7 +73,12 @@ const Login = ({ updateUser }) => {
       {/* Helmet for page-specific meta tags */}
       <Helmet>
         <title>Login - WoMall</title>
+        <meta property="og:title" content="Login - WoMall" />
         <meta name="description" content="Login to access your WoMall account and start connecting with global manufacturers and suppliers." />
+        <link rel="canonical" href="https://www.womall.africa/login" />
+        <meta property="og:image" content={Logo} />
+        <meta name="keywords" content="Login WoMall, B2B platform, international trade, manufacturers, suppliers, retailers, global trade, business values" />
+
       </Helmet>
 
       <div className="signup-page-container mt-5">

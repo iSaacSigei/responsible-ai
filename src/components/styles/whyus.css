@@ -1,46 +1,115 @@
-/* src/styles/whyus.css */
-.why-us-container {
-  color: #4C51BF; /* Tailwind text-indigo-600 */
-  width: 95%;
-  margin: auto;
-  padding: 15px;
+/* General styles for the Why Us section */
+.whyus-section {
+  padding:20px;
+  background-color: #f9f9f9;
+  min-height: 80vh;
 }
 
-.why-us-container h1 {
+/* Page header styles */
+.whyus-title {
+  text-align: center;
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #4C51BF; /* Tailwind text-indigo-600 */
+  color: #333;
 }
 
-.reasons-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.reason-card {
-  padding: 26px;
-  margin-top: 20px;
-  background-color: #222;
-  /* padding: 15px; */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: whitesmoke;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(20, 19, 19, 0.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  flex: 1 1 100%;
-  /* max-width: 300px; */
-  min-height: 140px;
-  text-align: left; 
-}
-
-.reason-card h2 {
+.whyus-subtitle {
+  text-align: center;
   font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #4C51BF; /* Tailwind text-indigo-600 */
+  margin-bottom: 40px;
+  color: #666;
 }
 
-.reason-card p {
-  font-size: 0.9rem;
+/* Grid layout for the cards */
+.whyus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.whyus-card-container {
+  width: 100%;
+}
+
+.whyus-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  opacity: 0; /* Start hidden */
+  transform: scale(0.8); /* Start with a small scale */
+}
+
+.whyus-card.animate {
+  opacity: 1;
+  transform: scale(1); /* Scale to normal size */
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.whyus-icon {
+  font-size: 3rem;
+      background: linear-gradient(to right, #E4C664 0%, #B18325 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: #E4C664;
+  margin-bottom: 15px;
+}
+
+.whyus-card-header {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.whyus-card-text {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+/* Keyframes for zoom-in effect */
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  .whyus-title {
+    font-size: 2rem;
+  }
+
+  .whyus-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .whyus-card {
+    padding: 20px;
+  }
+
+  .whyus-icon {
+    font-size: 2.5rem;
+  }
+
+  .whyus-card-header {
+    font-size: 1.3rem;
+  }
+
+  .whyus-card-text {
+    font-size: 0.9rem;
+  }
 }

@@ -1,15 +1,95 @@
-
-.quiz{
-    padding: 26px;
-    background: #18453B;
-    background: -webkit-linear-gradient(to right, #18453B, #00AB66);
-    background: linear-gradient(to right,  #18453B, #00AB66);
+/* General styles for the landing page */
+.landing {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-image 2s ease-in-out;
+  }
+  
+  /* Add this for AOS animations */
+  [data-aos="slide-left"] {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  
+  [data-aos="slide-left"].aos-animate {
+    transform: translateX(1);
+    opacity: 1;
+  }
+  
+  .message-container {
     color: white;
-    box-shadow: 0 4px 8px rgba(20, 19, 19, 0.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 60px !important;
+  }
+  
+  .message h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .message p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  .custom-width {
+    width: 90%;
+    max-width: 1200px;
+    margin-bottom: 40px; /* Space between rows */
+  }
+  
+  .custom-width-1 {
+    width: 80%;
+    max-width: 1200px;
+    margin-bottom: 40px; /* Space between rows */
+  }
+  
+  .quiz {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .slanted-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e84545;
+    color: white;
+    text-decoration: none;
+    transform: skewX(-20deg);
+    transition: background-color 0.3s;
+    margin: 0 10px;
+  }
+  
+  .slanted-button:hover {
+    background-color: white;
+  }
+  
+  /* For screens larger than 768px, ensure content remains centered */
+  @media (min-width: 768px) {
+    .landing {
+      justify-content: space-around;
+    }
+  }
+  .hidden {
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
-.landing{
-    max-height: 80vh;
-    margin-top: 130px !important;
-    /* background-color: black; */
+
+.animate {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }

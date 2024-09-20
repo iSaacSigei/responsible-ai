@@ -123,6 +123,12 @@
     .intro p {
         font-size: 0.8rem; /* Further adjust font size */
     }
+    .no-jobs-container h2 {
+        font-size: 1.0rem;
+    }
+    .no-jobs-container p {
+        font-size: 0.9rem;
+    }
 }
 
 .no-jobs-container {
@@ -135,6 +141,7 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     margin-top: 20px;
+    width: 90%;
 }
 
 .no-jobs-container h2 {

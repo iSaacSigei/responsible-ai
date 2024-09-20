@@ -17,7 +17,7 @@ const Services = () => {
     return (
         <div className="services-container"data-aos="fade-up">
             <h1 className="introduction text-center mb-4">Our Services</h1>
-            <p className='m-auto col-lg-8 col-md-6 mb-5 text-center text-light'>At WoMall, we are committed to providing seamless and efficient solutions to international trade. Our comprehensive range of services is designed to connect manufacturers and buyers, simplify logistics, and enhance B2Binteractions across borders.</p>
+            <p className='m-auto col-lg-8 col-md-6 mb-5 text-center text-dark'>At WoMall, we are committed to providing seamless and efficient solutions to international trade. Our comprehensive range of services is designed to connect manufacturers and buyers, simplify logistics, and enhance B2Binteractions across borders.</p>
             <div className="row">
                 {/* Exportation Card */}
                 <div className="col-lg-4 col-md-6">

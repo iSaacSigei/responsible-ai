@@ -2,29 +2,32 @@
 .our-partners-page {
     padding: 2rem;
     width: 100%;
+    min-height: 80vh;
   }
   
 /* Introduction Section */
-.intro{
+.introduction{
   margin: 0 auto;
   /* text-align: center; */
   margin-bottom: 3rem;
-  min-width: 100% !important;
+  min-width: 80% !important;
 }
 
 /* Responsive Widths */
 @media (min-width: 1200px) {
   /* Large screens */
-  .intro {
+  .introduction {
     width: 70% !important;
     margin: auto;
   }
 }
-
+.intro{
+  color:#666;
+}
 @media (min-width: 768px) and (max-width: 1199px) {
   /* Medium screens */
-  .intro {
-    width: 80% !important;
+  .introduction {
+    width: 80%;
     margin: auto;
 
   }
@@ -32,8 +35,8 @@
 
 @media (max-width: 767px) {
   /* Small screens */
-  .intro {
-    width: 90% !important;
+  .introduction p{
+    width: 100% !important;
     margin: auto;
 
   }
@@ -42,15 +45,10 @@
   .our-partners-page h1{
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    background: linear-gradient(to right, #E4C664 0%, #B18325 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
   }
   /* Partners Section */
   .partners {
     text-align: center;
-    background-color: black;
   }
   
   /* Partners list */

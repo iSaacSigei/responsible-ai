@@ -3,13 +3,14 @@
     color: whitesmoke;
     padding: 20px;
     min-height: 60vh;
-    margin-top: 130px !important;
-
 }
 
-.signup-form {
+.signup-form{
     max-width: 800px;
     margin: auto;
+    margin-top: 130px;
+    margin-bottom: 100px;
+
 }
 
 .form-row {
@@ -45,8 +46,10 @@ button:hover {
 }
 .auth-form {
     /* Default styles, can be applied to all screen sizes */
-    width: 95%; /* This will be the default width for small screens */
+    width: 100%; /* This will be the default width for small screens */
     margin: auto;
+    margin-top: 100px !important;
+    margin-bottom: 100px;
 
   }
   

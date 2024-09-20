@@ -5,6 +5,7 @@ import '../styles/JobOpeningsPage.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Helmet } from 'react-helmet-async';
+import Logo from '../../images/womall-logo.png';
 
 // Lazy load Footer component
 const Footer = lazy(() => import('../footer/Footer'));
@@ -93,8 +94,7 @@ const JobOpeningsPage = () => {
         <meta name="keywords" content="WoMall, Careers, Jobs, Internships, Trainee Programs" />
         <meta property="og:title" content="WoMall - Careers" />
         <meta property="og:description" content="Explore job openings, internships, and trainee programs at WoMall. Join our innovative team and make an impact in the world of import and export." />
-        {/* Replace with the actual image URL */}
-        <meta property="og:image" content="URL_to_image_for_careers_page" />
+        <meta property="og:image" content={Logo} />
         <meta property="og:url" content={currentUrl} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
