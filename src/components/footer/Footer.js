@@ -1,13 +1,14 @@
 import React from 'react';
 
 const Footer = () => (
-  <footer className="footer custom-navbar-bg text-white">
+  <footer className="footer custom-navbar-bg">
     <div className="container py-4">
       <div className="row">
         <div className="col-md-3">
           <h5 className="mb-3">WoMall</h5>
-          <p>Contact Us: support@womall.com</p>
+          <p>Contact Us: info@womall.com</p>
           <p>Our Office: Thika Road Mall, Roysambu, Nairobi</p>
+          <p>.O. BOX 43801 – 00500</p>
         </div>
         <div className="col-md-3">
           <h5 className="mb-2">Quick Links</h5>
@@ -24,7 +25,6 @@ const Footer = () => (
             <li className="pr-2"><a href="https://twitter.com/womall" style={{ color: '#5a5959' }}>Twitter</a></li>
             <li className="pr-2"><a href="https://linkedin.com/company/womall" style={{ color: '#5a5959' }}>LinkedIn</a></li>
             <li className="pr-2"><a href="https://facebook.com/womall" style={{ color: '#5a5959' }}>Facebook</a></li>
-            <li className="pr-2"><a href="https://github.com/womall" style={{ color: '#5a5959' }}>GitHub</a></li>
           </ul>
         </div>
         <div className="col-md-3">

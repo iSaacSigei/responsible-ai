@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 import Footer from './footer/Footer';
 
 // Import the PDF file
-import tenderPDF from '../images/tender.pdf';
+import tenderPDF from '../images/tenders.pdf';
 
 const Tenders = () => {
   const [tenders, setTenders] = useState([]);
@@ -96,7 +96,7 @@ const Tenders = () => {
           <p className="address">
             Finance Director <br />
             Eigoll Enterprise LTD.<br />
-            P.O BOX 43903- 00100 Nairobi, Kenya.
+            P.O Box 10062 - 00400  Nairobi, Kenya.
           </p>
           <p>
             Any queries regarding pre-qualification must be sent in writing to{' '}
@@ -104,7 +104,7 @@ const Tenders = () => {
           </p>
           <p>
             Completed pre-qualification documents should be submitted electronically as PDF documents clearly indicating the PREQ NO. and DESCRIPTION of the item being applied for, through email{' '}
-            <a href="mailto:tenders@eigoll.co.ke">tenders@eigoll.co.ke</a> not later than 5:00pm, 30th August 2024.
+            <a href="mailto:tenders@eigoll.co.ke">tenders@eigoll.co.ke</a> not later than 5:00pm, 18th OCTOBER 2024.
           </p>
         </div>
 
@@ -114,8 +114,6 @@ const Tenders = () => {
           <a href={tenderPDF} target="_blank" rel="noopener noreferrer">
             <button className="apply-button">APPLY HERE</button>
           </a>
-          <button className="tier-button">TENDER PRE-QUALIFICATION TIER 1 - GENERAL SUPPLIERS</button>
-          <button className="tier-button">TENDER PRE-QUALIFICATION TIER 2 - AGRIBUSINESS SMEs</button>
         </div>
 
         {Object.keys(groupedTenders).map((category, index) => (
