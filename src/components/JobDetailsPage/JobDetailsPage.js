@@ -89,9 +89,9 @@ const JobDetailsPage = () => {
 
             <div className="contact-information">
               <h2 className='text-dark'>Contact Information</h2>
-              <p>If you have any questions about the job or the application process, feel free to contact us:</p>
-              <p><strong>Email:</strong> {job.contact_email}</p>
-              <p><strong>Phone:</strong> {job.contact_phone}</p>
+              <p>All applications and resumes should be submitted to contact email below for further consideration. Please ensure that your documents are in the appropriate format and include all required information.</p>
+              <p><strong>Email:</strong> <a href={`mailto:${job.contact_email}`}>{job.contact_email}</a></p>
+              {/* <p><strong>Phone:</strong> {job.contact_phone}</p> */}
             </div>
           </div>
         </div>
