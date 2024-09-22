@@ -83,7 +83,7 @@ const Tenders = () => {
       <div className="tenders-page" data-aos="fade-up">
         {/* Header */}
         <div className="tenders-intro">
-          <h1>WoMall - As we Expand our Business, We are Seeking for Suppliers</h1>
+          <h1>Tenders and Supplier Prequalification 2024-2027</h1>
           <p>
             WoMall invites applications for registration of suppliers, service providers, and contractors for the financial year 2024 – 2027.
           </p>
@@ -91,7 +91,7 @@ const Tenders = () => {
             Interested suppliers are invited to apply for prequalification, indicating the category of the goods, works, and services they wish to supply/provide.
           </p>
           <p>
-            The completed pre-qualification documents are to be addressed to out Procurement Partner:
+            The completed pre-qualification documents are to be addressed to our Procurement Partner:
           </p>
           <p className="address">
             Finance Director <br />

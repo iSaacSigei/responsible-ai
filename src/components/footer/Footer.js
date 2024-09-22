@@ -6,9 +6,9 @@ const Footer = () => (
       <div className="row">
         <div className="col-md-3">
           <h5 className="mb-3">WoMall</h5>
-          <p>Contact Us: info@womall.com</p>
-          <p>Our Office: Thika Road Mall, Roysambu, Nairobi</p>
-          <p>.O. BOX 43801 – 00500</p>
+          <p>Contact Us: info@womall.africa</p>
+          <p>Our Office: Thika Road Mall, Nairobi</p>
+          <p>P.O. BOX 43801 – 00500</p>
         </div>
         <div className="col-md-3">
           <h5 className="mb-2">Quick Links</h5>
