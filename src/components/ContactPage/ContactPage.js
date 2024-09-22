@@ -112,8 +112,8 @@ const ContactPage = () => {
             </div>
             <div className="contact-section">
               <h3>Find us here</h3>
-              <p>Womall Enterprises</p>
-              <p>Thika Road Mall, P.O. BOX 43801 – 00500, Nairobi</p>
+              <p>WoMall LTD.</p>
+              <p>Thika Road Mall, <br></br> P.O. BOX 43801 – 00500, <br></br>Nairobi</p>
             </div>
           </div>
 
