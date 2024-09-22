@@ -36,7 +36,7 @@ const Footer = () => (
         </div>
       </div>
     </div>
-    <div className="container-fluid text-center custom-navbar-bg text-white py-3">
+    <div className="container-fluid text-center custom-navbar-bg text-dark py-3">
       <p className="navbar-brand">&copy; 2024 WoMall. All Rights Reserved.</p>
     </div>
   </footer>
