@@ -207,7 +207,7 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
             </li>
           </ul>
         ) : (
-          <Link to="/login" className="btn-getstarted">Get Started</Link>
+          <Link to="/signup" className="btn-getstarted">Get Started</Link>
         )}
       </div>
     </header>

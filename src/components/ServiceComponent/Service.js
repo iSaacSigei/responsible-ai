@@ -4,6 +4,7 @@ import Image1 from '../../images/importexport1.jpg';
 import Image2 from '../../images/manufacturer.png';
 import Image3 from '../../images/transaction.png';
 import Image4 from '../../images/logistics.png';
+import Image5 from '../../images/minerals.webp'
 import Footer from '../footer/Footer';
 import { Helmet } from 'react-helmet-async';
 import Logo from '../../images/womall-logo.png';
@@ -15,7 +16,7 @@ const content = [
   },
   {
     image: Image2,
-    header: 'Connection of Manufacturers to Buyers',
+    header: 'Connecting Manufacturers to Buyers',
     description: 'We bridge the gap between manufacturers and buyers worldwide. WoMall provides a comprehensive network that facilitates connections and partnerships, enhancing trade opportunities and expanding market reach.',
   },
   {
@@ -27,6 +28,11 @@ const content = [
     image: Image4,
     header: 'Easing Customs and Logistics Burden',
     description: 'WoMall simplifies customs and logistics by providing expert guidance and support. We help businesses navigate through regulatory requirements and manage logistics efficiently, ensuring timely delivery of goods.',
+  },
+  {
+    image: Image5,
+    header: `Africa's Leading Sourcing Agents`,
+    description: `Africa is a continent abundant in valuable resources, offering a wide range of raw minerals, high-demand cash crops such as avocados, tea, and flowers, as well as quality textile products. At WoMall, we act as your trusted sourcing partner, connecting you with reliable suppliers for all these commodities. Whether you're looking for minerals or agricultural products, we streamline the sourcing process, ensuring timely delivery and top-tier quality.`,
   },
 ];
 

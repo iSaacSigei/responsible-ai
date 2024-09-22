@@ -4,7 +4,7 @@ import Footer from '../footer/Footer';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 const SignupPage = () => {
     const [formData, setFormData] = useState({
@@ -189,8 +189,10 @@ const SignupPage = () => {
                         {isSubmitting ? "Signing up..." : "Sign Up"}
                     </button>
                 </form>
+                <div className="signup-link-container text-center my-5">
+                    <p className='text-light'>Already have an account? <Link to="/login" className="signup-link">Login here</Link></p>
+                </div>
             </div>
-            <hr className='text-light'></hr>
             <Footer />
             <ToastContainer position="top-center" />
         </>
