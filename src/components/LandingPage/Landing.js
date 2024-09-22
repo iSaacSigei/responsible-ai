@@ -11,6 +11,8 @@ import background2 from '../../images/exports.jpg';
 import background3 from '../../images/Customer-Service-Script.jpg';
 import background4 from '../../images/avocado.jpg';
 import Logo from '../../images/womall-logo.png';
+import background5 from '../../images/minerals.webp';
+import background6 from '../../images/warehouse.jpg'
 
 const backgrounds = [
     {
@@ -32,6 +34,18 @@ const backgrounds = [
         img: background4,
         title: 'High-Quality Partner Network',
         description: 'Our curated list of reputable international partners fosters trust and reliability, enhancing business confidence in global transactions.',
+    },
+    // New Message 1: Logistics and Warehousing
+    {
+        img: background6, // Reuse an existing background or add a new image if available
+        title: 'Logistics and Warehousing Services',
+        description: 'WoMall offers state-of-the-art logistics and warehousing services, ensuring that your goods are stored and transported efficiently and securely.',
+    },
+    // New Message 2: Sourcing Agents for Minerals
+    {
+        img: background5, // Reuse an existing background or add a new image if available
+        title: 'Sourcing Agents for Minerals in Africa',
+        description: 'Leverage our network of sourcing agents to connect with reliable suppliers of high-quality minerals across Africa, making your procurement process seamless.',
     },
 ];
 
