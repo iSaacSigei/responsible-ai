@@ -4,7 +4,7 @@ import '../styles/SpecialOffers.css';
 const offers = [
   {
     header: '10% Off on All Exports',
-    description: 'Take advantage of our special offer and enjoy half-price exports for the next 30 days. Click "Show More" to learn how you can benefit from this exclusive deal.',
+    description: 'Take advantage of our special offer and enjoy 10% on all exports. Click "Show More" to learn how you can benefit from this exclusive deal.',
   },
   {
     header: 'Free Logistics Support',

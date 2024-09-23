@@ -17,40 +17,38 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
       if (document.querySelector('body').classList.contains('mobile-nav-active')) {
         e.preventDefault();
         e.stopPropagation(); // Prevent event from closing the entire menu
-  
+
         const target = e.target;
-        
-        // Ensure the dropdown is clicked
         const submenu = target.nextElementSibling || target.parentElement?.nextElementSibling;
-  
-        if (submenu && submenu.tagName === 'UL') { // Ensure the submenu is a <ul>
+
+        if (submenu && submenu.tagName === 'UL') {
           submenu.classList.toggle('dropdown-active');
         } else {
           console.error('Dropdown submenu not found or is not a UL');
         }
       }
     };
-  
+
     const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
     const dropdowns = document.querySelectorAll('.navmenu .dropdown > a');
-  
+
     if (mobileNavToggleBtn) {
       const mobileNavToggle = () => {
         document.querySelector('body').classList.toggle('mobile-nav-active');
         mobileNavToggleBtn.classList.toggle('bi-list');
         mobileNavToggleBtn.classList.toggle('bi-x');
       };
-  
+
       mobileNavToggleBtn.addEventListener('click', mobileNavToggle);
       dropdowns.forEach(dropdown => dropdown.addEventListener('click', toggleDropdown));
-  
+
       return () => {
         mobileNavToggleBtn.removeEventListener('click', mobileNavToggle);
         dropdowns.forEach(dropdown => dropdown.removeEventListener('click', toggleDropdown));
       };
     }
   }, []);
-  
+
   useEffect(() => {
     const scrollTop = document.querySelector('.scroll-top');
     if (scrollTop) {
@@ -109,16 +107,32 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
   }, [location]);
 
   const handleLinkClick = (e) => {
-    const isDropdownLink = e.target.closest('.dropdown');
-    if (!isDropdownLink) {
-      const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
-      if (mobileNavToggleBtn) {
-        document.querySelector('body').classList.remove('mobile-nav-active');
-        mobileNavToggleBtn.classList.remove('bi-x');
-        mobileNavToggleBtn.classList.add('bi-list');
+    const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+  
+    // Close the mobile menu for all link clicks
+    document.querySelector('body').classList.remove('mobile-nav-active');
+    
+    if (mobileNavToggleBtn) {
+      mobileNavToggleBtn.classList.remove('bi-x');
+      mobileNavToggleBtn.classList.add('bi-list');
+    }
+  
+    // Check if the clicked element is a dropdown link
+    const isDropdownLink = e.target.closest('.dropdown') !== null;
+  
+    // Close the dropdown menu if a dropdown link was clicked
+    if (isDropdownLink) {
+      const dropdown = e.target.closest('.dropdown');
+      if (dropdown) {
+        const submenu = dropdown.querySelector('ul');
+        if (submenu) {
+          submenu.classList.remove('dropdown-active');
+        }
       }
     }
   };
+  
+  
 
   const isActive = (path) => location.pathname === path ? 'active' : '';
 
@@ -171,7 +185,7 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
                 {cartCount >= 0 && <span className="badge text-danger">{cartCount}</span>}
               </Link>
             </li>
-            <li className="">
+            <li>
               <Link to="/quotation" onClick={handleLinkClick}>
                 <i className="bi bi-envelope toggle-dropdown"></i>
                 {messageCount >= 0 && <span className="badge text-danger">{messageCount}</span>}
@@ -195,19 +209,20 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
                 </li>
                 <li className="dropdown">
                   <Link to="#" onClick={handleLinkClick}>
-                    <span>Profile Settings</span> 
+                    <span>Profile Settings</span>
                     <i className="bi bi-chevron-down toggle-dropdown"></i>
                   </Link>
                   <ul>
                     <li><Link to="/profile" onClick={handleLinkClick}>Profile</Link></li>
-                    <li><Link to="/update-password" onClick={handleLinkClick}>Update Password</Link></li>
+                    <li><Link to="/profile/change-password" onClick={handleLinkClick}>Change Password</Link></li>
+                    <li><Link to="/profile/update-address" onClick={handleLinkClick}>Update Address</Link></li>
                   </ul>
                 </li>
               </ul>
             </li>
           </ul>
         ) : (
-          <Link to="/signup" className="btn-getstarted">Get Started</Link>
+          <Link to="/login" className="btn-getstarted" onClick={handleLinkClick}>Login</Link>
         )}
       </div>
     </header>

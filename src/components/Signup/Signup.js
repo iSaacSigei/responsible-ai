@@ -101,6 +101,7 @@ const SignupPage = () => {
         </Helmet>
 
             <div className="signup-page-container">
+                
                 <form onSubmit={handleSubmit} className="signup-form">
                     <div className="form-row row">
                         <div className="col-md-6 mb-3">
