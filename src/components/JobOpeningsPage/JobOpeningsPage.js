@@ -169,8 +169,8 @@ const schemaData = jobs.map((job) => ({
             jobs.map((job) => (
               <div className="job-row" key={job.id}>
                 <div className="job-column job-description-column">
-                  <h2>{capitalizeCategory(job.title)}</h2>
-                  <div className="job-details">
+                <h2>{capitalizeCategory(job.job_title)}</h2>
+                <div className="job-details">
                     <span><strong>Category:</strong> {capitalizeCategory(job.category)}</span>
                     <span><strong>Date Posted:</strong> {new Date(job.created_at).toLocaleDateString()}</span>
                   </div>
