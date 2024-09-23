@@ -27,6 +27,8 @@ const Jobs = lazy(() => import('./components/JobOpeningsPage/JobOpeningsPage'));
 const ContactPage = lazy(() => import('./components/ContactPage/ContactPage'));
 const JobDetailsPage = lazy(() => import('./components/JobDetailsPage/JobDetailsPage'));
 const SpecialOffers = lazy(() => import('./components/SpecialOffers/SpecialOffers'));
+const Events = lazy(() => import('./components/Events/Events'));
+
 const App = () => {
   const [user, setUser] = useState(null);
   const [cartCount, setCartCount] = useState(0);
@@ -161,6 +163,7 @@ const App = () => {
             <Route path='/job_openings' element={<Jobs />} />
             <Route path="/jobs/:id" element={<JobDetailsPage />} />
             <Route path='/special-offers' element={<SpecialOffers/>}/>
+            <Route path='/events' element={<Events/>}/>
           </Routes>
         </Suspense>
       </HelmetProvider>

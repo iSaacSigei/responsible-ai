@@ -78,7 +78,7 @@ const ContactPage = () => {
             "logo": "https://www.womall.africa/apple-touch-icon.png",
             "contactPoint": {
               "@type": "ContactPoint",
-              "telephone": "+254 711 398 749",
+              "telephone": "+254 734462900",
               "contactType": "Customer Service",
               "areaServed": "KE",
               "availableLanguage": "English"
@@ -103,8 +103,8 @@ const ContactPage = () => {
             <h2>Our Contacts</h2>
             <div className="contact-section">
               <h3>Call us</h3>
+              <p>+254 734 462 900</p>
               <p>+254 711 398 749</p>
-              <p>+254 710 143 379</p>
             </div>
             <div className="contact-section">
               <h3>Email us</h3>
