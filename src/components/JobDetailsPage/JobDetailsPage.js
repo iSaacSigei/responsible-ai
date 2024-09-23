@@ -64,7 +64,7 @@ const JobDetailsPage = () => {
     <>
       <div className="bg-light job-details-page">
         <div className="job-details" data-aos="fade-up">
-          <h1>{job.job_title}</h1>
+          <h1 className='px-2'>{job.job_title}</h1>
 
           <div className="job-details-container">
             {/* Job Overview */}
