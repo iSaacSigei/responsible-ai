@@ -518,7 +518,12 @@
       display: block;
     }
   }
-  
+.link-user{
+  font-size: 0.85rem;
+}
+.link-user i{
+  font-size: 0.9rem;
+}
 
   /*--------------------------------------------------------------
   # Preloader

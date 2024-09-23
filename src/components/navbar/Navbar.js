@@ -180,19 +180,19 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
         {user ? (
           <ul className='user-icon'>
             <li>
-              <Link to="/my_orders" onClick={handleLinkClick}>
+              <Link to="/my_orders" className='link-user' onClick={handleLinkClick}>
                 <i className="bi bi-cart"></i>
                 {cartCount >= 0 && <span className="badge text-danger">{cartCount}</span>}
               </Link>
             </li>
             <li>
-              <Link to="/quotation" onClick={handleLinkClick}>
+              <Link to="/quotation" className='link-user'  onClick={handleLinkClick}>
                 <i className="bi bi-envelope toggle-dropdown"></i>
                 {messageCount >= 0 && <span className="badge text-danger">{messageCount}</span>}
               </Link>
             </li>
             <li className="dropdown">
-              <Link to="#" onClick={handleLinkClick}>
+              <Link to="#" onClick={handleLinkClick} className='link-user'>
                 <i className="bi bi-person toggle-dropdown"></i>
               </Link>
               <ul id="user">
