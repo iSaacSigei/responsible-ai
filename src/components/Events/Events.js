@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import EventCard from './EventCard'; // Adjust the import based on your structure
+import EventCard from './EventCard'; // Ensure you import your EventCard component
 import '../styles/EventsPage.css'; // Import your CSS file here
 
 const Events = () => {
@@ -15,8 +15,14 @@ const Events = () => {
           throw new Error('Failed to fetch events');
         }
         const data = await response.json();
-        // Assuming the data format matches the expected structure
-        setEventList(data);
+
+        // Parse the profiles JSON strings to arrays
+        const formattedData = data.map(event => ({
+          ...event,
+          profiles: JSON.parse(event.profiles), // Parse profiles
+        }));
+
+        setEventList(formattedData);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -27,18 +33,13 @@ const Events = () => {
     fetchEvents();
   }, []);
 
-  if (loading) {
-    return <div>Loading events...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  if (loading) return <div>Loading events...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="container">
       {eventList.map((event, index) => (
-        <EventCard key={index} {...event} />
+        <EventCard key={event.id} {...event} />
       ))}
     </div>
   );
