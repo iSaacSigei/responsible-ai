@@ -59,25 +59,28 @@ const JobOpeningsPage = () => {
 
   const currentUrl = `https://www.womall.africa/jobs?category=${selectedCategory}`;
 
-  // Create schema data for Job Openings
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "JobPosting",
-    "title": "Job Openings at WoMall",
-    "description": "Explore the latest job openings at WoMall. Join our team and make an impact in the world of import and export.",
-    "identifier": {
-      "@type": "PropertyValue",
-      "name": "WoMall",
-      "value": "JobOpeningsPage"
-    },
-    "datePosted": new Date().toISOString(),
-    "employmentType": "FULL_TIME",
-    "hiringOrganization": {
-      "@type": "Organization",
-      "name": "WoMall",
-      "sameAs": "https://www.womall.africa",
-      "logo": "https://www.womall.africa/apple-touch-icon.png" // Replace with actual logo URL
-    },
+// Create schema data for Job Openings
+const schemaData = jobs.map((job) => ({
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "title": job.job_title,
+  "description": job.job_description,
+  "identifier": {
+    "@type": "PropertyValue",
+    "name": "WoMall",
+    "value": job.id
+  },
+  "datePosted": new Date(job.created_at).toISOString(),
+  "validThrough": new Date(job.application_deadline).toISOString(), // Add validThrough field
+  "employmentType": "FULL_TIME",
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": "WoMall",
+    "sameAs": "https://www.womall.africa",
+    "logo": "https://www.womall.africa/apple-touch-icon.png" // Replace with actual logo URL
+  },
+  "jobLocation": {
+    "@type": "Place",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Thika Road Mall",
@@ -86,7 +89,18 @@ const JobOpeningsPage = () => {
       "postalCode": "00500",
       "addressCountry": "KE"
     }
-  };
+  },
+  "baseSalary": {
+    "@type": "MonetaryAmount",
+    "currency": "KES",
+    "value": {
+      "@type": "QuantitativeValue",
+      "value": 50000, // Example salary, you can replace with actual salary details
+      "unitText": "MONTH"
+    }
+  }
+}));
+
 
   // Updated function to handle special category cases
   const capitalizeCategory = (category) => {
