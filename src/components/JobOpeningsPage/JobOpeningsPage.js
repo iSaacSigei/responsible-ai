@@ -80,17 +80,26 @@ const JobOpeningsPage = () => {
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "123 Trade Street",
+      "streetAddress": "Thika Road Mall",
       "addressLocality": "Nairobi",
       "addressRegion": "Nairobi County",
-      "postalCode": "00100",
+      "postalCode": "00500",
       "addressCountry": "KE"
     }
   };
 
-  // Capitalize job categories
+  // Updated function to handle special category cases
   const capitalizeCategory = (category) => {
-    return category.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    if (category === 'graduate_trainee') {
+      return 'Graduate Trainee';
+    }
+    if (category === 'job openings') {
+      return 'Job Opening';
+    }
+    return category
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   };
 
   return (

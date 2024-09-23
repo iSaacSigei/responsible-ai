@@ -10,45 +10,48 @@ const JobDetailsPage = () => {
   const { id } = useParams(); // Get the job ID from the URL
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true); // Show a loading state initially
+  const [error, setError] = useState(false); // Track if there's an error fetching job data
 
+  // Initialize AOS for animations
   useEffect(() => {
     AOS.init({
       duration: 1000,
       easing: 'ease-in-out',
-      once: true,
+      once: true, // Animations run only once
     });
   }, []);
 
+  // Fetch job details based on the ID from the URL
   useEffect(() => {
-    // Fetch the job details based on the ID
     const fetchJobDetails = async () => {
       try {
         const response = await axios.get(`https://mysite-jr5y.onrender.com/jobs/${id}`);
         setJob(response.data);
-        setLoading(false); // Data is loaded, so stop the loading state
+        setLoading(false); // Stop loading once data is fetched
       } catch (error) {
         console.error('Error fetching job details:', error);
-        setLoading(false); // In case of an error, stop the loading state
+        setError(true); // Set error state if fetching fails
+        setLoading(false); // Stop loading in case of an error
       }
     };
 
     fetchJobDetails();
   }, [id]);
 
-  // Utility function to capitalize category
+  // Utility function to capitalize categories with underscores
   const capitalizeCategory = (category) => {
-    if (!category) return '';
     return category
-      .split('_') // split the string by underscores
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // capitalize first letter of each word
-      .join(' '); // join the words with a space
+      ? category.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ')
+      : '';
   };
 
+  // Render the loading state
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
 
-  if (!job) {
+  // Render error state if the job is not found or fetching fails
+  if (error || !job) {
     return (
       <div className="error">
         <h2>Job not found</h2>
@@ -62,7 +65,9 @@ const JobDetailsPage = () => {
       <div className="bg-light job-details-page">
         <div className="job-details" data-aos="fade-up">
           <h1>{job.job_title}</h1>
+
           <div className="job-details-container">
+            {/* Job Overview */}
             <div className="job-overview">
               <h2 className="text-dark">Job Overview</h2>
               <p><strong>Category:</strong> {capitalizeCategory(job.category)}</p>
@@ -70,42 +75,56 @@ const JobDetailsPage = () => {
               <p><strong>Application Deadline:</strong> {new Date(job.application_deadline).toLocaleDateString()}</p>
             </div>
 
+            {/* Job Description */}
             <div className="job-description">
               <h2 className="text-dark">Job Description</h2>
               <p>{job.job_description}</p>
             </div>
 
+            {/* Job Requirements */}
             <div className="job-requirements">
               <h2 className="text-dark">Job Requirements</h2>
               <ul>
-                {job.requirements && job.requirements.map((requirement, index) => (
-                  <li key={index}>{requirement}</li>
-                ))}
+                {job.requirements && job.requirements.length > 0 ? (
+                  job.requirements.map((requirement, index) => <li key={index}>{requirement}</li>)
+                ) : (
+                  <li>No specific requirements listed.</li>
+                )}
               </ul>
             </div>
 
+            {/* Job Benefits */}
             <div className="job-benefits">
               <h2 className="text-dark">Benefits</h2>
               <ul>
-                {job.benefits && job.benefits.map((benefit, index) => (
-                  <li key={index}>{benefit}</li>
-                ))}
+                {job.benefits && job.benefits.length > 0 ? (
+                  job.benefits.map((benefit, index) => <li key={index}>{benefit}</li>)
+                ) : (
+                  <li>No benefits listed.</li>
+                )}
               </ul>
             </div>
 
+            {/* How to Apply */}
             <div className="how-to-apply">
               <h2 className="text-dark">How to Apply</h2>
-              <p>{job.how_to_apply}</p>
+              <p>{job.how_to_apply || 'No application instructions provided.'}</p>
             </div>
 
+            {/* Contact Information */}
             <div className="contact-information">
               <h2 className="text-dark">Contact Information</h2>
-              <p>All applications and resumes should be submitted to the contact email below for further consideration. Please ensure that your documents are in the appropriate format and include all required information.</p>
-              <p><strong>Email:</strong> <a href={`mailto:${job.contact_email}`}>{job.contact_email}</a></p>
+              <p>Please submit your applications and resumes to the contact email below for further consideration.</p>
+              {job.contact_email ? (
+                <p><strong>Email:</strong> <a href={`mailto:${job.contact_email}`}>{job.contact_email}</a></p>
+              ) : (
+                <p>No contact information available.</p>
+              )}
             </div>
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );
