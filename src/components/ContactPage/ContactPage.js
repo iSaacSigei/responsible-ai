@@ -108,7 +108,7 @@ const ContactPage = () => {
             </div>
             <div className="contact-section">
               <h3>Email us</h3>
-              <p>For inquiries email us via <a href="mailto:customercare@womall.africa">customercare@womall.africa</a></p>
+              <p>For inquiries email us via <a href="mailto:enquiries@womall.africa">enquiries@womall.africa</a></p>
             </div>
             <div className="contact-section">
               <h3>Find us here</h3>
