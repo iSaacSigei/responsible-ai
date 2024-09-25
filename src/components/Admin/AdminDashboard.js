@@ -589,7 +589,43 @@ const handleTenderUpdateSubmit = (e) => {
   
 
   const renderTable = () => {
-    if (!selectedData) return null; 
+    if (!selectedData) if (!selectedData) {
+      // Return the users table just like when selectedData.type is 'users'
+      return (
+        <>
+          <h4>Users</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Replace with actual users data if available */}
+              {/* Assuming you have access to a users list from your state */}
+              {users.map(user => (
+                <tr key={user.id}>
+                  <td>{user.id}</td>
+                  <td>{`${user.first_name} ${user.last_name}`}</td>
+                  <td>{user.email}</td>
+                  <td>{user.contact}</td>
+                  <td>{user.role}</td>
+                  <td>
+                    <button className='mx-4 btn py-2 btn-success' onClick={() => handleUpdateClick(user)}>Update</button>
+                    <button className='btn py-2 btn-danger' onClick={() => handleDeleteClick(user)}>Remove</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      );
+    } 
 
     if (selectedData.type === 'users') {
       return (
