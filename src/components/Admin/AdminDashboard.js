@@ -10,6 +10,7 @@ const AdminDashboard = () => {
   const [exportOrderCount, setExportOrderCount] = useState(0);
   const [importOrderCount, setImportOrderCount] = useState(0);
   const [pendingOrderCount, setPendingOrderCount] = useState(0);
+  const [users, setUsers]=useState(null)
   const [messageCount, setMessageCount]=useState(0);
   const [tenderCount, setTenderCount] = useState(0); // For Tenders
   const [jobCount, setJobCount] = useState(0); // For Jobs
@@ -63,7 +64,10 @@ const [loaders, setLoaders]=useState(false)
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(response => response.json())
-      .then(data => setUserCount(data.length));
+      .then(data => {
+        setUsers(data)
+        setUserCount(data.length)
+      });
 
     fetch('https://mysite-jr5y.onrender.com/export_orders', {
       headers: { 'Authorization': `Bearer ${token}` }
