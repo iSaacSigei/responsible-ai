@@ -11,6 +11,8 @@ const AdminDashboard = () => {
   const [importOrderCount, setImportOrderCount] = useState(0);
   const [pendingOrderCount, setPendingOrderCount] = useState(0);
   const [messageCount, setMessageCount]=useState(0);
+  const [users, setUsers] = useState([]); // State to store users
+  const [loadingUsers, setLoadingUsers] = useState(true); // Loading state for fetching users
   const [tenderCount, setTenderCount] = useState(0); // For Tenders
   const [jobCount, setJobCount] = useState(0); // For Jobs
   const [selectedData, setSelectedData] = useState(null);
@@ -63,7 +65,11 @@ const [loaders, setLoaders]=useState(false)
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(response => response.json())
-      .then(data => setUserCount(data.length));
+      .then(data => {
+        setUsers(data); // Set users data
+        setUserCount(data.length); // Update user count
+        setLoadingUsers(false); // Set loading to false after fetching
+      });
 
     fetch('https://mysite-jr5y.onrender.com/export_orders', {
       headers: { 'Authorization': `Bearer ${token}` }
@@ -589,7 +595,46 @@ const handleTenderUpdateSubmit = (e) => {
   
 
   const renderTable = () => {
-    if (!selectedData) return null; 
+    if (!selectedData) {
+      // Show loading spinner or message while fetching data
+      if (loadingUsers) {
+        return <p>Loading users...</p>;
+      }
+
+      // Return the users table after data is fetched
+      return (
+        <>
+          <h4>Users</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map(user => (
+                <tr key={user.id}>
+                  <td>{user.id}</td>
+                  <td>{`${user.first_name} ${user.last_name}`}</td>
+                  <td>{user.email}</td>
+                  <td>{user.contact}</td>
+                  <td>{user.role}</td>
+                  <td>
+                    <button className='mx-4 btn py-2 btn-success' onClick={() => handleUpdateClick(user)}>Update</button>
+                    <button className='btn py-2 btn-danger' onClick={() => handleDeleteClick(user)}>Remove</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      );
+    }
 
     if (selectedData.type === 'users') {
       return (
