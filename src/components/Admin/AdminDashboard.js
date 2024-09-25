@@ -593,7 +593,7 @@ const handleTenderUpdateSubmit = (e) => {
   
 
   const renderTable = () => {
-    if (!selectedData) if (!selectedData) {
+    if (!selectedData) {
       // Return the users table just like when selectedData.type is 'users'
       return (
         <>
