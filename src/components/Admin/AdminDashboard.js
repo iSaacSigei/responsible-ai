@@ -561,6 +561,31 @@ const handleTenderUpdateSubmit = (e) => {
       setLoaders(false); // Stop the loader in case of error
     });
   };
+  const handleDeleteContactMessage = (id) => {
+    const token = localStorage.getItem('token');
+  
+    fetch(`https://mysite-jr5y.onrender.com/contact_messages/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+      .then(response => {
+        if (response.ok) {
+          setSelectedData(prevData => ({
+            ...prevData,
+            data: prevData.data.filter(message => message.id !== id)
+          }));
+          setResponseMessage('Message deleted successfully');
+        } else {
+          alert('Failed to delete message');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to delete message');
+      });
+  };
   
 
   const renderTable = () => {
@@ -657,17 +682,25 @@ const handleTenderUpdateSubmit = (e) => {
                 <th>Email</th>
                 <th>Number</th>
                 <th>Message</th>
-
+                <th>Actions</th> {/* Add Actions column */}
               </tr>
             </thead>
             <tbody>
-              {selectedData.data.map(user => (
-                <tr key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.number}</td>
-                  <td>{user.message}</td>
+              {selectedData.data.map(message => (
+                <tr key={message.id}>
+                  <td>{message.id}</td>
+                  <td>{message.name}</td>
+                  <td>{message.email}</td>
+                  <td>{message.number}</td>
+                  <td>{message.message}</td>
+                  <td>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleDeleteContactMessage(message.id)} // Add delete button
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -675,6 +708,7 @@ const handleTenderUpdateSubmit = (e) => {
         </>
       );
     }
+    
     if (selectedData.type === 'tenders') {
       return (
         <>
