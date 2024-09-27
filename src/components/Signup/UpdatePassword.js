@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/updatePassword.css'; // Import the new CSS file
 
 const UpdatePassword = ({ user }) => {
   const [formData, setFormData] = useState({
@@ -70,7 +71,7 @@ const UpdatePassword = ({ user }) => {
   return (
     <div className="update-password-container">
       <h2>Update Password</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="update-password-form">
         <div className="form-group">
           <label htmlFor="currentPassword">Current Password</label>
           <input

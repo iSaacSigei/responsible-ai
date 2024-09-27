@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/updateProfile.css'; // Import the new CSS file
 
 const UpdateProfile = ({ user }) => {
   const [formData, setFormData] = useState({
@@ -76,7 +77,7 @@ const UpdateProfile = ({ user }) => {
   return (
     <div className="update-profile-container">
       <h2>Update Profile</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="update-profile-form">
         <div className="form-group">
           <label htmlFor="contact">Contact Number</label>
           <input

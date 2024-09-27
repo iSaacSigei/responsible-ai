@@ -196,17 +196,18 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
                 <i className="bi bi-person toggle-dropdown"></i>
               </Link>
               <ul id="user">
-                <li>
-                  <button
-                    className="btn-getstarted w-100"
-                    onClick={(e) => {
-                      handleLinkClick(e); // Pass the event
-                      onLogout();
-                    }}
-                  >
-                    Logout
-                  </button>
-                </li>
+              <li>
+                <span
+                  className="btn-getstarted w-100"
+                  role="button" // Optional: To indicate that this span acts like a button
+                  onClick={(e) => {
+                    handleLinkClick(e); // Pass the event
+                    onLogout();
+                  }}
+                >
+                  Logout
+                </span>
+              </li>
                 <li className="dropdown">
                   <Link to="#" onClick={handleLinkClick}>
                     <span>Profile Settings</span>
@@ -214,7 +215,7 @@ const Navbar = ({ user, onLogout, cartCount, messageCount }) => {
                   </Link>
                   <ul>
                     <li><Link to="/profile" onClick={handleLinkClick}>Profile</Link></li>
-                    <li><Link to="/profile/change-password" onClick={handleLinkClick}>Change Password</Link></li>
+                    <li><Link to="/profile/update-password" onClick={handleLinkClick}>Change Password</Link></li>
                     <li><Link to="/profile/update-address" onClick={handleLinkClick}>Update Address</Link></li>
                   </ul>
                 </li>

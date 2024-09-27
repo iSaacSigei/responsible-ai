@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/profile.css'; // Import the new CSS file
 
 const Profile = () => {
   const [profileData, setProfileData] = useState({
@@ -22,9 +23,14 @@ const Profile = () => {
   // Fetch user profile data from the backend when the component mounts
   useEffect(() => {
     const fetchProfileData = async () => {
+      const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('https://mysite-jr5y.onrender.com/users/profile');
-        setProfileData(response.data.user); // Assuming the data structure returns a user object
+        const response = await axios.get('https://mysite-jr5y.onrender.com/users/profile', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setProfileData(response.data.user);
       } catch (error) {
         console.error('Failed to fetch profile data:', error);
         toast.error('Failed to load profile data. Please try again.');
@@ -45,10 +51,13 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    const token = localStorage.getItem('token');
 
     try {
-      await axios.put('https://your-api-endpoint.com/profile', {
-        user: profileData,
+      await axios.put('https://mysite-jr5y.onrender.com/users/update_profile', profileData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       toast.success('Profile updated successfully!');
     } catch (error) {
@@ -59,13 +68,13 @@ const Profile = () => {
   };
 
   const handleChangePassword = () => {
-    navigate('/update-password'); // Navigate to the UpdatePassword component
+    navigate('/profile/update-password');
   };
 
   return (
-    <div className="profile-container">
+    <div className="profile-page-container">
       <h2>Your Profile</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="profile-form" onSubmit={handleSubmit}>
         <div className="form-row row">
           <div className="col-md-6 mb-3">
             <label htmlFor="firstName">First Name</label>

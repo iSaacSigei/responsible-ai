@@ -1,0 +1,67 @@
+.profile-page-container {
+    background-color: black;
+    color: whitesmoke;
+    padding: 20px;
+    min-height: 60vh;
+}
+
+.profile-form {
+    max-width: 800px;
+    margin: auto;
+    margin-top: 130px;
+    margin-bottom: 10px;
+}
+
+.form-row {
+    margin-bottom: 13px;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 2px;
+    color: whitesmoke;
+}
+
+.form-row input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #333;
+    background-color: #222;
+    color: whitesmoke;
+}
+
+button {
+    background-color: #4C51BF; /* Tailwind text-indigo-600 */
+    color: whitesmoke;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #5A67D8; /* Tailwind text-indigo-500 */
+}
+
+/* Responsive Styles */
+.auth-form {
+    width: 100%; /* This will be the default width for small screens */
+    margin: auto;
+    margin-top: 100px !important;
+    margin-bottom: 100px;
+}
+
+@media (min-width: 768px) {
+    .auth-form {
+        width: 60%;
+        margin: auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    .auth-form {
+        width: 30%;
+        margin: auto;
+    }
+}
