@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/updatePassword.css'; // Import the new CSS file
-
+import Footer from '../footer/Footer'
 const UpdatePassword = ({ user }) => {
   const [formData, setFormData] = useState({
     currentPassword: '',
@@ -69,6 +69,7 @@ const UpdatePassword = ({ user }) => {
   };
 
   return (
+    <>
     <div className="update-password-container">
       <h2>Update Password</h2>
       <form onSubmit={handleSubmit} className="update-password-form">
@@ -120,6 +121,8 @@ const UpdatePassword = ({ user }) => {
       </form>
       <ToastContainer position="top-center" />
     </div>
+    <Footer/>
+    </>
   );
 };
 

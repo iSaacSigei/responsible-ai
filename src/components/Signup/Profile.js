@@ -7,14 +7,14 @@ import '../styles/profile.css'; // Import the new CSS file
 
 const Profile = () => {
   const [profileData, setProfileData] = useState({
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     name: '',
     email: '',
     contact: '',
     address: '',
     city: '',
-    stateProvince: '',
+    state_province: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -82,7 +82,7 @@ const Profile = () => {
               type="text"
               id="firstName"
               name="firstName"
-              value={profileData.firstName}
+              value={profileData.first_name}
               onChange={handleInputChange}
               required
               className="form-control"
@@ -94,7 +94,7 @@ const Profile = () => {
               type="text"
               id="lastName"
               name="lastName"
-              value={profileData.lastName}
+              value={profileData.last_name}
               onChange={handleInputChange}
               required
               className="form-control"
@@ -172,7 +172,7 @@ const Profile = () => {
               type="text"
               id="stateProvince"
               name="stateProvince"
-              value={profileData.stateProvince}
+              value={profileData.state_province}
               onChange={handleInputChange}
               required
               className="form-control"
@@ -186,7 +186,7 @@ const Profile = () => {
       </form>
 
       <div className="mt-3">
-        <button onClick={handleChangePassword} className="btn-2 w-100">
+        <button onClick={handleChangePassword} className="btn btn-primary">
           Change Password
         </button>
       </div>

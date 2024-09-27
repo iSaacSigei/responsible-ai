@@ -9,7 +9,7 @@ const UpdateProfile = ({ user }) => {
     contact: user.contact || '',
     address: user.address || '',
     city: user.city || '',
-    state: user.state || '',
+    state_province: user.state_province || '',
   });
 
   const [errors, setErrors] = useState({});
@@ -35,7 +35,7 @@ const UpdateProfile = ({ user }) => {
       newErrors.city = 'City is required';
     }
     if (!formData.state) {
-      newErrors.state = 'State is required';
+      newErrors.state_province = 'State is required';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -56,7 +56,7 @@ const UpdateProfile = ({ user }) => {
         contact: formData.contact,
         address: formData.address,
         city: formData.city,
-        state: formData.state,
+        state_province: formData.state_province,
       }, {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -64,7 +64,7 @@ const UpdateProfile = ({ user }) => {
       });
       toast.success('Profile updated successfully!');
       // Clear form after success
-      setFormData({ contact: '', address: '', city: '', state: '' });
+      setFormData({ contact: '', address: '', city: '', state_province: '' });
       setErrors({});
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -126,12 +126,12 @@ const UpdateProfile = ({ user }) => {
             type="text"
             id="state"
             name="state"
-            value={formData.state}
+            value={formData.state_province}
             onChange={handleInputChange}
             required
             className="form-control"
           />
-          {errors.state && <span className="text-danger">{errors.state}</span>}
+          {errors.state_province && <span className="text-danger">{errors.state_province}</span>}
         </div>
 
         <button type="submit" className="btn-1 w-100" disabled={isSubmitting}>
