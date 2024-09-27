@@ -3,15 +3,15 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const UpdatePassword = () => {
+const UpdatePassword = ({ user }) => {
   const [formData, setFormData] = useState({
     currentPassword: '',
     newPassword: '',
     confirmPassword: '',
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,15 +20,31 @@ const UpdatePassword = () => {
       [name]: value,
     });
   };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.currentPassword) {
+      newErrors.currentPassword = 'Current password is required';
+    }
+    if (!formData.newPassword) {
+      newErrors.newPassword = 'New password is required';
+    }
+    if (formData.newPassword !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.newPassword !== formData.confirmPassword) {
-      setErrors({ confirmPassword: 'Passwords do not match!' });
+
+    if (!validateForm()) {
       return;
     }
-  
+
     setIsSubmitting(true);
-  
+
     try {
       const token = localStorage.getItem('token');
       await axios.patch(`https://mysite-jr5y.onrender.com/users/${user.id}/update_password`, {
@@ -40,13 +56,16 @@ const UpdatePassword = () => {
         },
       });
       toast.success('Password updated successfully!');
+      // Clear form after success
+      setFormData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+      setErrors({});
     } catch (error) {
+      console.error("Error updating password:", error);
       toast.error('Failed to update password. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
-  
 
   return (
     <div className="update-password-container">
@@ -63,6 +82,7 @@ const UpdatePassword = () => {
             required
             className="form-control"
           />
+          {errors.currentPassword && <span className="text-danger">{errors.currentPassword}</span>}
         </div>
 
         <div className="form-group">
@@ -76,6 +96,7 @@ const UpdatePassword = () => {
             required
             className="form-control"
           />
+          {errors.newPassword && <span className="text-danger">{errors.newPassword}</span>}
         </div>
 
         <div className="form-group">
@@ -89,9 +110,7 @@ const UpdatePassword = () => {
             required
             className="form-control"
           />
-          {errors.confirmPassword && (
-            <span className="text-danger">{errors.confirmPassword}</span>
-          )}
+          {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
         </div>
 
         <button type="submit" className="btn-1 w-100" disabled={isSubmitting}>
