@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../styles/updateProfile.css'; // Import the new CSS file
+import '../styles/updateProfile.css'; // Ensure you have the styles here
+import '../styles/profile.css'
 import Footer from '../footer/Footer';
 
 const UpdateProfile = ({ user }) => {
@@ -35,8 +36,8 @@ const UpdateProfile = ({ user }) => {
     if (!formData.city) {
       newErrors.city = 'City is required';
     }
-    if (!formData.state) {
-      newErrors.state_province = 'State is required';
+    if (!formData.state_province) {
+      newErrors.state_province = 'State/Province is required';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -77,72 +78,76 @@ const UpdateProfile = ({ user }) => {
 
   return (
     <>
-    <div className="update-profile-container">
-      <h2>Update Profile</h2>
-      <form onSubmit={handleSubmit} className="update-profile-form">
-        <div className="form-group">
-          <label htmlFor="contact">Contact Number</label>
-          <input
-            type="text"
-            id="contact"
-            name="contact"
-            value={formData.contact}
-            onChange={handleInputChange}
-            required
-            className="form-control"
-          />
-          {errors.contact && <span className="text-danger">{errors.contact}</span>}
-        </div>
+      <div className="container-xl px-4 mt-4">
+        <div className="card mb-4">
+          <div className="card-header">Update Profile</div>
+          <div className="card-body">
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label className="small mb-1" htmlFor="contact">Contact Number</label>
+                <input
+                  type="text"
+                  id="contact"
+                  name="contact"
+                  value={formData.contact}
+                  onChange={handleInputChange}
+                  required
+                  className="form-control"
+                />
+                {errors.contact && <span className="text-danger">{errors.contact}</span>}
+              </div>
 
-        <div className="form-group">
-          <label htmlFor="address">Address</label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            value={formData.address}
-            onChange={handleInputChange}
-            required
-            className="form-control"
-          />
-          {errors.address && <span className="text-danger">{errors.address}</span>}
-        </div>
+              <div className="mb-3">
+                <label className="small mb-1" htmlFor="address">Address</label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  required
+                  className="form-control"
+                />
+                {errors.address && <span className="text-danger">{errors.address}</span>}
+              </div>
 
-        <div className="form-group">
-          <label htmlFor="city">City</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            value={formData.city}
-            onChange={handleInputChange}
-            required
-            className="form-control"
-          />
-          {errors.city && <span className="text-danger">{errors.city}</span>}
-        </div>
+              <div className="mb-3">
+                <label className="small mb-1" htmlFor="city">City</label>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  required
+                  className="form-control"
+                />
+                {errors.city && <span className="text-danger">{errors.city}</span>}
+              </div>
 
-        <div className="form-group">
-          <label htmlFor="state">State/Province</label>
-          <input
-            type="text"
-            id="state"
-            name="state"
-            value={formData.state_province}
-            onChange={handleInputChange}
-            required
-            className="form-control"
-          />
-          {errors.state_province && <span className="text-danger">{errors.state_province}</span>}
-        </div>
+              <div className="mb-3">
+                <label className="small mb-1" htmlFor="state">State/Province</label>
+                <input
+                  type="text"
+                  id="state"
+                  name="state_province"
+                  value={formData.state_province}
+                  onChange={handleInputChange}
+                  required
+                  className="form-control"
+                />
+                {errors.state_province && <span className="text-danger">{errors.state_province}</span>}
+              </div>
 
-        <button type="submit" className="btn-1 w-100" disabled={isSubmitting}>
-          {isSubmitting ? 'Updating...' : 'Update Profile'}
-        </button>
-      </form>
-      <ToastContainer position="top-center" />
-    </div>
-    <Footer/>
+              <button type="submit" className="btn btn-primary w-100" disabled={isSubmitting}>
+                {isSubmitting ? 'Updating...' : 'Update Profile'}
+              </button>
+            </form>
+          </div>
+        </div>
+        <ToastContainer position="top-center" />
+      </div>
+      <Footer />
     </>
   );
 };

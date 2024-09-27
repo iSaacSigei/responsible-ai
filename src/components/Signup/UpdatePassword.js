@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../styles/updatePassword.css'; // Import the new CSS file
-import Footer from '../footer/Footer'
+import '../styles/updatePassword.css'; // Ensure you have the styles here
+import Footer from '../footer/Footer';
+import '../styles/profile.css'
+
 const UpdatePassword = ({ user }) => {
   const [formData, setFormData] = useState({
     currentPassword: '',
@@ -70,58 +72,62 @@ const UpdatePassword = ({ user }) => {
 
   return (
     <>
-    <div className="update-password-container">
-      <h2>Update Password</h2>
-      <form onSubmit={handleSubmit} className="update-password-form">
-        <div className="form-group">
-          <label htmlFor="currentPassword">Current Password</label>
-          <input
-            type="password"
-            id="currentPassword"
-            name="currentPassword"
-            value={formData.currentPassword}
-            onChange={handleInputChange}
-            required
-            className="form-control"
-          />
-          {errors.currentPassword && <span className="text-danger">{errors.currentPassword}</span>}
-        </div>
+      <div className="container-xl px-4 mt-4">
+        <div className="card mb-4">
+          <div className="card-header">Update Password</div>
+          <div className="card-body">
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label className="small mb-1" htmlFor="currentPassword">Current Password</label>
+                <input
+                  type="password"
+                  id="currentPassword"
+                  name="currentPassword"
+                  value={formData.currentPassword}
+                  onChange={handleInputChange}
+                  required
+                  className="form-control"
+                />
+                {errors.currentPassword && <span className="text-danger">{errors.currentPassword}</span>}
+              </div>
 
-        <div className="form-group">
-          <label htmlFor="newPassword">New Password</label>
-          <input
-            type="password"
-            id="newPassword"
-            name="newPassword"
-            value={formData.newPassword}
-            onChange={handleInputChange}
-            required
-            className="form-control"
-          />
-          {errors.newPassword && <span className="text-danger">{errors.newPassword}</span>}
-        </div>
+              <div className="mb-3">
+                <label className="small mb-1" htmlFor="newPassword">New Password</label>
+                <input
+                  type="password"
+                  id="newPassword"
+                  name="newPassword"
+                  value={formData.newPassword}
+                  onChange={handleInputChange}
+                  required
+                  className="form-control"
+                />
+                {errors.newPassword && <span className="text-danger">{errors.newPassword}</span>}
+              </div>
 
-        <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm New Password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleInputChange}
-            required
-            className="form-control"
-          />
-          {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
-        </div>
+              <div className="mb-3">
+                <label className="small mb-1" htmlFor="confirmPassword">Confirm New Password</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
+                  required
+                  className="form-control"
+                />
+                {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
+              </div>
 
-        <button type="submit" className="btn-1 w-100" disabled={isSubmitting}>
-          {isSubmitting ? 'Updating...' : 'Update Password'}
-        </button>
-      </form>
-      <ToastContainer position="top-center" />
-    </div>
-    <Footer/>
+              <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                {isSubmitting ? 'Updating...' : 'Update Password'}
+              </button>
+            </form>
+          </div>
+        </div>
+        <ToastContainer position="top-center" />
+      </div>
+      <Footer />
     </>
   );
 };
