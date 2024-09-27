@@ -30,7 +30,7 @@ const Profile = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        setProfileData(response.data.user);
+        setProfileData(response.data.user); // Assume the user data is in response.data.user
       } catch (error) {
         console.error('Failed to fetch profile data:', error);
         toast.error('Failed to load profile data. Please try again.');
@@ -72,125 +72,163 @@ const Profile = () => {
   };
 
   return (
-    <div className="profile-page-container">
-      <h2>Your Profile</h2>
-      <form className="profile-form" onSubmit={handleSubmit}>
-        <div className="form-row row">
-          <div className="col-md-6 mb-3">
-            <label htmlFor="firstName">First Name</label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              value={profileData.first_name}
-              onChange={handleInputChange}
-              required
-              className="form-control"
-            />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={profileData.last_name}
-              onChange={handleInputChange}
-              required
-              className="form-control"
-            />
+    <div className="container-xl px-4 mt-4">
+      {/* Account page navigation */}
+      <nav className="nav nav-borders">
+        <a className="nav-link active ms-0" href="#" onClick={() => navigate('/profile')}>Profile</a>
+        <a className="nav-link" href="#" onClick={() => navigate('/billing')}>Billing</a>
+        <a className="nav-link" href="#" onClick={() => navigate('/security')}>Security</a>
+        <a className="nav-link" href="#" onClick={() => navigate('/notifications')}>Notifications</a>
+      </nav>
+      <hr className="mt-0 mb-4" />
+      <div className="row">
+        <div className="col-xl-4">
+          {/* Profile picture card */}
+          <div className="card mb-4 mb-xl-0">
+            <div className="card-header">Profile Picture</div>
+            <div className="card-body text-center">
+              {/* Profile picture image */}
+              <img className="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
+              {/* Profile picture help block */}
+              <div className="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+              {/* Profile picture upload button */}
+              <button className="btn btn-primary" type="button">Upload new image</button>
+            </div>
           </div>
         </div>
-
-        <div className="form-group">
-          <label htmlFor="name">Username</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={profileData.name}
-            onChange={handleInputChange}
-            required
-            className="form-control"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={profileData.email}
-            onChange={handleInputChange}
-            required
-            className="form-control"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="contact">Contact</label>
-          <input
-            type="text"
-            id="contact"
-            name="contact"
-            value={profileData.contact}
-            onChange={handleInputChange}
-            required
-            className="form-control"
-          />
-        </div>
-
-        <div className="form-row row">
-          <div className="col-md-6 mb-3">
-            <label htmlFor="address">Address</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              value={profileData.address}
-              onChange={handleInputChange}
-              required
-              className="form-control"
-            />
+        <div className="col-xl-8">
+          {/* Account details card */}
+          <div className="card mb-4">
+            <div className="card-header">Account Details</div>
+            <div className="card-body">
+              <form onSubmit={handleSubmit}>
+                {/* Form Group (username) */}
+                <div className="mb-3">
+                  <label className="small mb-1" htmlFor="inputUsername">Username</label>
+                  <input
+                    className="form-control"
+                    id="inputUsername"
+                    type="text"
+                    name="name"
+                    placeholder={profileData.name || "Enter your username"}
+                    value={profileData.name}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                {/* Form Row */}
+                <div className="row gx-3 mb-3">
+                  {/* Form Group (first name) */}
+                  <div className="col-md-6">
+                    <label className="small mb-1" htmlFor="inputFirstName">First name</label>
+                    <input
+                      className="form-control"
+                      id="inputFirstName"
+                      type="text"
+                      name="first_name"
+                      placeholder={profileData.first_name || "Enter your first name"}
+                      value={profileData.first_name}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  {/* Form Group (last name) */}
+                  <div className="col-md-6">
+                    <label className="small mb-1" htmlFor="inputLastName">Last name</label>
+                    <input
+                      className="form-control"
+                      id="inputLastName"
+                      type="text"
+                      name="last_name"
+                      placeholder={profileData.last_name || "Enter your last name"}
+                      value={profileData.last_name}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+                {/* Form Group (email address) */}
+                <div className="mb-3">
+                  <label className="small mb-1" htmlFor="inputEmailAddress">Email address</label>
+                  <input
+                    className="form-control"
+                    id="inputEmailAddress"
+                    type="email"
+                    name="email"
+                    placeholder={profileData.email || "Enter your email address"}
+                    value={profileData.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                {/* Form Group (contact) */}
+                <div className="mb-3">
+                  <label className="small mb-1" htmlFor="inputContact">Contact</label>
+                  <input
+                    className="form-control"
+                    id="inputContact"
+                    type="text"
+                    name="contact"
+                    placeholder={profileData.contact || "Enter your contact number"}
+                    value={profileData.contact}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                {/* Form Group (address) */}
+                <div className="mb-3">
+                  <label className="small mb-1" htmlFor="inputAddress">Address</label>
+                  <input
+                    className="form-control"
+                    id="inputAddress"
+                    type="text"
+                    name="address"
+                    placeholder={profileData.address || "Enter your address"}
+                    value={profileData.address}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                {/* Form Row for City and State */}
+                <div className="row gx-3 mb-3">
+                  {/* Form Group (city) */}
+                  <div className="col-md-6">
+                    <label className="small mb-1" htmlFor="inputCity">City</label>
+                    <input
+                      className="form-control"
+                      id="inputCity"
+                      type="text"
+                      name="city"
+                      placeholder={profileData.city || "Enter your city"}
+                      value={profileData.city}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  {/* Form Group (state) */}
+                  <div className="col-md-6">
+                    <label className="small mb-1" htmlFor="inputStateProvince">State/Province</label>
+                    <input
+                      className="form-control"
+                      id="inputStateProvince"
+                      type="text"
+                      name="state_province"
+                      placeholder={profileData.state_province || "Enter your state or province"}
+                      value={profileData.state_province}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+                {/* Save changes button */}
+                <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? 'Saving...' : 'Save changes'}
+                </button>
+              </form>
+            </div>
           </div>
-          <div className="col-md-3 mb-3">
-            <label htmlFor="city">City</label>
-            <input
-              type="text"
-              id="city"
-              name="city"
-              value={profileData.city}
-              onChange={handleInputChange}
-              required
-              className="form-control"
-            />
-          </div>
-          <div className="col-md-3 mb-3">
-            <label htmlFor="stateProvince">State/Province</label>
-            <input
-              type="text"
-              id="stateProvince"
-              name="stateProvince"
-              value={profileData.state_province}
-              onChange={handleInputChange}
-              required
-              className="form-control"
-            />
-          </div>
         </div>
-
-        <button type="submit" className="btn-1 w-100" disabled={isSubmitting}>
-          {isSubmitting ? 'Updating Profile...' : 'Update Profile'}
-        </button>
-      </form>
-
-      <div className="mt-3">
-        <button onClick={handleChangePassword} className="btn btn-primary">
-          Change Password
-        </button>
       </div>
-
       <ToastContainer position="top-center" />
     </div>
   );
