@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/updateProfile.css'; // Import the new CSS file
+import Footer from '../footer/Footer';
 
 const UpdateProfile = ({ user }) => {
   const [formData, setFormData] = useState({
@@ -75,6 +76,7 @@ const UpdateProfile = ({ user }) => {
   };
 
   return (
+    <>
     <div className="update-profile-container">
       <h2>Update Profile</h2>
       <form onSubmit={handleSubmit} className="update-profile-form">
@@ -140,6 +142,8 @@ const UpdateProfile = ({ user }) => {
       </form>
       <ToastContainer position="top-center" />
     </div>
+    <Footer/>
+    </>
   );
 };
 

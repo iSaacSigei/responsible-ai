@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/profile.css'; // Import the new CSS file
-
+import Footer from '../footer/Footer';
 const Profile = () => {
   const [profileData, setProfileData] = useState({
     first_name: '',
@@ -72,6 +72,7 @@ const Profile = () => {
   };
 
   return (
+    <>
     <div className="container-xl px-4 mt-4">
       {/* Account page navigation */}
       <nav className="nav nav-borders">
@@ -231,6 +232,8 @@ const Profile = () => {
       </div>
       <ToastContainer position="top-center" />
     </div>
+    <Footer/>
+    </>
   );
 };
 
