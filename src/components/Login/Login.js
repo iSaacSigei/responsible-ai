@@ -51,9 +51,7 @@ const Login = ({ updateUser }) => {
       localStorage.setItem('token', result.token);  // Store the token
       
       // Update user data
-      await updateUser();
-      console.log(result);
-      
+      await updateUser();      
       // Check user role
       if (result.user.role === 'admin') {
         navigate('/admin_panel');

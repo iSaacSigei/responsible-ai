@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/profile.css'; // Import the new CSS file
 import Footer from '../footer/Footer';
-const Profile = () => {
+const Profile = ({user}) => {
   const [profileData, setProfileData] = useState({
     first_name: '',
     last_name: '',
@@ -20,25 +20,27 @@ const Profile = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  // Fetch user profile data from the backend when the component mounts
   useEffect(() => {
     const fetchProfileData = async () => {
       const token = localStorage.getItem('token');
+      const userId = user.id; // Replace this with the actual user ID you want to fetch
+  
       try {
-        const response = await axios.get('https://mysite-jr5y.onrender.com/users/profile', {
+        const response = await axios.get(`https://mysite-jr5y.onrender.com/users/${userId}/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setProfileData(response.data.user); // Assume the user data is in response.data.user
+        setProfileData(response.data.user);
       } catch (error) {
         console.error('Failed to fetch profile data:', error);
         toast.error('Failed to load profile data. Please try again.');
       }
     };
-
+  
     fetchProfileData();
   }, []);
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
