@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/profile.css'; // Import the new CSS file
 import Footer from '../footer/Footer';
 const Profile = ({user}) => {
+    console.log(user)
   const [profileData, setProfileData] = useState({
     first_name: '',
     last_name: '',
@@ -23,7 +24,7 @@ const Profile = ({user}) => {
   useEffect(() => {
     const fetchProfileData = async () => {
       const token = localStorage.getItem('token');
-      const userId = user.id; // Replace this with the actual user ID you want to fetch
+      const userId = user.user.id; // Replace this with the actual user ID you want to fetch
   
       try {
         const response = await axios.get(`https://mysite-jr5y.onrender.com/users/${userId}/profile`, {
@@ -83,7 +84,7 @@ const Profile = ({user}) => {
         <a className="nav-link" href="#" onClick={() => navigate('/security')}>Security</a>
         <a className="nav-link" href="#" onClick={() => navigate('/notifications')}>Notifications</a>
       </nav>
-      <hr className="mt-0 mb-4" />
+      <hr className="mt-0 mb-5" />
       <div className="row">
         <div className="col-xl-4">
           {/* Profile picture card */}
