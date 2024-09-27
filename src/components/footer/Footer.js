@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer = () => (
-  <footer className="footer custom-navbar-bg">
+  <footer className="footer">
     <div className="container py-4">
       <div className="row">
         <div className="col-md-3">

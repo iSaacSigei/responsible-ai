@@ -9,29 +9,6 @@ import Footer from '../footer/Footer';
 import Logo from '../../images/womall-logo.png';
 const AboutUs = () => {
   
-  const handleScroll = () => {
-    // Get the element by its ID or any other selector
-    const targetElement = document.getElementById('your-element-id'); // Replace with your actual element ID or class
-  
-    // Check if the element exists before accessing its properties
-    if (targetElement) {
-      const rect = targetElement.getBoundingClientRect();
-      // Your logic here using rect
-    } else {
-      console.warn("Target element not found for getBoundingClientRect.");
-    }
-  };
-  
-  // Add event listener for scroll
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-  
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-  
   useEffect(() => {
     AOS.init({
       duration: 1000, 
@@ -68,10 +45,10 @@ const AboutUs = () => {
     ],
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "123 Trade Street",
+      "streetAddress": "Thika Road Mall",
       "addressLocality": "Nairobi",
       "addressRegion": "Nairobi County",
-      "postalCode": "00100",
+      "postalCode": "00500",
       "addressCountry": "KE"
     }
   };

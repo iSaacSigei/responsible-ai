@@ -14,6 +14,9 @@ const ImportPage = lazy(() => import('./components/ImportPage/ImportPage'));
 const ExportPage = lazy(() => import('./components/ExportPage/ExportPage'));
 const Login = lazy(() => import('./components/Login/Login'));
 const Signup = lazy(() => import('./components/Signup/Signup'));
+const UpdateProfile = lazy(() => import('./components/Signup/UpdateProfile'));
+const UpdatePassword = lazy(() => import('./components/Signup/UpdatePassword'));
+const Profile = lazy(() => import('./components/Signup/Profile'));
 const Feedback = lazy(() => import('./components/FeedbackPage/Feedback'));
 const QuotationPage = lazy(() => import('./components/QoutationPage/QuotationPage'));
 const Checkout = lazy(() => import('./components/CheckoutPage/Checkout'));
@@ -164,6 +167,9 @@ const App = () => {
             <Route path="/jobs/:id" element={<JobDetailsPage />} />
             <Route path='/special-offers' element={<SpecialOffers/>}/>
             <Route path='/events' element={<Events/>}/>
+            <Route path="/profile" element={<Profile user={user} />} />
+            <Route path="/profile/update-address" element={<UpdateProfile user={user} />} />
+            <Route path="/profile/update-password" element={<UpdatePassword user={user} />} />
           </Routes>
         </Suspense>
       </HelmetProvider>
